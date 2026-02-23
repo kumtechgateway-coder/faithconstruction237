@@ -137,8 +137,7 @@ class AppNavbar extends HTMLElement {
                         <a href="index.html" class="flex items-center gap-4">
                             <img src="images/logo.png" alt="Faith Construction Logo" class="h-12 w-auto rounded-[5px]">
                             <div class="text-white">
-                                <span class="font-['Lora'] text-2xl font-black tracking-tight block leading-none">FAITH</span>
-                                <span class="text-[#D4B357] text-xs tracking-[0.3em] block mt-1 font-light">CONSTRUCTION</span>
+                                <span class="font-['Lora'] text-xl font-black tracking-tight">FAITH <span class="text-[#D4B357]">CONSTRUCTION</span></span>
                             </div>
                         </a>
 
@@ -151,7 +150,7 @@ class AppNavbar extends HTMLElement {
                         <div class="hidden lg:flex items-center space-x-4">
                             <div class="text-right hidden xl:block">
                                 <div class="text-[#D4B357] text-sm font-light">24/7 SUPPORT</div>
-                                <div class="text-white text-lg font-semibold">+237 123 456 789</div>
+                                <div class="text-white text-lg font-semibold">+237 674 942 469</div>
                             </div>
                             <a href="contact.html" class="btn-ripple-nav bg-[#D4B357] hover:bg-[#B8963F] text-[#1A1A1A] px-6 py-3 rounded-md text-sm font-semibold transition-all duration-300 transform hover:scale-110 hover:-translate-y-3 hover:shadow-2xl">
                                 GET QUOTE
@@ -180,7 +179,7 @@ class AppNavbar extends HTMLElement {
                 <div class="absolute bottom-10 left-10 right-10">
                     <div class="border-t border-gray-800 pt-8">
                         <div class="text-[#D4B357] mb-2 text-sm">CALL US</div>
-                        <div class="text-white text-xl font-semibold mb-6">+237 123 456 789</div>
+                        <div class="text-white text-xl font-semibold mb-6">+237 674 942 469</div>
                         <a href="contact.html" class="btn-ripple-nav block text-center bg-[#D4B357] hover:bg-[#B8963F] text-[#1A1A1A] px-6 py-4 rounded-md text-sm font-semibold transition-all transform hover:scale-110 hover:-translate-y-3 hover:shadow-2xl">
                             GET A QUOTE
                         </a>

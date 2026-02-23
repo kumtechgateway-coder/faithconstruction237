@@ -291,50 +291,50 @@
     <app-navbar></app-navbar>
 
     <!-- Hero Section -->
-    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pb-40 pt-32">
         <!-- Background Video/Image -->
         <div class="absolute inset-0">
-            <div class="absolute inset-0 bg-black/50 z-10"></div>
-            <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-[#1A1A1A] z-10"></div>
+            <div class="absolute inset-0 bg-black/60 z-10"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-[#1A1A1A] z-10"></div>
             <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
                  alt="Luxury Construction" 
-                 class="w-full h-full object-cover">
+                 class="w-full h-full object-cover"
+                 fetchpriority="high">
         </div>
 
         <!-- Content -->
-        <div class="container mx-auto px-6 lg:px-8 relative z-20 text-center">
-            <div class="max-w-5xl mx-auto">
+        <div class="container mx-auto px-6 lg:px-8 relative z-20">
+            <div class="max-w-4xl">
                 <!-- Gold Subtitle -->
-                <div class="text-[#D4B357] text-sm tracking-[0.3em] mb-6 animate-fade-up flex items-center justify-center gap-4" style="animation-delay: 0.2s">
+                <div class="text-[#D4B357] text-sm tracking-[0.3em] mb-6 animate-fade-up flex items-center gap-4" style="animation-delay: 0.2s">
                     <span class="w-12 h-0.5 bg-[#D4B357]"></span>
                     CAMEROON'S PREMIER BUILDER
-                    <span class="w-12 h-0.5 bg-[#D4B357]"></span>
                 </div>
                 
                 <!-- Main Heading -->
                 <h1 class="text-5xl lg:text-7xl font-black text-white mb-8 leading-none">
                     <span class="block overflow-hidden">
-                        <span class="block animate-reveal-up" style="animation-delay: 0.4s;">Building</span>
+                        <span class="block animate-reveal-up" style="animation-delay: 0.4s;">Bringing Dreams</span>
                     </span>
                     <span class="block overflow-hidden">
-                        <span class="block text-gradient-gold animate-reveal-up" style="animation-delay: 0.6s;">Excellence</span>
+                        <span class="block text-gradient-gold animate-reveal-up" style="animation-delay: 0.6s;">To Reality</span>
                     </span>
                 </h1>
                 
                 <!-- Description -->
-                <p class="text-lg text-gray-200 mb-12 max-w-2xl mx-auto leading-relaxed animate-fade-up" style="animation-delay: 0.8s">
+                <p class="text-lg text-gray-200 mb-12 max-w-2xl leading-relaxed animate-fade-up" style="animation-delay: 0.8s">
                     Creating architectural masterpieces that define Cameroon's skyline. 
                     Where structural integrity meets timeless elegance.
                 </p>
                 
                 <!-- CTA Buttons -->
-                <div class="flex flex-wrap justify-center gap-6 animate-fade-up" style="animation-delay: 1.0s">
-                    <a href="projects.html" class="group relative overflow-hidden bg-[#D4B357] text-[#1A1A1A] px-6 py-3 rounded text-sm font-semibold inline-flex items-center transition-all duration-300 transform hover:scale-105 hover:-translate-y-3 hover:shadow-2xl">
+                <div class="flex flex-wrap gap-6 animate-fade-up z-20 relative" style="animation-delay: 1.0s">
+                    <a href="projects.html" class="group relative overflow-hidden bg-[#D4B357] text-[#1A1A1A] hover:text-white px-6 py-3 rounded text-sm font-semibold inline-flex items-center transition-all duration-300 transform hover:scale-105 hover:-translate-y-3 hover:shadow-2xl">
                         <span class="relative z-10">Explore Our Work</span>
                         <i class="fas fa-arrow-right ml-3 relative z-10 group-hover:translate-x-2 transition-transform"></i>
-                        <div class="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></div>
+                        <div class="absolute inset-0 bg-black transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></div>
                     </a>
-                    <a href="contact.html" class="group border-2 border-white text-white hover:border-[#D4B357] px-6 py-3 rounded text-sm font-semibold inline-flex items-center transition-all duration-300 transform hover:scale-105 hover:-translate-y-3 hover:shadow-2xl">
+                    <a href="contact.html" class="group border-2 border-white text-white hover:border-[#D4B357] hover:text-[#D4B357] px-6 py-3 rounded text-sm font-semibold inline-flex items-center transition-all duration-300 transform hover:scale-105 hover:-translate-y-3 hover:shadow-2xl">
                         <span>Get Consultation</span>
                         <i class="fas fa-phone-alt ml-3 group-hover:rotate-12 transition-transform"></i>
                     </a>
@@ -429,19 +429,22 @@
                             <div class="image-zoom rounded-2xl overflow-hidden shadow-2xl">
                                 <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
                                      alt="Luxury Home" 
-                                     class="w-full h-64 object-cover">
+                                     class="w-full h-64 object-cover"
+                                     loading="lazy">
                             </div>
                             <div class="image-zoom rounded-2xl overflow-hidden shadow-2xl">
                                 <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
                                      alt="Modern Interior" 
-                                     class="w-full h-48 object-cover">
+                                     class="w-full h-48 object-cover"
+                                     loading="lazy">
                             </div>
                         </div>
                         <div class="pt-12">
                             <div class="image-zoom rounded-2xl overflow-hidden shadow-2xl">
                                 <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
                                      alt="Architecture Detail" 
-                                     class="w-full h-80 object-cover">
+                                     class="w-full h-80 object-cover"
+                                     loading="lazy">
                             </div>
                         </div>
                     </div>
@@ -602,9 +605,10 @@
                 <!-- Project 1 -->
                 <div class="group relative overflow-hidden rounded-2xl" data-aos="zoom-in" data-aos-delay="100">
                     <div class="image-zoom">
-                        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                              alt="Luxury Villa" 
-                             class="w-full h-96 object-cover">
+                             class="w-full h-96 object-cover"
+                             loading="lazy">
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <div class="absolute bottom-0 left-0 right-0 p-8 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
@@ -619,9 +623,10 @@
                 <!-- Project 2 -->
                 <div class="group relative overflow-hidden rounded-2xl" data-aos="zoom-in" data-aos-delay="200">
                     <div class="image-zoom">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                              alt="Modern Home" 
-                             class="w-full h-96 object-cover">
+                             class="w-full h-96 object-cover"
+                             loading="lazy">
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <div class="absolute bottom-0 left-0 right-0 p-8 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
@@ -636,9 +641,10 @@
                 <!-- Project 3 -->
                 <div class="group relative overflow-hidden rounded-2xl" data-aos="zoom-in" data-aos-delay="300">
                     <div class="image-zoom">
-                        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                              alt="Luxury Estate" 
-                             class="w-full h-96 object-cover">
+                             class="w-full h-96 object-cover"
+                             loading="lazy">
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <div class="absolute bottom-0 left-0 right-0 p-8 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
@@ -756,7 +762,8 @@
         <div class="absolute inset-0">
             <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
                  alt="Construction Background" 
-                 class="w-full h-full object-cover">
+                 class="w-full h-full object-cover"
+                 loading="lazy">
             <div class="absolute inset-0 bg-[#1A1A1A] bg-opacity-90"></div>
         </div>
 
@@ -790,9 +797,9 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 py-20">
                 <!-- Company Info -->
                 <div>
-                    <div class="mb-6">
-                        <span class="font-['Lora'] text-3xl font-black text-white block leading-none">FAITH</span>
-                        <span class="text-[#D4B357] text-xs tracking-[0.3em] block mt-1">CONSTRUCTION</span>
+                    <div class="mb-6 flex items-center gap-4">
+                        <img src="images/logo.png" alt="Faith Construction Logo" class="h-12 w-auto rounded-[5px]">
+                        <span class="font-['Lora'] text-2xl font-black text-white">FAITH <span class="text-[#D4B357]">CONSTRUCTION</span></span>
                     </div>
                     <p class="text-gray-400 text-sm leading-relaxed mb-6">
                         Building Cameroon's premium residential future with integrity, excellence, and unwavering commitment to quality.
@@ -855,15 +862,15 @@
                     <ul class="space-y-4">
                         <li class="flex items-start space-x-3">
                             <i class="fas fa-map-marker-alt text-[#D4B357] mt-1"></i>
-                            <span class="text-gray-400">123 Rue de la Paix, Douala, Cameroon</span>
+                            <span class="text-gray-400">Simbock, Yaoundé, Cameroon</span>
                         </li>
                         <li class="flex items-start space-x-3">
                             <i class="fas fa-phone text-[#D4B357]"></i>
-                            <span class="text-gray-400">+237 123 456 789</span>
+                            <span class="text-gray-400">+237 674 942 469</span>
                         </li>
                         <li class="flex items-start space-x-3">
                             <i class="fas fa-envelope text-[#D4B357]"></i>
-                            <span class="text-gray-400">info@faithconstruction.cm</span>
+                            <span class="text-gray-400">faithconstruction8@gmail.com</span>
                         </li>
                         <li class="flex items-start space-x-3">
                             <i class="fas fa-clock text-[#D4B357]"></i>

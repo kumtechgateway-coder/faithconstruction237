@@ -732,7 +732,8 @@
         <div class="absolute inset-0">
             <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
                  alt="Construction Background" 
-                 class="w-full h-full object-cover">
+                 class="w-full h-full object-cover"
+                 loading="lazy">
             <div class="absolute inset-0 bg-[#1A1A1A] bg-opacity-90"></div>
         </div>
 
@@ -766,9 +767,9 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 py-20">
                 <!-- Company Info -->
                 <div>
-                    <div class="mb-6">
-                        <span class="font-['Lora'] text-3xl font-black text-white block leading-none">FAITH</span>
-                        <span class="text-[#D4B357] text-xs tracking-[0.3em] block mt-1">CONSTRUCTION</span>
+                    <div class="mb-6 flex items-center gap-4">
+                        <img src="images/logo.png" alt="Faith Construction Logo" class="h-12 w-auto rounded-[5px]">
+                        <span class="font-['Lora'] text-2xl font-black text-white">FAITH <span class="text-[#D4B357]">CONSTRUCTION</span></span>
                     </div>
                     <p class="text-gray-400 text-sm leading-relaxed mb-6">
                         Building Cameroon's premium residential future with integrity, excellence, and unwavering commitment to quality.
@@ -915,13 +916,13 @@
                     }, 600);
                 });
             });
-        });
+        }
         addRippleEffect('a.gold-gradient, a.border-2, a.bg-[#D4B357], button.faq-btn, footer .w-10.h-10');
     </script>
 
     <style>
         .gold-gradient {
-            background: linear-gradient(135deg, #D4B357 0%, #E6C76A 50%, #D4B357 100%);
+            background: linear-gradient(135deg, #D4B357 0%, #E6C76A 50%, #C2A74D 100%);
             background-size: 200% 200%;
             animation: gradient 3s ease infinite;
         }

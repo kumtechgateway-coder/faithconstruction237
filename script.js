@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
             projectCard.style.animationDelay = `${index * 100}ms`;
             
             projectCard.innerHTML = `
-                <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
                 <div class="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-brand-black/20 to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div class="absolute bottom-0 left-0 p-8 w-full translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                     <span class="text-brand-gold text-xs font-bold uppercase tracking-widest mb-2 block">${project.category}</span>
