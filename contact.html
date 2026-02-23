@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - FAITH Construction | Get in Touch Cameroon</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Google Maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #1A1A1A;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Lora', serif;
+            font-weight: 700;
+        }
+
+        /* Contact Form Styles */
+        .form-group {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-input:focus {
+            border-color: #D4B357;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(212, 179, 87, 0.1);
+        }
+
+        .form-label {
+            position: absolute;
+            left: 1rem;
+            top: 1rem;
+            padding: 0 0.25rem;
+            background: white;
+            color: #6b7280;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .form-input:focus ~ .form-label,
+        .form-input:not(:placeholder-shown) ~ .form-label {
+            top: -0.5rem;
+            left: 0.8rem;
+            font-size: 0.875rem;
+            color: #D4B357;
+            font-weight: 500;
+        }
+
+        .form-input::placeholder {
+            color: transparent;
+        }
+
+        /* Contact Info Cards */
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: #D4B357;
+            transition: height 0.4s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .contact-card:hover::before {
+            height: 100%;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(212, 179, 87, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            transition: all 0.4s ease;
+        }
+
+        .contact-card:hover .contact-icon {
+            background: #D4B357;
+            transform: rotateY(180deg);
+        }
+
+        .contact-card:hover .contact-icon i {
+            color: #1A1A1A;
+        }
+
+        .contact-icon i {
+            font-size: 1.5rem;
+            color: #D4B357;
+            transition: all 0.4s ease;
+        }
+
+        /* Map Container */
+        #map {
+            height: 450px;
+            width: 100%;
+            border-radius: 1.5rem;
+            z-index: 1;
+        }
+
+        /* Office Location Pins */
+        .office-pin {
+            background: #D4B357;
+            border: 3px solid white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            box-shadow: 0 0 20px rgba(212, 179, 87, 0.5);
+        }
+
+        /* Social Media Icons */
+        .social-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            background: #f3f4f6;
+            color: #1A1A1A;
+        }
+
+        .social-icon:hover {
+            background: #D4B357;
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        /* FAQ Accordion */
+        .faq-item {
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1rem 0;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .faq-question h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1A1A1A;
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover h4 {
+            color: #D4B357;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            margin-top: 1rem;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            background: linear-gradient(135deg, #D4B357 0%, #E6C76A 50%, #D4B357 100%);
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
+            color: #1A1A1A;
+            font-weight: 600;
+            padding: 0.625rem 1.25rem;
+            font-size: 0.95rem;
+            border-radius: 0.75rem;
+            width: 100%;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.05) translateY(-8px);
+            box-shadow: 0 25px 50px rgba(212, 179, 87, 0.5);
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Success Message */
+        .success-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            z-index: 9999;
+            text-align: center;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -30%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+            z-index: 9998;
+            display: none;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1A1A1A;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #D4B357;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #B8963F;
+        }
+
+        /* Gold Border Animation */
+        .gold-border-bottom {
+            position: relative;
+        }
+
+        .gold-border-bottom::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: #D4B357;
+            transition: width 0.3s ease;
+        }
+
+        .gold-border-bottom:hover::after {
+            width: 100px;
+        }
+
+        /* Ripple Effect */
+        .ripple-container {
+            position: relative;
+            overflow: hidden;
+        }
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.7);
+            transform: scale(0);
+            animation: ripple-animation 600ms ease-out;
+            pointer-events: none;
+        }
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navbar Component -->
+    <app-navbar></app-navbar>
+
+    <!-- Page Header -->
+    <section class="relative pt-32 pb-24 bg-[#1A1A1A] overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-[#D4B357] rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-[#D4B357] rounded-full filter blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 lg:px-8 relative z-10">
+            <div class="max-w-4xl">
+                <!-- Breadcrumb -->
+                <div class="flex items-center space-x-2 text-sm mb-6" data-aos="fade-up">
+                    <a href="index.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Home</a>
+                    <i class="fas fa-chevron-right text-[#D4B357] text-xs"></i>
+                    <span class="text-[#D4B357]">Contact</span>
+                </div>
+                
+                <!-- Title -->
+                <h1 class="text-4xl lg:text-6xl font-black text-white mb-6" data-aos="fade-up" data-aos-delay="100">
+                    Get In <span class="text-gradient-gold">Touch</span>
+                </h1>
+                <p class="text-xl text-gray-300 max-w-2xl leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+                    Ready to start your project? Have questions? Our team is here to help. Reach out to us through any of these channels.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Info Cards -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Phone -->
+                <div class="contact-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#1A1A1A] mb-2">Call Us</h3>
+                    <p class="text-gray-500 mb-4">24/7 Support</p>
+                    <p class="text-lg font-semibold text-[#1A1A1A]">+237 123 456 789</p>
+                    <p class="text-lg font-semibold text-[#1A1A1A]">+237 987 654 321</p>
+                </div>
+
+                <!-- Email -->
+                <div class="contact-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#1A1A1A] mb-2">Email Us</h3>
+                    <p class="text-gray-500 mb-4">Get a response within 24h</p>
+                    <p class="text-lg font-semibold text-[#1A1A1A]">info@faithconstruction.cm</p>
+                    <p class="text-lg font-semibold text-[#1A1A1A]">projects@faithconstruction.cm</p>
+                </div>
+
+                <!-- Office -->
+                <div class="contact-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#1A1A1A] mb-2">Visit Us</h3>
+                    <p class="text-gray-500 mb-4">Head Office</p>
+                    <p class="text-lg font-semibold text-[#1A1A1A]">123 Rue de la Paix</p>
+                    <p class="text-lg font-semibold text-[#1A1A1A]">Douala, Cameroon</p>
+                </div>
+
+                <!-- Hours -->
+                <div class="contact-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#1A1A1A] mb-2">Working Hours</h3>
+                    <p class="text-gray-500 mb-4">Mon - Fri</p>
+                    <p class="text-lg font-semibold text-[#1A1A1A]">8:00 AM - 6:00 PM</p>
+                    <p class="text-lg font-semibold text-[#1A1A1A]">Sat: 9:00 AM - 1:00 PM</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form & Map Section -->
+    <section class="py-16 bg-[#F8F8F8]">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="bg-white rounded-3xl p-8 lg:p-12 shadow-2xl" data-aos="fade-right">
+                    <h2 class="text-3xl font-bold text-[#1A1A1A] mb-8">Send Us a Message</h2>
+                    
+                    <form id="contactForm">
+                        <!-- Name Field -->
+                        <div class="form-group">
+                            <input type="text" id="name" class="form-input" placeholder="Your Name" required>
+                            <label for="name" class="form-label">Your Name *</label>
+                        </div>
+
+                        <!-- Email Field -->
+                        <div class="form-group">
+                            <input type="email" id="email" class="form-input" placeholder="Your Email" required>
+                            <label for="email" class="form-label">Email Address *</label>
+                        </div>
+
+                        <!-- Phone Field -->
+                        <div class="form-group">
+                            <input type="tel" id="phone" class="form-input" placeholder="Your Phone">
+                            <label for="phone" class="form-label">Phone Number</label>
+                        </div>
+
+                        <!-- Subject Field -->
+                        <div class="form-group">
+                            <select id="subject" class="form-input" required>
+                                <option value="" disabled selected></option>
+                                <option value="General Inquiry">General Inquiry</option>
+                                <option value="Project Consultation">Project Consultation</option>
+                                <option value="Quote Request">Quote Request</option>
+                                <option value="Site Visit">Schedule Site Visit</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <label for="subject" class="form-label">Subject *</label>
+                        </div>
+
+                        <!-- Message Field -->
+                        <div class="form-group">
+                            <textarea id="message" rows="5" class="form-input" placeholder="Your Message" required></textarea>
+                            <label for="message" class="form-label">Your Message *</label>
+                        </div>
+
+                        <!-- Budget Range (Optional) -->
+                        <div class="form-group">
+                            <select id="budget" class="form-input">
+                                <option value="" disabled selected></option>
+                                <option value="5-10M">5 - 10 Million FCFA</option>
+                                <option value="10-25M">10 - 25 Million FCFA</option>
+                                <option value="25-50M">25 - 50 Million FCFA</option>
+                                <option value="50-100M">50 - 100 Million FCFA</option>
+                                <option value="100M+">100 Million+ FCFA</option>
+                            </select>
+                            <label for="budget" class="form-label">Project Budget (Optional)</label>
+                        </div>
+
+                        <!-- Preferred Contact Method -->
+                        <div class="mb-8">
+                            <p class="text-sm font-semibold text-gray-700 mb-3">Preferred Contact Method:</p>
+                            <div class="flex flex-wrap gap-6">
+                                <label class="flex items-center">
+                                    <input type="radio" name="contact-method" value="email" checked class="w-4 h-4 text-[#D4B357]">
+                                    <span class="ml-2 text-gray-600">Email</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="contact-method" value="phone" class="w-4 h-4 text-[#D4B357]">
+                                    <span class="ml-2 text-gray-600">Phone</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="contact-method" value="whatsapp" class="w-4 h-4 text-[#D4B357]">
+                                    <span class="ml-2 text-gray-600">WhatsApp</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane mr-3"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Map & Additional Info -->
+                <div class="space-y-8" data-aos="fade-left">
+                    <!-- Map -->
+                    <div class="bg-white rounded-3xl p-4 shadow-2xl">
+                        <div id="map"></div>
+                    </div>
+
+                    <!-- Office Locations -->
+                    <div class="bg-white rounded-3xl p-8 shadow-2xl">
+                        <h3 class="text-2xl font-bold text-[#1A1A1A] mb-6">Our Offices</h3>
+                        
+                        <div class="space-y-6">
+                            <!-- Douala HQ -->
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-[#D4B357]/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-building text-[#D4B357] text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-[#1A1A1A] mb-1">Douala - Headquarters</h4>
+                                    <p class="text-gray-600 text-sm mb-2">123 Rue de la Paix, Bonanjo</p>
+                                    <p class="text-[#D4B357] text-sm">+237 123 456 789</p>
+                                </div>
+                            </div>
+
+                            <!-- Yaoundé Office -->
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-[#D4B357]/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-building text-[#D4B357] text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-[#1A1A1A] mb-1">Yaoundé Office</h4>
+                                    <p class="text-gray-600 text-sm mb-2">456 Avenue Kennedy, Bastos</p>
+                                    <p class="text-[#D4B357] text-sm">+237 987 654 321</p>
+                                </div>
+                            </div>
+
+                            <!-- Bafoussam Office -->
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-[#D4B357]/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-building text-[#D4B357] text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-[#1A1A1A] mb-1">Bafoussam Office</h4>
+                                    <p class="text-gray-600 text-sm mb-2">789 Rue du Marché, Centre Ville</p>
+                                    <p class="text-[#D4B357] text-sm">+237 678 901 234</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Media -->
+                    <div class="bg-white rounded-3xl p-8 shadow-2xl">
+                        <h3 class="text-2xl font-bold text-[#1A1A1A] mb-6">Connect With Us</h3>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-x-twitter"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-20" data-aos="fade-up">
+                <div class="text-[#D4B357] text-sm tracking-[0.3em] mb-6">
+                    <span class="inline-block w-12 h-0.5 bg-[#D4B357] mr-4 align-middle"></span>
+                    FAQ
+                    <span class="inline-block w-12 h-0.5 bg-[#D4B357] ml-4 align-middle"></span>
+                </div>
+                <h2 class="text-4xl font-bold text-[#1A1A1A] mb-8">
+                    Frequently Asked <span class="text-gradient-gold">Questions</span>
+                </h2>
+                <p class="text-gray-600 text-lg">
+                    Find quick answers to common questions about our services and process.
+                </p>
+            </div>
+
+            <div class="max-w-3xl mx-auto" data-aos="fade-up">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>How do I get a quote for my project?</h4>
+                        <i class="fas fa-chevron-down text-[#D4B357] transition-transform"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Simply fill out our contact form or give us a call. We'll schedule a consultation to discuss your project details, take measurements, and provide you with a detailed quote within 48 hours.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>What areas do you serve?</h4>
+                        <i class="fas fa-chevron-down text-[#D4B357] transition-transform"></i>
+                    </div>
+                    <div class="faq-answer">
+                        We serve clients nationwide across Cameroon, with major offices in Douala, Yaoundé, and Bafoussam. Our team can travel to any location for consultations and project execution.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>How long does a typical project take?</h4>
+                        <i class="fas fa-chevron-down text-[#D4B357] transition-transform"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Project duration varies based on scope and complexity. A typical home renovation takes 3-6 months, while new construction can take 8-18 months. We provide detailed timelines during consultation.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Do you offer free consultations?</h4>
+                        <i class="fas fa-chevron-down text-[#D4B357] transition-transform"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, we offer free initial consultations to discuss your project, understand your needs, and provide preliminary advice and estimates. Contact us to schedule yours today.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>What payment options do you accept?</h4>
+                        <i class="fas fa-chevron-down text-[#D4B357] transition-transform"></i>
+                    </div>
+                    <div class="faq-answer">
+                        We accept bank transfers, mobile money (MTN/Orange), and structured payment plans tailored to your project timeline. Detailed payment schedules are provided in your contract.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="relative py-24 overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                 alt="Construction Background" 
+                 class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-[#1A1A1A] bg-opacity-90"></div>
+        </div>
+
+        <div class="container mx-auto px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-4xl font-bold text-white mb-8" data-aos="fade-up">
+                    Ready to Discuss Your<br>
+                    <span class="text-gradient-gold">Project?</span>
+                </h2>
+                <p class="text-xl text-gray-300 mb-12" data-aos="fade-up" data-aos-delay="100">
+                    Our team is ready to bring your vision to life. Get in touch today for a free consultation.
+                </p>
+                <div class="flex flex-wrap justify-center gap-6" data-aos="fade-up" data-aos-delay="200">
+                    <a href="tel:+237123456789" class="gold-gradient text-[#1A1A1A] px-6 py-3 rounded text-sm font-semibold inline-flex items-center transition-transform transform hover:scale-110 hover:-translate-y-3 hover:shadow-2xl">
+                        <i class="fas fa-phone-alt mr-3"></i>
+                        Call Us Now
+                    </a>
+                    <a href="#" class="border-2 border-white text-white hover:border-[#D4B357] hover:text-[#D4B357] px-6 py-3 rounded text-sm font-semibold inline-flex items-center transition-all transform hover:scale-110 hover:-translate-y-3 hover:shadow-2xl">
+                        <i class="fab fa-whatsapp mr-3"></i>
+                        WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#1A1A1A] border-t border-gray-800">
+        <div class="container mx-auto px-6 lg:px-8">
+            <!-- Main Footer -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 py-20">
+                <!-- Company Info -->
+                <div>
+                    <div class="mb-6">
+                        <span class="font-['Lora'] text-3xl font-black text-white block leading-none">FAITH</span>
+                        <span class="text-[#D4B357] text-xs tracking-[0.3em] block mt-1">CONSTRUCTION</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Building Cameroon's premium residential future with integrity, excellence, and unwavering commitment to quality.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-[#D4B357] hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-[#D4B357] hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-[#D4B357] hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white text-lg font-bold mb-6 gold-border-bottom inline-block">Quick Links</h4>
+                    <ul class="space-y-4">
+                        <li><a href="index.html" class="text-gray-400 hover:text-[#D4B357] transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-3 text-[#D4B357] group-hover:translate-x-2 transition-transform"></i>
+                            Home
+                        </a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-3 text-[#D4B357] group-hover:translate-x-2 transition-transform"></i>
+                            Services
+                        </a></li>
+                        <li><a href="projects.html" class="text-gray-400 hover:text-[#D4B357] transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-3 text-[#D4B357] group-hover:translate-x-2 transition-transform"></i>
+                            Projects
+                        </a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-[#D4B357] transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-3 text-[#D4B357] group-hover:translate-x-2 transition-transform"></i>
+                            About Us
+                        </a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-[#D4B357] transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-3 text-[#D4B357] group-hover:translate-x-2 transition-transform"></i>
+                            Contact
+                        </a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h4 class="text-white text-lg font-bold mb-6 gold-border-bottom inline-block">Our Services</h4>
+                    <ul class="space-y-4">
+                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Residential Construction</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Renovation & Remodeling</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Architectural Design</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Project Management</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Interior Design</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-white text-lg font-bold mb-6 gold-border-bottom inline-block">Contact Us</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-map-marker-alt text-[#D4B357] mt-1"></i>
+                            <span class="text-gray-400">123 Rue de la Paix, Douala, Cameroon</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-phone text-[#D4B357]"></i>
+                            <span class="text-gray-400">+237 123 456 789</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-envelope text-[#D4B357]"></i>
+                            <span class="text-gray-400">info@faithconstruction.cm</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-clock text-[#D4B357]"></i>
+                            <span class="text-gray-400">Mon-Fri: 8:00 AM - 6:00 PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-gray-800 py-8">
+                <div class="flex flex-wrap justify-between items-center">
+                    <p class="text-gray-400 text-sm">
+                        &copy; 2024 FAITH Construction. All rights reserved.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-[#D4B357] text-sm transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-[#D4B357] text-sm transition-colors">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-[#D4B357] text-sm transition-colors">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Message Modal -->
+    <div class="overlay" id="overlay"></div>
+    <div class="success-message" id="successMessage">
+        <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-check text-4xl text-green-500"></i>
+        </div>
+        <h3 class="text-2xl font-bold text-[#1A1A1A] mb-3">Message Sent!</h3>
+        <p class="text-gray-600 mb-6">Thank you for contacting FAITH Construction. We'll get back to you within 24 hours.</p>
+        <button onclick="closeSuccessMessage()" class="bg-[#D4B357] hover:bg-[#B8963F] text-[#1A1A1A] px-5 py-2 rounded text-sm font-semibold transition-all transform hover:scale-105 hover:-translate-y-3 hover:shadow-2xl">
+            Close
+        </button>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="navbar.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+                
+                // Close other items
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+            });
+        });
+
+        // Form Submission
+        const contactForm = document.getElementById('contactForm');
+        const overlay = document.getElementById('overlay');
+        const successMessage = document.getElementById('successMessage');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show success message
+            overlay.classList.add('show');
+            successMessage.classList.add('show');
+            
+            // Reset form
+            contactForm.reset();
+        });
+
+        function closeSuccessMessage() {
+            overlay.classList.remove('show');
+            successMessage.classList.remove('show');
+        }
+
+        // Close modal when clicking overlay
+        overlay.addEventListener('click', closeSuccessMessage);
+
+        // Initialize Map
+        function initMap() {
+            // Coordinates for Douala, Cameroon
+            const douala = [4.0511, 9.7679];
+            
+            // Create map
+            const map = L.map('map').setView(douala, 12);
+            
+            // Add tile layer (OpenStreetMap)
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            // Custom icon for office locations
+            const officeIcon = L.divIcon({
+                className: 'office-pin',
+                iconSize: [20, 20]
+            });
+
+            // Add markers for offices
+            L.marker([4.0511, 9.7679], { icon: officeIcon })
+                .addTo(map)
+                .bindPopup(`
+                    <div style="font-family: 'Roboto', sans-serif; padding: 0.5rem;">
+                        <h4 style="font-family: 'Lora', serif; font-weight: bold; margin-bottom: 0.25rem;">FAITH Construction HQ</h4>
+                        <p style="font-size: 0.875rem; margin-bottom: 0.25rem;">123 Rue de la Paix, Bonanjo</p>
+                        <p style="color: #D4B357; font-weight: 600;">+237 123 456 789</p>
+                    </div>
+                `);
+
+            L.marker([4.0469, 9.6825], { icon: officeIcon })
+                .addTo(map)
+                .bindPopup(`
+                    <div style="font-family: 'Roboto', sans-serif; padding: 0.5rem;">
+                        <h4 style="font-family: 'Lora', serif; font-weight: bold; margin-bottom: 0.25rem;">FAITH Construction - Bonaberi</h4>
+                        <p style="font-size: 0.875rem; margin-bottom: 0.25rem;">456 Rue du Commerce</p>
+                        <p style="color: #D4B357; font-weight: 600;">+237 987 654 321</p>
+                    </div>
+                `);
+
+            // Add a circle to show service area
+            L.circle(douala, {
+                radius: 15000,
+                color: '#D4B357',
+                fillColor: '#D4B357',
+                fillOpacity: 0.1,
+                weight: 2
+            }).addTo(map);
+        }
+
+        // Initialize map when page loads
+        window.addEventListener('load', initMap);
+
+        // Input validation and formatting
+        const phoneInput = document.getElementById('phone');
+        phoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 0) {
+                if (value.length <= 3) {
+                    value = value;
+                } else if (value.length <= 6) {
+                    value = value.slice(0, 3) + ' ' + value.slice(3);
+                } else {
+                    value = value.slice(0, 3) + ' ' + value.slice(3, 6) + ' ' + value.slice(6, 9);
+                }
+                e.target.value = value;
+            }
+        });
+
+        // Ripple Effect on Buttons
+        function addRippleEffect(selector) {
+            const buttons = document.querySelectorAll(selector);
+            buttons.forEach(button => {
+                button.classList.add('ripple-container');
+                button.addEventListener('click', function (e) {
+                    const rect = button.getBoundingClientRect();
+                    const ripple = document.createElement('span');
+                    const size = Math.max(rect.width, rect.height);
+                    
+                    ripple.style.width = ripple.style.height = `${size}px`;
+                    ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
+                    ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
+                    
+                    ripple.classList.add('ripple');
+                    
+                    const existingRipple = button.querySelector('.ripple');
+                    if(existingRipple) {
+                        existingRipple.remove();
+                    }
+                    
+                    button.appendChild(ripple);
+
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+        }
+        addRippleEffect('.submit-btn, .social-icon, a.gold-gradient, a.border-2, .faq-question, footer .w-10.h-10, .success-message button');
+    </script>
+
+    <style>
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #D4B357 0%, #E6C76A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4B357 0%, #E6C76A 50%, #D4B357 100%);
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Map popup styles */
+        .leaflet-popup-content {
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 10px;
+        }
+
+        .leaflet-popup-content-wrapper {
+            border-radius: 12px;
+            padding: 0;
+        }
+
+        .leaflet-popup-tip {
+            background: white;
+        }
+    </style>
+</body>
+</html>

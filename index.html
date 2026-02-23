@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAITH Construction - Premier Residential Construction Cameroon</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for professional icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #1A1A1A;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Lora', serif;
+            font-weight: 700;
+        }
+
+        /* Custom Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes revealUp {
+            from {
+                transform: translateY(110%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-fade-up {
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .animate-reveal-up {
+            animation: revealUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .animate-slide-left {
+            animation: slideInLeft 1s ease forwards;
+        }
+
+        .animate-slide-right {
+            animation: slideInRight 1s ease forwards;
+        }
+
+        .animate-scale {
+            animation: scaleIn 0.8s ease forwards;
+        }
+
+        /* Premium Hover Effects */
+        .premium-card {
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .premium-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 179, 87, 0.1), transparent);
+            transition: left 0.8s;
+        }
+
+        .premium-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 40px -20px rgba(0,0,0,0.3);
+        }
+
+        .premium-card:hover::after {
+            left: 100%;
+        }
+
+        .gold-border-bottom {
+            position: relative;
+        }
+
+        .gold-border-bottom::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: #D4B357;
+            transition: width 0.3s ease;
+        }
+
+        .gold-border-bottom:hover::after {
+            width: 100px;
+        }
+
+        /* Parallax Effect */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1A1A1A;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #D4B357;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #B8963F;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 400px;
+            height: 100vh;
+            background: #1A1A1A;
+            z-index: 1000;
+            transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            padding: 40px;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.3);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Gold Gradient */
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4B357 0%, #E6C76A 50%, #D4B357 100%);
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Image Hover Effect */
+        .image-zoom {
+            overflow: hidden;
+        }
+
+        .image-zoom img {
+            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .image-zoom:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Text Gradient */
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #D4B357 0%, #E6C76A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Counter Number Style */
+        .counter-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: 'Lora', serif;
+            color: #D4B357;
+            line-height: 1;
+        }
+
+        /* Mobile Menu Styles moved to navbar.js */
+
+        /* Ripple Effect */
+        .ripple-container {
+            position: relative;
+            overflow: hidden;
+        }
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.7);
+            transform: scale(0);
+            animation: ripple-animation 600ms ease-out;
+            pointer-events: none;
+        }
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navbar Component -->
+    <app-navbar></app-navbar>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Video/Image -->
+        <div class="absolute inset-0">
+            <div class="absolute inset-0 bg-black/50 z-10"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-[#1A1A1A] z-10"></div>
+            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                 alt="Luxury Construction" 
+                 class="w-full h-full object-cover">
+        </div>
+
+        <!-- Content -->
+        <div class="container mx-auto px-6 lg:px-8 relative z-20 text-center">
+            <div class="max-w-5xl mx-auto">
+                <!-- Gold Subtitle -->
+                <div class="text-[#D4B357] text-sm tracking-[0.3em] mb-6 animate-fade-up flex items-center justify-center gap-4" style="animation-delay: 0.2s">
+                    <span class="w-12 h-0.5 bg-[#D4B357]"></span>
+                    CAMEROON'S PREMIER BUILDER
+                    <span class="w-12 h-0.5 bg-[#D4B357]"></span>
+                </div>
+                
+                <!-- Main Heading -->
+                <h1 class="text-5xl lg:text-7xl font-black text-white mb-8 leading-none">
+                    <span class="block overflow-hidden">
+                        <span class="block animate-reveal-up" style="animation-delay: 0.4s;">Building</span>
+                    </span>
+                    <span class="block overflow-hidden">
+                        <span class="block text-gradient-gold animate-reveal-up" style="animation-delay: 0.6s;">Excellence</span>
+                    </span>
+                </h1>
+                
+                <!-- Description -->
+                <p class="text-lg text-gray-200 mb-12 max-w-2xl mx-auto leading-relaxed animate-fade-up" style="animation-delay: 0.8s">
+                    Creating architectural masterpieces that define Cameroon's skyline. 
+                    Where structural integrity meets timeless elegance.
+                </p>
+                
+                <!-- CTA Buttons -->
+                <div class="flex flex-wrap justify-center gap-6 animate-fade-up" style="animation-delay: 1.0s">
+                    <a href="projects.html" class="group relative overflow-hidden bg-[#D4B357] text-[#1A1A1A] px-6 py-3 rounded text-sm font-semibold inline-flex items-center transition-all duration-300 transform hover:scale-105 hover:-translate-y-3 hover:shadow-2xl">
+                        <span class="relative z-10">Explore Our Work</span>
+                        <i class="fas fa-arrow-right ml-3 relative z-10 group-hover:translate-x-2 transition-transform"></i>
+                        <div class="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></div>
+                    </a>
+                    <a href="contact.html" class="group border-2 border-white text-white hover:border-[#D4B357] px-6 py-3 rounded text-sm font-semibold inline-flex items-center transition-all duration-300 transform hover:scale-105 hover:-translate-y-3 hover:shadow-2xl">
+                        <span>Get Consultation</span>
+                        <i class="fas fa-phone-alt ml-3 group-hover:rotate-12 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Bar -->
+        <div class="absolute bottom-0 left-0 w-full z-20 border-t border-white/10 bg-black/60 backdrop-blur-md">
+            <div class="container mx-auto px-6 lg:px-8">
+                <div class="grid grid-cols-3 gap-8 py-8 animate-fade-up" style="animation-delay: 1.2s">
+                    <div class="text-center border-r border-white/10 last:border-0">
+                        <div class="counter-number">15+</div>
+                        <div class="text-gray-300 text-xs md:text-sm tracking-wider uppercase mt-2">Years Experience</div>
+                    </div>
+                    <div class="text-center border-r border-white/10 last:border-0">
+                        <div class="counter-number">200+</div>
+                        <div class="text-gray-300 text-xs md:text-sm tracking-wider uppercase mt-2">Projects Completed</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="counter-number">100%</div>
+                        <div class="text-gray-300 text-xs md:text-sm tracking-wider uppercase mt-2">Client Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Preview Section -->
+    <section class="py-32 bg-white">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <!-- Left Content -->
+                <div data-aos="fade-right" data-aos-duration="1000">
+                    <div class="text-[#D4B357] text-sm tracking-[0.3em] mb-6">
+                        <span class="inline-block w-12 h-0.5 bg-[#D4B357] mr-4 align-middle"></span>
+                        WHO WE ARE
+                    </div>
+                    <h2 class="text-4xl lg:text-5xl font-bold text-[#1A1A1A] mb-8 leading-tight">
+                        Crafting Dreams<br>
+                        Into <span class="text-gradient-gold">Concrete Reality</span>
+                    </h2>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-10">
+                        With over 15 years of excellence in Cameroon's construction industry, 
+                        FAITH Construction has established itself as the epitome of quality and 
+                        reliability. We don't just build structures; we create spaces that inspire, 
+                        endure, and elevate the human experience.
+                    </p>
+                    
+                    <!-- Features -->
+                    <div class="grid grid-cols-2 gap-6 mb-12">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-[#D4B357] text-xl mt-1"></i>
+                            <div>
+                                <div class="font-semibold text-[#1A1A1A]">Premium Quality</div>
+                                <div class="text-sm text-gray-500">Uncompromising standards</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-[#D4B357] text-xl mt-1"></i>
+                            <div>
+                                <div class="font-semibold text-[#1A1A1A]">Expert Team</div>
+                                <div class="text-sm text-gray-500">Industry professionals</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-[#D4B357] text-xl mt-1"></i>
+                            <div>
+                                <div class="font-semibold text-[#1A1A1A]">Timely Delivery</div>
+                                <div class="text-sm text-gray-500">On schedule, every time</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-[#D4B357] text-xl mt-1"></i>
+                            <div>
+                                <div class="font-semibold text-[#1A1A1A]">Nationwide</div>
+                                <div class="text-sm text-gray-500">Serving all Cameroon</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="about.html" class="group inline-flex items-center text-[#1A1A1A] font-semibold text-base">
+                        Discover Our Story
+                        <i class="fas fa-arrow-right ml-3 group-hover:translate-x-2 transition-transform text-[#D4B357]"></i>
+                    </a>
+                </div>
+
+                <!-- Right Images -->
+                <div class="relative" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="space-y-6">
+                            <div class="image-zoom rounded-2xl overflow-hidden shadow-2xl">
+                                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                                     alt="Luxury Home" 
+                                     class="w-full h-64 object-cover">
+                            </div>
+                            <div class="image-zoom rounded-2xl overflow-hidden shadow-2xl">
+                                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                                     alt="Modern Interior" 
+                                     class="w-full h-48 object-cover">
+                            </div>
+                        </div>
+                        <div class="pt-12">
+                            <div class="image-zoom rounded-2xl overflow-hidden shadow-2xl">
+                                <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                                     alt="Architecture Detail" 
+                                     class="w-full h-80 object-cover">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience Badge -->
+                    <div class="absolute -bottom-6 -left-6 bg-[#1A1A1A] text-white p-8 rounded-2xl shadow-2xl">
+                        <div class="text-5xl font-bold text-[#D4B357] mb-2">15+</div>
+                        <div class="text-sm tracking-wider">YEARS OF<br>EXCELLENCE</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-32 bg-[#F8F8F8] relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-0 left-0 w-96 h-96 bg-[#D4B357] rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-[#D4B357] rounded-full filter blur-3xl"></div>
+        </div>
+
+        <div class="container mx-auto px-6 lg:px-8 relative z-10">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-20" data-aos="fade-up">
+                <div class="text-[#D4B357] text-sm tracking-[0.3em] mb-6">
+                    <span class="inline-block w-12 h-0.5 bg-[#D4B357] mr-4 align-middle"></span>
+                    OUR EXPERTISE
+                    <span class="inline-block w-12 h-0.5 bg-[#D4B357] ml-4 align-middle"></span>
+                </div>
+                <h2 class="text-4xl font-bold text-[#1A1A1A] mb-8">
+                    Comprehensive<br>
+                    <span class="text-gradient-gold">Construction Solutions</span>
+                </h2>
+                <p class="text-gray-600 text-lg">
+                    From concept to completion, we deliver excellence across every aspect of residential construction.
+                </p>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="premium-card bg-white p-10 rounded-2xl shadow-xl" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-20 h-20 bg-[#D4B357]/10 rounded-2xl flex items-center justify-center mb-8">
+                        <i class="fas fa-home text-4xl text-[#D4B357]"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-[#1A1A1A] mb-4">Residential<br>Construction</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        Custom luxury homes designed to reflect your unique vision and lifestyle preferences.
+                    </p>
+                    <a href="services.html" class="inline-flex items-center text-[#D4B357] font-semibold text-sm group">
+                        Learn More 
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="premium-card bg-white p-10 rounded-2xl shadow-xl" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-20 h-20 bg-[#D4B357]/10 rounded-2xl flex items-center justify-center mb-8">
+                        <i class="fas fa-building text-4xl text-[#D4B357]"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-[#1A1A1A] mb-4">Renovation &<br>Remodeling</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        Transform your existing space with our expert renovation and remodeling services.
+                    </p>
+                    <a href="services.html" class="inline-flex items-center text-[#D4B357] font-semibold text-sm group">
+                        Learn More 
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="premium-card bg-white p-10 rounded-2xl shadow-xl" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-20 h-20 bg-[#D4B357]/10 rounded-2xl flex items-center justify-center mb-8">
+                        <i class="fas fa-pencil-ruler text-4xl text-[#D4B357]"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-[#1A1A1A] mb-4">Architectural<br>Design</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        Innovative designs that blend functionality with aesthetic excellence.
+                    </p>
+                    <a href="services.html" class="inline-flex items-center text-[#D4B357] font-semibold text-sm group">
+                        Learn More 
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="premium-card bg-white p-10 rounded-2xl shadow-xl" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-20 h-20 bg-[#D4B357]/10 rounded-2xl flex items-center justify-center mb-8">
+                        <i class="fas fa-tools text-4xl text-[#D4B357]"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-[#1A1A1A] mb-4">Project<br>Management</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        End-to-end project management ensuring timely delivery and quality control.
+                    </p>
+                    <a href="services.html" class="inline-flex items-center text-[#D4B357] font-semibold text-sm group">
+                        Learn More 
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="premium-card bg-white p-10 rounded-2xl shadow-xl" data-aos="fade-up" data-aos-delay="500">
+                    <div class="w-20 h-20 bg-[#D4B357]/10 rounded-2xl flex items-center justify-center mb-8">
+                        <i class="fas fa-leaf text-4xl text-[#D4B357]"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-[#1A1A1A] mb-4">Sustainable<br>Building</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        Eco-friendly construction solutions for environmentally conscious homeowners.
+                    </p>
+                    <a href="services.html" class="inline-flex items-center text-[#D4B357] font-semibold text-sm group">
+                        Learn More 
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="premium-card bg-white p-10 rounded-2xl shadow-xl" data-aos="fade-up" data-aos-delay="600">
+                    <div class="w-20 h-20 bg-[#D4B357]/10 rounded-2xl flex items-center justify-center mb-8">
+                        <i class="fas fa-ruler-combined text-4xl text-[#D4B357]"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-[#1A1A1A] mb-4">Interior<br>Design</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        Sophisticated interior solutions that complement your architectural vision.
+                    </p>
+                    <a href="services.html" class="inline-flex items-center text-[#D4B357] font-semibold text-sm group">
+                        Learn More 
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Showcase -->
+    <section class="py-32 bg-white">
+        <div class="container mx-auto px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="flex flex-wrap justify-between items-end mb-20">
+                <div data-aos="fade-right">
+                    <div class="text-[#D4B357] text-sm tracking-[0.3em] mb-6">
+                        <span class="inline-block w-12 h-0.5 bg-[#D4B357] mr-4 align-middle"></span>
+                        OUR PORTFOLIO
+                    </div>
+                    <h2 class="text-4xl font-bold text-[#1A1A1A]">
+                        Featured<br>
+                        <span class="text-gradient-gold">Projects</span>
+                    </h2>
+                </div>
+                <a href="projects.html" class="group inline-flex items-center text-[#1A1A1A] font-semibold text-base" data-aos="fade-left">
+                    View All Projects
+                    <i class="fas fa-arrow-right ml-3 group-hover:translate-x-2 transition-transform"></i>
+                </a>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="group relative overflow-hidden rounded-2xl" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="image-zoom">
+                        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                             alt="Luxury Villa" 
+                             class="w-full h-96 object-cover">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-8 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 class="text-2xl font-bold text-white mb-2">Bonapriso Villa</h3>
+                        <p class="text-gray-300 mb-4">Luxury Residence, Douala</p>
+                        <a href="projects.html" class="inline-flex items-center text-[#D4B357] text-sm">
+                            View Project <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="group relative overflow-hidden rounded-2xl" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="image-zoom">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                             alt="Modern Home" 
+                             class="w-full h-96 object-cover">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-8 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 class="text-2xl font-bold text-white mb-2">Bastos Residence</h3>
+                        <p class="text-gray-300 mb-4">Contemporary Home, Yaoundé</p>
+                        <a href="projects.html" class="inline-flex items-center text-[#D4B357] text-sm">
+                            View Project <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="group relative overflow-hidden rounded-2xl" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="image-zoom">
+                        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                             alt="Luxury Estate" 
+                             class="w-full h-96 object-cover">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-8 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 class="text-2xl font-bold text-white mb-2">Kribi Beach House</h3>
+                        <p class="text-gray-300 mb-4">Coastal Villa, Kribi</p>
+                        <a href="projects.html" class="inline-flex items-center text-[#D4B357] text-sm">
+                            View Project <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="py-32 bg-[#1A1A1A] relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-[#D4B357] rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-[#D4B357] rounded-full filter blur-3xl"></div>
+        </div>
+
+        <div class="container mx-auto px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-20" data-aos="fade-up">
+                <div class="text-[#D4B357] text-sm tracking-[0.3em] mb-6">
+                    <span class="inline-block w-12 h-0.5 bg-[#D4B357] mr-4 align-middle"></span>
+                    WHY CHOOSE US
+                    <span class="inline-block w-12 h-0.5 bg-[#D4B357] ml-4 align-middle"></span>
+                </div>
+                <h2 class="text-4xl font-bold text-white mb-8">
+                    The FAITH<br>
+                    <span class="text-gradient-gold">Advantage</span>
+                </h2>
+                <p class="text-gray-400 text-lg">
+                    We combine expertise, innovation, and unwavering commitment to deliver exceptional results.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Feature 1 -->
+                <div class="text-center group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-24 h-24 bg-[#D4B357]/10 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-hard-hat text-4xl text-[#D4B357]"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Expert Craftsmanship</h3>
+                    <p class="text-gray-400">Master builders with decades of combined experience</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="text-center group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-24 h-24 bg-[#D4B357]/10 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-gem text-4xl text-[#D4B357]"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Premium Materials</h3>
+                    <p class="text-gray-400">Only the finest materials sourced globally</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="text-center group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-24 h-24 bg-[#D4B357]/10 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-clock text-4xl text-[#D4B357]"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Timely Delivery</h3>
+                    <p class="text-gray-400">Projects completed on schedule, every time</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="text-center group" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-24 h-24 bg-[#D4B357]/10 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-hand-holding-heart text-4xl text-[#D4B357]"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Client Focused</h3>
+                    <p class="text-gray-400">Your vision guides every decision we make</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="py-32 bg-white">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+                <div class="text-[#D4B357] text-sm tracking-[0.3em] mb-6">
+                    <span class="inline-block w-12 h-0.5 bg-[#D4B357] mr-4 align-middle"></span>
+                    TESTIMONIALS
+                    <span class="inline-block w-12 h-0.5 bg-[#D4B357] ml-4 align-middle"></span>
+                </div>
+                <h2 class="text-4xl font-bold text-[#1A1A1A] mb-16">
+                    What Our<br>
+                    <span class="text-gradient-gold">Clients Say</span>
+                </h2>
+
+                <!-- Testimonial Card -->
+                <div class="bg-[#F8F8F8] p-12 rounded-3xl relative">
+                    <i class="fas fa-quote-left text-6xl text-[#D4B357] opacity-30 absolute top-8 left-8"></i>
+                    <p class="text-xl text-gray-700 leading-relaxed mb-8 relative z-10">
+                        "FAITH Construction transformed our vision into a masterpiece. Their attention to detail, 
+                        professionalism, and commitment to quality exceeded our expectations. They didn't just build 
+                        a house; they created our dream home."
+                    </p>
+                    <div>
+                        <div class="w-20 h-20 bg-[#D4B357] rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span class="text-white text-2xl font-bold">JD</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-[#1A1A1A]">Jean-Pierre Djoufack</h4>
+                        <p class="text-[#D4B357]">Bonapriso Residence, Douala</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="relative py-32 overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                 alt="Construction Background" 
+                 class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-[#1A1A1A] bg-opacity-90"></div>
+        </div>
+
+        <div class="container mx-auto px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-4xl font-bold text-white mb-8" data-aos="fade-up">
+                    Ready to Build Your<br>
+                    <span class="text-gradient-gold">Dream Home?</span>
+                </h2>
+                <p class="text-xl text-gray-300 mb-12" data-aos="fade-up" data-aos-delay="100">
+                    Let's discuss your vision and bring it to life with our expertise and passion for excellence.
+                </p>
+                <div class="flex flex-wrap justify-center gap-6" data-aos="fade-up" data-aos-delay="200">
+                    <a href="contact.html" class="gold-gradient text-[#1A1A1A] px-6 py-3 rounded text-sm font-semibold inline-flex items-center transition-transform transform hover:scale-110 hover:-translate-y-3 hover:shadow-2xl">
+                        Start Your Project
+                        <i class="fas fa-arrow-right ml-3"></i>
+                    </a>
+                    <a href="projects.html" class="border-2 border-white text-white hover:border-[#D4B357] hover:text-[#D4B357] px-6 py-3 rounded text-sm font-semibold inline-flex items-center transition-all transform hover:scale-110 hover:-translate-y-3 hover:shadow-2xl">
+                        View Portfolio
+                        <i class="fas fa-images ml-3"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#1A1A1A] border-t border-gray-800">
+        <div class="container mx-auto px-6 lg:px-8">
+            <!-- Main Footer -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 py-20">
+                <!-- Company Info -->
+                <div>
+                    <div class="mb-6">
+                        <span class="font-['Lora'] text-3xl font-black text-white block leading-none">FAITH</span>
+                        <span class="text-[#D4B357] text-xs tracking-[0.3em] block mt-1">CONSTRUCTION</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Building Cameroon's premium residential future with integrity, excellence, and unwavering commitment to quality.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-[#D4B357] hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-[#D4B357] hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-[#D4B357] hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white text-lg font-bold mb-6 gold-border-bottom inline-block">Quick Links</h4>
+                    <ul class="space-y-4">
+                        <li><a href="index.html" class="text-gray-400 hover:text-[#D4B357] transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-3 text-[#D4B357] group-hover:translate-x-2 transition-transform"></i>
+                            Home
+                        </a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-3 text-[#D4B357] group-hover:translate-x-2 transition-transform"></i>
+                            Services
+                        </a></li>
+                        <li><a href="projects.html" class="text-gray-400 hover:text-[#D4B357] transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-3 text-[#D4B357] group-hover:translate-x-2 transition-transform"></i>
+                            Projects
+                        </a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-[#D4B357] transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-3 text-[#D4B357] group-hover:translate-x-2 transition-transform"></i>
+                            About Us
+                        </a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-[#D4B357] transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-3 text-[#D4B357] group-hover:translate-x-2 transition-transform"></i>
+                            Contact
+                        </a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h4 class="text-white text-lg font-bold mb-6 gold-border-bottom inline-block">Our Services</h4>
+                    <ul class="space-y-4">
+                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Residential Construction</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Renovation & Remodeling</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Architectural Design</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Project Management</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Interior Design</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-white text-lg font-bold mb-6 gold-border-bottom inline-block">Contact Us</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-map-marker-alt text-[#D4B357] mt-1"></i>
+                            <span class="text-gray-400">123 Rue de la Paix, Douala, Cameroon</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-phone text-[#D4B357]"></i>
+                            <span class="text-gray-400">+237 123 456 789</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-envelope text-[#D4B357]"></i>
+                            <span class="text-gray-400">info@faithconstruction.cm</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-clock text-[#D4B357]"></i>
+                            <span class="text-gray-400">Mon-Fri: 8:00 AM - 6:00 PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-gray-800 py-8">
+                <div class="flex flex-wrap justify-between items-center">
+                    <p class="text-gray-400 text-sm">
+                        &copy; 2024 FAITH Construction. All rights reserved.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-[#D4B357] text-sm transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-[#D4B357] text-sm transition-colors">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-[#D4B357] text-sm transition-colors">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="navbar.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Counter Animation
+        function animateCounter(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                element.innerText = Math.floor(progress * (end - start) + start) + '+';
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Trigger counter when in viewport
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = document.querySelectorAll('.counter-number');
+                    counters.forEach(counter => {
+                        const value = counter.innerText.replace('+', '');
+                        animateCounter(counter, 0, parseInt(value), 2000);
+                    });
+                    counterObserver.disconnect();
+                }
+            });
+        });
+
+        counterObserver.observe(document.querySelector('.counter-number'));
+    </script>
+    <script>
+        // Ripple Effect on Buttons
+        function addRippleEffect(selector) {
+            const buttons = document.querySelectorAll(selector);
+            buttons.forEach(button => {
+                button.classList.add('ripple-container');
+                button.addEventListener('click', function (e) {
+                    const rect = button.getBoundingClientRect();
+                    const ripple = document.createElement('span');
+                    const size = Math.max(rect.width, rect.height);
+                    
+                    ripple.style.width = ripple.style.height = `${size}px`;
+                    ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
+                    ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
+                    
+                    ripple.classList.add('ripple');
+                    
+                    const existingRipple = button.querySelector('.ripple');
+                    if(existingRipple) {
+                        existingRipple.remove();
+                    }
+                    
+                    button.appendChild(ripple);
+
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+        }
+        addRippleEffect('a.gold-gradient, a.border-2, footer .w-10.h-10');
+    </script>
+</body>
+</html>
