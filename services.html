@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - FAITH Construction | Premium Building Solutions Cameroon</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #1A1A1A;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Lora', serif;
+            font-weight: 700;
+        }
+
+        /* Custom Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-up {
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        /* Service Card Styles */
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 179, 87, 0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 40px -20px rgba(0,0,0,0.3);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            transition: all 0.4s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: #D4B357;
+            color: #1A1A1A;
+        }
+
+        /* Process Step Styles */
+        .process-step {
+            position: relative;
+        }
+
+        .process-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 50px;
+            left: 100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #D4B357 0%, transparent 100%);
+            transform: translateX(-50%);
+        }
+
+        @media (max-width: 768px) {
+            .process-step:not(:last-child)::after {
+                display: none;
+            }
+        }
+
+        /* Counter Number Style */
+        .counter-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: 'Lora', serif;
+            color: #D4B357;
+            line-height: 1;
+        }
+
+        /* Gold Gradient Text */
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #D4B357 0%, #E6C76A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1A1A1A;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #D4B357;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #B8963F;
+        }
+
+        /* Gold Border Animation */
+        .gold-border-bottom {
+            position: relative;
+        }
+
+        .gold-border-bottom::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: #D4B357;
+            transition: width 0.3s ease;
+        }
+
+        .gold-border-bottom:hover::after {
+            width: 100px;
+        }
+
+        /* Ripple Effect */
+        .ripple-container {
+            position: relative;
+            overflow: hidden;
+        }
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.7);
+            transform: scale(0);
+            animation: ripple-animation 600ms ease-out;
+            pointer-events: none;
+        }
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navbar Component -->
+    <app-navbar></app-navbar>
+
+    <!-- Page Header -->
+    <section class="relative pt-32 pb-24 bg-[#1A1A1A] overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-[#D4B357] rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-[#D4B357] rounded-full filter blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 lg:px-8 relative z-10">
+            <div class="max-w-4xl">
+                <!-- Breadcrumb -->
+                <div class="flex items-center space-x-2 text-sm mb-6" data-aos="fade-up">
+                    <a href="index.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Home</a>
+                    <i class="fas fa-chevron-right text-[#D4B357] text-xs"></i>
+                    <span class="text-[#D4B357]">Services</span>
+                </div>
+                
+                <!-- Title -->
+                <h1 class="text-4xl lg:text-6xl font-black text-white mb-6" data-aos="fade-up" data-aos-delay="100">
+                    Our <span class="text-gradient-gold">Services</span>
+                </h1>
+                <p class="text-xl text-gray-300 max-w-2xl leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+                    Comprehensive construction solutions tailored to your vision. From concept to completion, we deliver excellence at every step.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Services Section -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-20" data-aos="fade-up">
+                <div class="text-[#D4B357] text-sm tracking-[0.3em] mb-6">
+                    <span class="inline-block w-12 h-0.5 bg-[#D4B357] mr-4 align-middle"></span>
+                    WHAT WE OFFER
+                    <span class="inline-block w-12 h-0.5 bg-[#D4B357] ml-4 align-middle"></span>
+                </div>
+                <h2 class="text-4xl font-bold text-[#1A1A1A] mb-8">
+                    Complete Construction<br>
+                    <span class="text-gradient-gold">Solutions</span>
+                </h2>
+                <p class="text-gray-600 text-lg">
+                    Delivering excellence across every aspect of residential construction with precision, quality, and attention to detail.
+                </p>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 - Residential Construction -->
+                <div id="residential" class="service-card bg-white p-10 rounded-2xl shadow-xl border border-gray-100" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon w-20 h-20 bg-[#D4B357]/10 rounded-2xl flex items-center justify-center mb-8 text-[#D4B357] text-4xl">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-[#1A1A1A] mb-4">Residential Construction</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        Custom luxury homes designed to reflect your unique lifestyle and architectural preferences. We create spaces that inspire and endure.
+                    </p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check-circle text-[#D4B357] mr-3"></i>
+                            Custom Home Building
+                        </li>
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check-circle text-[#D4B357] mr-3"></i>
+                            Luxury Villas
+                        </li>
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check-circle text-[#D4B357] mr-3"></i>
+                            Estate Development
+                        </li>
+                    </ul>
+                    <a href="contact.html" class="inline-flex items-center text-[#D4B357] font-semibold text-sm group">
+                        Inquire Now 
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service 2 - Renovation -->
+                <div id="renovation" class="service-card bg-white p-10 rounded-2xl shadow-xl border border-gray-100" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon w-20 h-20 bg-[#D4B357]/10 rounded-2xl flex items-center justify-center mb-8 text-[#D4B357] text-4xl">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-[#1A1A1A] mb-4">Renovation & Remodeling</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        Transform your existing space with our expert renovation services. We breathe new life into properties while maintaining structural integrity.
+                    </p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check-circle text-[#D4B357] mr-3"></i>
+                            Home Renovations
+                        </li>
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check-circle text-[#D4B357] mr-3"></i>
+                            Kitchen & Bath Remodeling
+                        </li>
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check-circle text-[#D4B357] mr-3"></i>
+                            Extension & Addition
+                        </li>
+                    </ul>
+                    <a href="contact.html" class="inline-flex items-center text-[#D4B357] font-semibold text-sm group">
+                        Inquire Now 
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service 3 - Architectural Design -->
+                <div id="design" class="service-card bg-white p-10 rounded-2xl shadow-xl border border-gray-100" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon w-20 h-20 bg-[#D4B357]/10 rounded-2xl flex items-center justify-center mb-8 text-[#D4B357] text-4xl">
+                        <i class="fas fa-pencil-ruler"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-[#1A1A1A] mb-4">Architectural Design</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        Innovative designs that blend functionality with aesthetic excellence. Our architects create spaces that are both beautiful and practical.
+                    </p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check-circle text-[#D4B357] mr-3"></i>
+                            Concept Design
+                        </li>
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check-circle text-[#D4B357] mr-3"></i>
+                            3D Visualization
+                        </li>
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check-circle text-[#D4B357] mr-3"></i>
+                            Technical Drawings
+                        </li>
+                    </ul>
+                    <a href="contact.html" class="inline-flex items-center text-[#D4B357] font-semibold text-sm group">
+                        Inquire Now 
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service 4 - Project Management -->
+                <div id="management" class="service-card bg-white p-10 rounded-2xl shadow-xl border border-gray-100" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-icon w-20 h-20 bg-[#D4B357]/10 rounded-2xl flex items-center justify-center mb-8 text-[#D4B357] text-4xl">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-[#1A1A1A] mb-4">Project Management</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        End-to-end project management ensuring timely delivery, budget adherence, and quality control throughout the construction process.
+                    </p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check-circle text-[#D4B357] mr-3"></i>
+                            Timeline Management
+                        </li>
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check-circle text-[#D4B357] mr-3"></i>
+                            Budget Control
+                        </li>
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check-circle text-[#D4B357] mr-3"></i>
+                            Quality Assurance
+                        </li>
+                    </ul>
+                    <a href="contact.html" class="inline-flex items-center text-[#D4B357] font-semibold text-sm group">
+                        Inquire Now 
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service 5 - Interior Design -->
+                <div id="interior" class="service-card bg-white p-10 rounded-2xl shadow-xl border border-gray-100" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-icon w-20 h-20 bg-[#D4B357]/10 rounded-2xl flex items-center justify-center mb-8 text-[#D4B357] text-4xl">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-[#1A1A1A] mb-4">Interior Design</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        Sophisticated interior solutions that complement your architectural vision. We create harmonious living spaces that reflect your style.
+                    </p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check-circle text-[#D4B357] mr-3"></i>
+                            Space Planning
+                        </li>
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check-circle text-[#D4B357] mr-3"></i>
+                            Material Selection
+                        </li>
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check-circle text-[#D4B357] mr-3"></i>
+                            Furniture Design
+                        </li>
+                    </ul>
+                    <a href="contact.html" class="inline-flex items-center text-[#D4B357] font-semibold text-sm group">
+                        Inquire Now 
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service 6 - Sustainable Building -->
+                <div id="sustainable" class="service-card bg-white p-10 rounded-2xl shadow-xl border border-gray-100" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-icon w-20 h-20 bg-[#D4B357]/10 rounded-2xl flex items-center justify-center mb-8 text-[#D4B357] text-4xl">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-[#1A1A1A] mb-4">Sustainable Building</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        Eco-friendly construction solutions for environmentally conscious homeowners. We build sustainably without compromising on luxury.
+                    </p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check-circle text-[#D4B357] mr-3"></i>
+                            Green Building
+                        </li>
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check-circle text-[#D4B357] mr-3"></i>
+                            Energy Efficiency
+                        </li>
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check-circle text-[#D4B357] mr-3"></i>
+                            Sustainable Materials
+                        </li>
+                    </ul>
+                    <a href="contact.html" class="inline-flex items-center text-[#D4B357] font-semibold text-sm group">
+                        Inquire Now 
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Process Section -->
+    <section class="py-24 bg-[#F8F8F8]">
+        <div class="container mx-auto px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-20" data-aos="fade-up">
+                <div class="text-[#D4B357] text-sm tracking-[0.3em] mb-6">
+                    <span class="inline-block w-12 h-0.5 bg-[#D4B357] mr-4 align-middle"></span>
+                    OUR METHOD
+                    <span class="inline-block w-12 h-0.5 bg-[#D4B357] ml-4 align-middle"></span>
+                </div>
+                <h2 class="text-4xl font-bold text-[#1A1A1A] mb-8">
+                    How We <span class="text-gradient-gold">Work</span>
+                </h2>
+                <p class="text-gray-600 text-lg">
+                    A systematic approach that ensures excellence at every stage of your project.
+                </p>
+            </div>
+
+            <!-- Process Steps -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+                <!-- Step 1 -->
+                <div class="process-step text-center relative" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-24 h-24 bg-[#D4B357] rounded-full flex items-center justify-center mx-auto mb-6 relative z-10">
+                        <span class="text-[#1A1A1A] text-3xl font-bold">01</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#1A1A1A] mb-3">Consultation</h3>
+                    <p class="text-gray-600">We discuss your vision, requirements, and budget to understand your needs.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="process-step text-center relative" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-24 h-24 bg-[#D4B357] rounded-full flex items-center justify-center mx-auto mb-6 relative z-10">
+                        <span class="text-[#1A1A1A] text-3xl font-bold">02</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#1A1A1A] mb-3">Design & Planning</h3>
+                    <p class="text-gray-600">Our architects create detailed plans and 3D visualizations for your approval.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="process-step text-center relative" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-24 h-24 bg-[#D4B357] rounded-full flex items-center justify-center mx-auto mb-6 relative z-10">
+                        <span class="text-[#1A1A1A] text-3xl font-bold">03</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#1A1A1A] mb-3">Construction</h3>
+                    <p class="text-gray-600">Our expert team brings your vision to life with precision and quality.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="process-step text-center relative" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-24 h-24 bg-[#D4B357] rounded-full flex items-center justify-center mx-auto mb-6 relative z-10">
+                        <span class="text-[#1A1A1A] text-3xl font-bold">04</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#1A1A1A] mb-3">Handover</h3>
+                    <p class="text-gray-600">We deliver your dream space with a final walkthrough and quality check.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <!-- Left Content -->
+                <div data-aos="fade-right">
+                    <div class="text-[#D4B357] text-sm tracking-[0.3em] mb-6">
+                        <span class="inline-block w-12 h-0.5 bg-[#D4B357] mr-4 align-middle"></span>
+                        WHY US
+                    </div>
+                    <h2 class="text-4xl font-bold text-[#1A1A1A] mb-8 leading-tight">
+                        The FAITH<br>
+                        <span class="text-gradient-gold">Difference</span>
+                    </h2>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-10">
+                        We combine decades of experience with a passion for excellence to deliver 
+                        construction projects that exceed expectations. Our commitment to quality, 
+                        transparency, and client satisfaction sets us apart.
+                    </p>
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-6 mb-12">
+                        <div>
+                            <div class="counter-number">15+</div>
+                            <div class="text-gray-500 text-sm">Years Experience</div>
+                        </div>
+                        <div>
+                            <div class="counter-number">200+</div>
+                            <div class="text-gray-500 text-sm">Projects Done</div>
+                        </div>
+                        <div>
+                            <div class="counter-number">50+</div>
+                            <div class="text-gray-500 text-sm">Expert Staff</div>
+                        </div>
+                    </div>
+
+                    <a href="contact.html" class="inline-block bg-[#D4B357] hover:bg-[#B8963F] text-[#1A1A1A] px-5 py-2.5 rounded text-sm font-semibold transition-all transform hover:scale-110 hover:-translate-y-3 hover:shadow-xl">
+                        Discuss Your Project
+                    </a>
+                </div>
+
+                <!-- Right Features Grid -->
+                <div class="grid grid-cols-2 gap-6" data-aos="fade-left">
+                    <div class="bg-[#F8F8F8] p-6 rounded-2xl">
+                        <i class="fas fa-medal text-3xl text-[#D4B357] mb-4"></i>
+                        <h4 class="text-lg font-bold text-[#1A1A1A] mb-2">Certified Excellence</h4>
+                        <p class="text-sm text-gray-600">Industry-certified professionals</p>
+                    </div>
+                    <div class="bg-[#F8F8F8] p-6 rounded-2xl">
+                        <i class="fas fa-clock text-3xl text-[#D4B357] mb-4"></i>
+                        <h4 class="text-lg font-bold text-[#1A1A1A] mb-2">On-Time Delivery</h4>
+                        <p class="text-sm text-gray-600">Projects completed on schedule</p>
+                    </div>
+                    <div class="bg-[#F8F8F8] p-6 rounded-2xl">
+                        <i class="fas fa-gem text-3xl text-[#D4B357] mb-4"></i>
+                        <h4 class="text-lg font-bold text-[#1A1A1A] mb-2">Premium Materials</h4>
+                        <p class="text-sm text-gray-600">Finest quality materials</p>
+                    </div>
+                    <div class="bg-[#F8F8F8] p-6 rounded-2xl">
+                        <i class="fas fa-headset text-3xl text-[#D4B357] mb-4"></i>
+                        <h4 class="text-lg font-bold text-[#1A1A1A] mb-2">24/7 Support</h4>
+                        <p class="text-sm text-gray-600">Always here for you</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="py-24 bg-[#F8F8F8]">
+        <div class="container mx-auto px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-20" data-aos="fade-up">
+                <div class="text-[#D4B357] text-sm tracking-[0.3em] mb-6">
+                    <span class="inline-block w-12 h-0.5 bg-[#D4B357] mr-4 align-middle"></span>
+                    INVESTMENT
+                    <span class="inline-block w-12 h-0.5 bg-[#D4B357] ml-4 align-middle"></span>
+                </div>
+                <h2 class="text-4xl font-bold text-[#1A1A1A] mb-8">
+                    Transparent <span class="text-gradient-gold">Pricing</span>
+                </h2>
+                <p class="text-gray-600 text-lg">
+                    Choose the package that best suits your needs. All prices are estimates and may vary based on specific requirements.
+                </p>
+            </div>
+
+            <!-- Pricing Cards -->
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Basic Package -->
+                <div class="bg-white p-8 rounded-2xl shadow-xl relative" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-2xl font-bold text-[#1A1A1A] mb-2">Basic</h3>
+                    <p class="text-gray-500 mb-6">For small renovations</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-[#1A1A1A]">5M</span>
+                        <span class="text-gray-500"> FCFA+</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center text-sm">
+                            <i class="fas fa-check text-[#D4B357] mr-3"></i>
+                            Consultation & Design
+                        </li>
+                        <li class="flex items-center text-sm">
+                            <i class="fas fa-check text-[#D4B357] mr-3"></i>
+                            Basic Renovation
+                        </li>
+                        <li class="flex items-center text-sm">
+                            <i class="fas fa-check text-[#D4B357] mr-3"></i>
+                            Project Management
+                        </li>
+                        <li class="flex items-center text-sm text-gray-400">
+                            <i class="fas fa-times mr-3"></i>
+                            Custom Design
+                        </li>
+                    </ul>
+                    <a href="contact.html" class="block text-center border-2 border-[#D4B357] text-[#D4B357] hover:bg-[#D4B357] hover:text-[#1A1A1A] py-2 text-sm rounded-md font-semibold transition-all transform hover:scale-105 hover:-translate-y-2 hover:shadow-lg">
+                        Get Quote
+                    </a>
+                </div>
+
+                <!-- Premium Package (Featured) -->
+                <div class="bg-[#1A1A1A] p-8 rounded-2xl shadow-2xl relative transform scale-105 z-10" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute top-0 right-0 bg-[#D4B357] text-[#1A1A1A] px-4 py-2 text-sm font-semibold rounded-bl-2xl rounded-tr-2xl">
+                        MOST POPULAR
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Premium</h3>
+                    <p class="text-gray-400 mb-6">For custom homes</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-white">15M</span>
+                        <span class="text-gray-400"> FCFA+</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center text-sm text-gray-300">
+                            <i class="fas fa-check text-[#D4B357] mr-3"></i>
+                            Full Architectural Design
+                        </li>
+                        <li class="flex items-center text-sm text-gray-300">
+                            <i class="fas fa-check text-[#D4B357] mr-3"></i>
+                            Premium Materials
+                        </li>
+                        <li class="flex items-center text-sm text-gray-300">
+                            <i class="fas fa-check text-[#D4B357] mr-3"></i>
+                            Interior Design
+                        </li>
+                        <li class="flex items-center text-sm text-gray-300">
+                            <i class="fas fa-check text-[#D4B357] mr-3"></i>
+                            Landscape Design
+                        </li>
+                    </ul>
+                    <a href="contact.html" class="block text-center bg-[#D4B357] hover:bg-[#B8963F] text-[#1A1A1A] py-2 text-sm rounded-md font-semibold transition-all transform hover:scale-105 hover:-translate-y-2 hover:shadow-lg">
+                        Get Quote
+                    </a>
+                </div>
+
+                <!-- Luxury Package -->
+                <div class="bg-white p-8 rounded-2xl shadow-xl" data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="text-2xl font-bold text-[#1A1A1A] mb-2">Luxury</h3>
+                    <p class="text-gray-500 mb-6">For estate development</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-[#1A1A1A]">30M</span>
+                        <span class="text-gray-500"> FCFA+</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center text-sm">
+                            <i class="fas fa-check text-[#D4B357] mr-3"></i>
+                            Everything in Premium
+                        </li>
+                        <li class="flex items-center text-sm">
+                            <i class="fas fa-check text-[#D4B357] mr-3"></i>
+                            Smart Home Integration
+                        </li>
+                        <li class="flex items-center text-sm">
+                            <i class="fas fa-check text-[#D4B357] mr-3"></i>
+                            Sustainable Features
+                        </li>
+                        <li class="flex items-center text-sm">
+                            <i class="fas fa-check text-[#D4B357] mr-3"></i>
+                            Premium Finishes
+                        </li>
+                    </ul>
+                    <a href="contact.html" class="block text-center border-2 border-[#D4B357] text-[#D4B357] hover:bg-[#D4B357] hover:text-[#1A1A1A] py-2 text-sm rounded-md font-semibold transition-all transform hover:scale-105 hover:-translate-y-2 hover:shadow-lg">
+                        Get Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-20" data-aos="fade-up">
+                    <div class="text-[#D4B357] text-sm tracking-[0.3em] mb-6">
+                        <span class="inline-block w-12 h-0.5 bg-[#D4B357] mr-4 align-middle"></span>
+                        FAQ
+                        <span class="inline-block w-12 h-0.5 bg-[#D4B357] ml-4 align-middle"></span>
+                    </div>
+                    <h2 class="text-4xl font-bold text-[#1A1A1A] mb-8">
+                        Frequently Asked<br>
+                        <span class="text-gradient-gold">Questions</span>
+                    </h2>
+                </div>
+
+                <!-- FAQ Items -->
+                <div class="space-y-6">
+                    <div class="border border-gray-200 rounded-2xl overflow-hidden" data-aos="fade-up">
+                        <button class="faq-btn w-full text-left px-5 py-3 bg-white hover:bg-gray-50 transition-all flex justify-between items-center transform hover:-translate-y-2 hover:shadow-xl">
+                            <span class="text-base font-semibold text-[#1A1A1A]">How long does a typical project take?</span>
+                            <i class="fas fa-chevron-down text-[#D4B357] transition-transform"></i>
+                        </button>
+                        <div class="faq-content px-8 pb-6 hidden">
+                            <p class="text-gray-600">Project duration varies based on scope and complexity. A typical home renovation takes 3-6 months, while new construction can take 8-18 months. We provide detailed timelines during consultation.</p>
+                        </div>
+                    </div>
+
+                    <div class="border border-gray-200 rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <button class="faq-btn w-full text-left px-5 py-3 bg-white hover:bg-gray-50 transition-all flex justify-between items-center transform hover:-translate-y-2 hover:shadow-xl">
+                            <span class="text-base font-semibold text-[#1A1A1A]">Do you provide warranties?</span>
+                            <i class="fas fa-chevron-down text-[#D4B357] transition-transform"></i>
+                        </button>
+                        <div class="faq-content px-8 pb-6 hidden">
+                            <p class="text-gray-600">Yes, all our work comes with comprehensive warranties. We offer a 10-year structural warranty and 2-year workmanship warranty on all projects.</p>
+                        </div>
+                    </div>
+
+                    <div class="border border-gray-200 rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                        <button class="faq-btn w-full text-left px-5 py-3 bg-white hover:bg-gray-50 transition-all flex justify-between items-center transform hover:-translate-y-2 hover:shadow-xl">
+                            <span class="text-base font-semibold text-[#1A1A1A]">Do you handle permits and approvals?</span>
+                            <i class="fas fa-chevron-down text-[#D4B357] transition-transform"></i>
+                        </button>
+                        <div class="faq-content px-8 pb-6 hidden">
+                            <p class="text-gray-600">Absolutely. We manage all necessary permits, approvals, and compliance with local regulations, saving you time and hassle.</p>
+                        </div>
+                    </div>
+
+                    <div class="border border-gray-200 rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                        <button class="faq-btn w-full text-left px-5 py-3 bg-white hover:bg-gray-50 transition-all flex justify-between items-center transform hover:-translate-y-2 hover:shadow-xl">
+                            <span class="text-base font-semibold text-[#1A1A1A]">Can I visit ongoing projects?</span>
+                            <i class="fas fa-chevron-down text-[#D4B357] transition-transform"></i>
+                        </button>
+                        <div class="faq-content px-8 pb-6 hidden">
+                            <p class="text-gray-600">Yes, we encourage clients to visit our ongoing projects. We can arrange site visits to similar projects to give you confidence in our work quality.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="relative py-24 overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                 alt="Construction Background" 
+                 class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-[#1A1A1A] bg-opacity-90"></div>
+        </div>
+
+        <div class="container mx-auto px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-4xl font-bold text-white mb-8" data-aos="fade-up">
+                    Ready to Start Your<br>
+                    <span class="text-gradient-gold">Project?</span>
+                </h2>
+                <p class="text-xl text-gray-300 mb-12" data-aos="fade-up" data-aos-delay="100">
+                    Let's discuss your vision and provide a detailed quote tailored to your needs.
+                </p>
+                <div class="flex flex-wrap justify-center gap-6" data-aos="fade-up" data-aos-delay="200">
+                    <a href="contact.html" class="gold-gradient text-[#1A1A1A] px-6 py-3 rounded text-sm font-semibold inline-flex items-center transition-transform transform hover:scale-110 hover:-translate-y-3 hover:shadow-2xl">
+                        Get Free Consultation
+                        <i class="fas fa-arrow-right ml-3"></i>
+                    </a>
+                    <a href="tel:+237123456789" class="border-2 border-white text-white hover:border-[#D4B357] hover:text-[#D4B357] px-6 py-3 rounded text-sm font-semibold inline-flex items-center transition-all transform hover:scale-110 hover:-translate-y-3 hover:shadow-2xl">
+                        <i class="fas fa-phone-alt mr-3"></i>
+                        Call Us Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (same as index.html) -->
+    <footer class="bg-[#1A1A1A] border-t border-gray-800">
+        <div class="container mx-auto px-6 lg:px-8">
+            <!-- Main Footer -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 py-20">
+                <!-- Company Info -->
+                <div>
+                    <div class="mb-6">
+                        <span class="font-['Lora'] text-3xl font-black text-white block leading-none">FAITH</span>
+                        <span class="text-[#D4B357] text-xs tracking-[0.3em] block mt-1">CONSTRUCTION</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Building Cameroon's premium residential future with integrity, excellence, and unwavering commitment to quality.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-[#D4B357] hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-[#D4B357] hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-[#D4B357] hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white text-lg font-bold mb-6 gold-border-bottom inline-block">Quick Links</h4>
+                    <ul class="space-y-4">
+                        <li><a href="index.html" class="text-gray-400 hover:text-[#D4B357] transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-3 text-[#D4B357] group-hover:translate-x-2 transition-transform"></i>
+                            Home
+                        </a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-3 text-[#D4B357] group-hover:translate-x-2 transition-transform"></i>
+                            Services
+                        </a></li>
+                        <li><a href="projects.html" class="text-gray-400 hover:text-[#D4B357] transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-3 text-[#D4B357] group-hover:translate-x-2 transition-transform"></i>
+                            Projects
+                        </a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-[#D4B357] transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-3 text-[#D4B357] group-hover:translate-x-2 transition-transform"></i>
+                            About Us
+                        </a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-[#D4B357] transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-3 text-[#D4B357] group-hover:translate-x-2 transition-transform"></i>
+                            Contact
+                        </a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h4 class="text-white text-lg font-bold mb-6 gold-border-bottom inline-block">Our Services</h4>
+                    <ul class="space-y-4">
+                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Residential Construction</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Renovation & Remodeling</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Architectural Design</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Project Management</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Interior Design</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-white text-lg font-bold mb-6 gold-border-bottom inline-block">Contact Us</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-map-marker-alt text-[#D4B357] mt-1"></i>
+                            <span class="text-gray-400">123 Rue de la Paix, Douala, Cameroon</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-phone text-[#D4B357]"></i>
+                            <span class="text-gray-400">+237 123 456 789</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-envelope text-[#D4B357]"></i>
+                            <span class="text-gray-400">info@faithconstruction.cm</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-clock text-[#D4B357]"></i>
+                            <span class="text-gray-400">Mon-Fri: 8:00 AM - 6:00 PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-gray-800 py-8">
+                <div class="flex flex-wrap justify-between items-center">
+                    <p class="text-gray-400 text-sm">
+                        &copy; 2024 FAITH Construction. All rights reserved.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-[#D4B357] text-sm transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-[#D4B357] text-sm transition-colors">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-[#D4B357] text-sm transition-colors">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="navbar.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                
+                content.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            });
+        });
+
+        // Ripple Effect on Buttons
+        function addRippleEffect(selector) {
+            const buttons = document.querySelectorAll(selector);
+            buttons.forEach(button => {
+                button.classList.add('ripple-container');
+                button.addEventListener('click', function (e) {
+                    const rect = button.getBoundingClientRect();
+                    const ripple = document.createElement('span');
+                    const size = Math.max(rect.width, rect.height);
+                    
+                    ripple.style.width = ripple.style.height = `${size}px`;
+                    ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
+                    ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
+                    
+                    ripple.classList.add('ripple');
+                    
+                    const existingRipple = button.querySelector('.ripple');
+                    if(existingRipple) {
+                        existingRipple.remove();
+                    }
+                    
+                    button.appendChild(ripple);
+
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+        });
+        addRippleEffect('a.gold-gradient, a.border-2, a.bg-[#D4B357], button.faq-btn, footer .w-10.h-10');
+    </script>
+
+    <style>
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4B357 0%, #E6C76A 50%, #D4B357 100%);
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .rotate-180 {
+            transform: rotate(180deg);
+        }
+    </style>
+</body>
+</html>

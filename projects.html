@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Projects - FAITH Construction | Premium Portfolio Cameroon</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Lightbox for project images -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #1A1A1A;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Lora', serif;
+            font-weight: 700;
+        }
+
+        /* Filter Button Styles */
+        .filter-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(212, 179, 87, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .filter-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .filter-btn.active {
+            background: #D4B357;
+            color: #1A1A1A;
+            border-color: #D4B357;
+        }
+
+        /* Project Card Styles */
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            cursor: pointer;
+        }
+
+        .project-card img {
+            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(26, 26, 26, 0.95), rgba(26, 26, 26, 0.3));
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-info {
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+        }
+
+        .project-card:hover .project-info {
+            transform: translateY(0);
+        }
+
+        /* Category Badge */
+        .category-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #D4B357;
+            color: #1A1A1A;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            z-index: 10;
+            transform: translateY(-10px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .category-badge {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Counter Number Style */
+        .counter-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: 'Lora', serif;
+            color: #D4B357;
+            line-height: 1;
+        }
+
+        /* Gold Gradient Text */
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #D4B357 0%, #E6C76A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1A1A1A;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #D4B357;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #B8963F;
+        }
+
+        /* Gold Border Animation */
+        .gold-border-bottom {
+            position: relative;
+        }
+
+        .gold-border-bottom::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: #D4B357;
+            transition: width 0.3s ease;
+        }
+
+        .gold-border-bottom:hover::after {
+            width: 100px;
+        }
+
+        /* Masonry Grid */
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .masonry-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+
+        .masonry-item.large {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .masonry-item.medium {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        .masonry-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 768px) {
+            .masonry-grid {
+                grid-template-columns: 1fr;
+            }
+            .masonry-item.large {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+        }
+
+        /* Project Stats Card */
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navbar Component -->
+    <app-navbar></app-navbar>
+
+    <!-- Page Header -->
+    <section class="relative pt-32 pb-24 bg-[#1A1A1A] overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-[#D4B357] rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-[#D4B357] rounded-full filter blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 lg:px-8 relative z-10">
+            <div class="max-w-4xl">
+                <!-- Breadcrumb -->
+                <div class="flex items-center space-x-2 text-sm mb-6" data-aos="fade-up">
+                    <a href="index.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Home</a>
+                    <i class="fas fa-chevron-right text-[#D4B357] text-xs"></i>
+                    <span class="text-[#D4B357]">Projects</span>
+                </div>
+                
+                <!-- Title -->
+                <h1 class="text-4xl lg:text-6xl font-black text-white mb-6" data-aos="fade-up" data-aos-delay="100">
+                    Our <span class="text-gradient-gold">Portfolio</span>
+                </h1>
+                <p class="text-xl text-gray-300 max-w-2xl leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+                    Explore our finest work – a collection of residential masterpieces that showcase our commitment to excellence, innovation, and architectural beauty.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Stats -->
+    <section class="py-16 bg-white border-b border-gray-100">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="stat-card text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="counter-number">200+</div>
+                    <div class="text-gray-600 font-semibold mt-2">Projects Completed</div>
+                </div>
+                <div class="stat-card text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="counter-number">150+</div>
+                    <div class="text-gray-600 font-semibold mt-2">Happy Clients</div>
+                </div>
+                <div class="stat-card text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="counter-number">12</div>
+                    <div class="text-gray-600 font-semibold mt-2">Cities Covered</div>
+                </div>
+                <div class="stat-card text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="counter-number">5</div>
+                    <div class="text-gray-600 font-semibold mt-2">Design Awards</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="flex flex-wrap justify-center gap-4" data-aos="fade-up">
+                <button class="filter-btn active px-5 py-2 rounded-full border-2 border-[#D4B357] text-[#1A1A1A] text-sm font-semibold transition-all hover:-translate-y-2 hover:shadow-xl" data-filter="all">
+                    All Projects
+                </button>
+                <button class="filter-btn px-5 py-2 rounded-full border-2 border-gray-300 text-gray-600 hover:border-[#D4B357] text-sm font-semibold transition-all hover:-translate-y-2 hover:shadow-xl" data-filter="luxury">
+                    Luxury Villas
+                </button>
+                <button class="filter-btn px-5 py-2 rounded-full border-2 border-gray-300 text-gray-600 hover:border-[#D4B357] text-sm font-semibold transition-all hover:-translate-y-2 hover:shadow-xl" data-filter="modern">
+                    Modern Homes
+                </button>
+                <button class="filter-btn px-5 py-2 rounded-full border-2 border-gray-300 text-gray-600 hover:border-[#D4B357] text-sm font-semibold transition-all hover:-translate-y-2 hover:shadow-xl" data-filter="renovation">
+                    Renovations
+                </button>
+                <button class="filter-btn px-5 py-2 rounded-full border-2 border-gray-300 text-gray-600 hover:border-[#D4B357] text-sm font-semibold transition-all hover:-translate-y-2 hover:shadow-xl" data-filter="estate">
+                    Estates
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Project -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="relative rounded-3xl overflow-hidden" data-aos="fade-up">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                     alt="Featured Project" 
+                     class="w-full h-[600px] object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-[#1A1A1A]/50 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-12">
+                    <span class="bg-[#D4B357] text-[#1A1A1A] px-4 py-2 rounded-full text-sm font-semibold mb-4 inline-block">FEATURED PROJECT</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Bonapriso Luxury Estate</h2>
+                    <p class="text-lg text-gray-200 mb-6 max-w-2xl">A masterpiece of modern architecture spanning 5,000 sqm with 8 bedrooms, infinity pool, and panoramic ocean views.</p>
+                    <a href="#project-details" class="inline-flex items-center text-white hover:text-[#D4B357] transition-colors group">
+                        <span class="text-sm font-semibold">View Project Details</span>
+                        <i class="fas fa-arrow-right ml-3 group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Masonry Grid -->
+    <section class="py-16 bg-[#F8F8F8]">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="masonry-grid" id="projects-grid">
+                <!-- Project 1 - Luxury Villa -->
+                <div class="masonry-item large project-item" data-category="luxury" data-aos="fade-up">
+                    <a href="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" data-lightbox="projects" data-title="Bastos Luxury Villa - Yaoundé">
+                        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Bastos Luxury Villa">
+                        <span class="category-badge">Luxury Villa</span>
+                        <div class="project-overlay">
+                            <div class="project-info">
+                                <h3 class="text-2xl font-bold text-white mb-2">Bastos Luxury Villa</h3>
+                                <p class="text-gray-200 mb-3">Yaoundé, Cameroon</p>
+                                <p class="text-gray-300 text-sm">6 Bedrooms • Pool • Smart Home • 800 sqm</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Project 2 - Modern Home -->
+                <div class="masonry-item medium project-item" data-category="modern" data-aos="fade-up" data-aos-delay="100">
+                    <a href="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" data-lightbox="projects" data-title="Kribi Beach House">
+                        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Kribi Beach House">
+                        <span class="category-badge">Modern Home</span>
+                        <div class="project-overlay">
+                            <div class="project-info">
+                                <h3 class="text-2xl font-bold text-white mb-2">Kribi Beach House</h3>
+                                <p class="text-gray-200 mb-3">Kribi, Cameroon</p>
+                                <p class="text-gray-300 text-sm">4 Bedrooms • Ocean Front • Terrace</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Project 3 - Renovation -->
+                <div class="masonry-item medium project-item" data-category="renovation" data-aos="fade-up" data-aos-delay="200">
+                    <a href="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" data-lightbox="projects" data-title="Historic Bonanjo Renovation">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Bonanjo Heritage Home">
+                        <span class="category-badge">Renovation</span>
+                        <div class="project-overlay">
+                            <div class="project-info">
+                                <h3 class="text-2xl font-bold text-white mb-2">Bonanjo Heritage Home</h3>
+                                <p class="text-gray-200 mb-3">Douala, Cameroon</p>
+                                <p class="text-gray-300 text-sm">Historic Preservation • Modern Updates</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Project 4 - Luxury Villa -->
+                <div class="masonry-item medium project-item" data-category="luxury" data-aos="fade-up" data-aos-delay="300">
+                    <a href="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" data-lightbox="projects" data-title="Bonapriso Waterfront Villa">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Bonapriso Waterfront">
+                        <span class="category-badge">Luxury Villa</span>
+                        <div class="project-overlay">
+                            <div class="project-info">
+                                <h3 class="text-2xl font-bold text-white mb-2">Bonapriso Waterfront</h3>
+                                <p class="text-gray-200 mb-3">Douala, Cameroon</p>
+                                <p class="text-gray-300 text-sm">5 Bedrooms • Infinity Pool • Dock</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Project 5 - Estate -->
+                <div class="masonry-item large project-item" data-category="estate" data-aos="fade-up" data-aos-delay="400">
+                    <a href="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" data-lightbox="projects" data-title="Santa Barbara Estates">
+                        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Santa Barbara Estates">
+                        <span class="category-badge">Estate</span>
+                        <div class="project-overlay">
+                            <div class="project-info">
+                                <h3 class="text-2xl font-bold text-white mb-2">Santa Barbara Estates</h3>
+                                <p class="text-gray-200 mb-3">Limbe, Cameroon</p>
+                                <p class="text-gray-300 text-sm">12 Luxury Villas • Gated Community • Club House</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Project 6 - Modern Home -->
+                <div class="masonry-item medium project-item" data-category="modern" data-aos="fade-up" data-aos-delay="500">
+                    <a href="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" data-lightbox="projects" data-title="Mvog-Mbi Minimalist Home">
+                        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Mvog-Mbi Modern Home">
+                        <span class="category-badge">Modern Home</span>
+                        <div class="project-overlay">
+                            <div class="project-info">
+                                <h3 class="text-2xl font-bold text-white mb-2">Mvog-Mbi Residence</h3>
+                                <p class="text-gray-200 mb-3">Yaoundé, Cameroon</p>
+                                <p class="text-gray-300 text-sm">Minimalist • 4 Bedrooms • Garden</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Project 7 - Renovation -->
+                <div class="masonry-item medium project-item" data-category="renovation" data-aos="fade-up" data-aos-delay="600">
+                    <a href="https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" data-lightbox="projects" data-title="Akwa Colonial Restoration">
+                        <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Akwa Colonial Building">
+                        <span class="category-badge">Renovation</span>
+                        <div class="project-overlay">
+                            <div class="project-info">
+                                <h3 class="text-2xl font-bold text-white mb-2">Akwa Colonial Building</h3>
+                                <p class="text-gray-200 mb-3">Douala, Cameroon</p>
+                                <p class="text-gray-300 text-sm">Heritage Restoration • Modern Office</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Categories Showcase -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-20" data-aos="fade-up">
+                <div class="text-[#D4B357] text-sm tracking-[0.3em] mb-6">
+                    <span class="inline-block w-12 h-0.5 bg-[#D4B357] mr-4 align-middle"></span>
+                    CATEGORIES
+                    <span class="inline-block w-12 h-0.5 bg-[#D4B357] ml-4 align-middle"></span>
+                </div>
+                <h2 class="text-4xl font-bold text-[#1A1A1A] mb-8">
+                    Explore By <span class="text-gradient-gold">Type</span>
+                </h2>
+            </div>
+
+            <!-- Category Cards -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Category 1 -->
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Luxury Villas" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h3 class="text-2xl font-bold text-white mb-2">Luxury Villas</h3>
+                        <p class="text-gray-200">12 Projects</p>
+                    </div>
+                </div>
+
+                <!-- Category 2 -->
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Modern Homes" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h3 class="text-2xl font-bold text-white mb-2">Modern Homes</h3>
+                        <p class="text-gray-200">8 Projects</p>
+                    </div>
+                </div>
+
+                <!-- Category 3 -->
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Renovations" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h3 class="text-2xl font-bold text-white mb-2">Renovations</h3>
+                        <p class="text-gray-200">15 Projects</p>
+                    </div>
+                </div>
+
+                <!-- Category 4 -->
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer" data-aos="fade-up" data-aos-delay="400">
+                    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Estates" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h3 class="text-2xl font-bold text-white mb-2">Estates</h3>
+                        <p class="text-gray-200">5 Projects</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-24 bg-[#F8F8F8]">
+        <div class="container mx-auto px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-20" data-aos="fade-up">
+                <div class="text-[#D4B357] text-sm tracking-[0.3em] mb-6">
+                    <span class="inline-block w-12 h-0.5 bg-[#D4B357] mr-4 align-middle"></span>
+                    CLIENT FEEDBACK
+                    <span class="inline-block w-12 h-0.5 bg-[#D4B357] ml-4 align-middle"></span>
+                </div>
+                <h2 class="text-4xl font-bold text-[#1A1A1A] mb-8">
+                    What Our Clients <span class="text-gradient-gold">Say</span>
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-xl relative" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-quote-left text-4xl text-[#D4B357] opacity-30 mb-4"></i>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        "FAITH Construction built our dream villa in Bastos. The attention to detail and quality of craftsmanship is exceptional. They truly deliver on their promises."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-[#D4B357] rounded-full flex items-center justify-center text-white font-bold">MT</div>
+                        <div class="ml-4">
+                            <p class="font-bold text-[#1A1A1A]">Michel Tchouta</p>
+                            <p class="text-sm text-[#D4B357]">Bastos Villa Owner</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-xl relative" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-quote-left text-4xl text-[#D4B357] opacity-30 mb-4"></i>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        "The renovation of our family home in Bonanjo was handled with such care and professionalism. They preserved the heritage while adding modern comforts."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-[#D4B357] rounded-full flex items-center justify-center text-white font-bold">HE</div>
+                        <div class="ml-4">
+                            <p class="font-bold text-[#1A1A1A]">Helene Ewane</p>
+                            <p class="text-sm text-[#D4B357]">Bonanjo Residence</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-xl relative" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-quote-left text-4xl text-[#D4B357] opacity-30 mb-4"></i>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        "Working with FAITH on our Kribi beach house was a pleasure. Their team's expertise and dedication made the entire process smooth and enjoyable."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-[#D4B357] rounded-full flex items-center justify-center text-white font-bold">PN</div>
+                        <div class="ml-4">
+                            <p class="font-bold text-[#1A1A1A]">Paul Nganou</p>
+                            <p class="text-sm text-[#D4B357]">Kribi Beach House</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="relative py-24 overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                 alt="Construction Background" 
+                 class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-[#1A1A1A] bg-opacity-90"></div>
+        </div>
+
+        <div class="container mx-auto px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-4xl font-bold text-white mb-8" data-aos="fade-up">
+                    Ready to Create Your<br>
+                    <span class="text-gradient-gold">Masterpiece?</span>
+                </h2>
+                <p class="text-xl text-gray-300 mb-12" data-aos="fade-up" data-aos-delay="100">
+                    Let's discuss your vision and create something extraordinary together.
+                </p>
+                <div class="flex flex-wrap justify-center gap-6" data-aos="fade-up" data-aos-delay="200">
+                    <a href="contact.html" class="gold-gradient text-[#1A1A1A] px-6 py-3 rounded text-sm font-semibold inline-flex items-center transition-transform transform hover:scale-110 hover:-translate-y-3 hover:shadow-2xl">
+                        Start Your Project
+                        <i class="fas fa-arrow-right ml-3"></i>
+                    </a>
+                    <a href="services.html" class="border-2 border-white text-white hover:border-[#D4B357] hover:text-[#D4B357] px-6 py-3 rounded text-sm font-semibold inline-flex items-center transition-all transform hover:scale-110 hover:-translate-y-3 hover:shadow-2xl">
+                        Our Services
+                        <i class="fas fa-cog ml-3"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#1A1A1A] border-t border-gray-800">
+        <div class="container mx-auto px-6 lg:px-8">
+            <!-- Main Footer -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 py-20">
+                <!-- Company Info -->
+                <div>
+                    <div class="mb-6">
+                        <span class="font-['Lora'] text-3xl font-black text-white block leading-none">FAITH</span>
+                        <span class="text-[#D4B357] text-xs tracking-[0.3em] block mt-1">CONSTRUCTION</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Building Cameroon's premium residential future with integrity, excellence, and unwavering commitment to quality.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-[#D4B357] hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-[#D4B357] hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-[#D4B357] hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white text-lg font-bold mb-6 gold-border-bottom inline-block">Quick Links</h4>
+                    <ul class="space-y-4">
+                        <li><a href="index.html" class="text-gray-400 hover:text-[#D4B357] transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-3 text-[#D4B357] group-hover:translate-x-2 transition-transform"></i>
+                            Home
+                        </a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-3 text-[#D4B357] group-hover:translate-x-2 transition-transform"></i>
+                            Services
+                        </a></li>
+                        <li><a href="projects.html" class="text-gray-400 hover:text-[#D4B357] transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-3 text-[#D4B357] group-hover:translate-x-2 transition-transform"></i>
+                            Projects
+                        </a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-[#D4B357] transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-3 text-[#D4B357] group-hover:translate-x-2 transition-transform"></i>
+                            About Us
+                        </a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-[#D4B357] transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-3 text-[#D4B357] group-hover:translate-x-2 transition-transform"></i>
+                            Contact
+                        </a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h4 class="text-white text-lg font-bold mb-6 gold-border-bottom inline-block">Our Services</h4>
+                    <ul class="space-y-4">
+                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Residential Construction</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Renovation & Remodeling</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Architectural Design</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Project Management</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Interior Design</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-white text-lg font-bold mb-6 gold-border-bottom inline-block">Contact Us</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-map-marker-alt text-[#D4B357] mt-1"></i>
+                            <span class="text-gray-400">123 Rue de la Paix, Douala, Cameroon</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-phone text-[#D4B357]"></i>
+                            <span class="text-gray-400">+237 123 456 789</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-envelope text-[#D4B357]"></i>
+                            <span class="text-gray-400">info@faithconstruction.cm</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-clock text-[#D4B357]"></i>
+                            <span class="text-gray-400">Mon-Fri: 8:00 AM - 6:00 PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-gray-800 py-8">
+                <div class="flex flex-wrap justify-between items-center">
+                    <p class="text-gray-400 text-sm">
+                        &copy; 2024 FAITH Construction. All rights reserved.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-[#D4B357] text-sm transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-[#D4B357] text-sm transition-colors">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-[#D4B357] text-sm transition-colors">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+    <script src="navbar.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Initialize Lightbox
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true,
+            'albumLabel': 'Project %1 of %2',
+            'fadeDuration': 300,
+            'imageFadeDuration': 300
+        });
+
+        // Project Filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectItems = document.querySelectorAll('.project-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                const filterValue = button.getAttribute('data-filter');
+
+                projectItems.forEach(item => {
+                    const anchor = item.querySelector('a');
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                        if(anchor) anchor.setAttribute('data-lightbox', 'projects');
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'scale(1)';
+                        }, 50);
+                    } else {
+                        if(anchor) anchor.setAttribute('data-lightbox', 'hidden');
+                        item.style.opacity = '0';
+                        item.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Counter Animation
+        function animateCounter(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                element.innerText = Math.floor(progress * (end - start) + start) + '+';
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Trigger counter when in viewport
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = document.querySelectorAll('.counter-number');
+                    counters.forEach(counter => {
+                        const value = counter.innerText.replace('+', '');
+                        animateCounter(counter, 0, parseInt(value), 2000);
+                    });
+                    counterObserver.disconnect();
+                }
+            });
+        });
+
+        if (document.querySelector('.counter-number')) {
+            counterObserver.observe(document.querySelector('.counter-number'));
+        }
+
+        // Ripple Effect on Buttons
+        function addRippleEffect(selector) {
+            const buttons = document.querySelectorAll(selector);
+            buttons.forEach(button => {
+                button.classList.add('ripple-container');
+                button.addEventListener('click', function (e) {
+                    const rect = button.getBoundingClientRect();
+                    const ripple = document.createElement('span');
+                    const size = Math.max(rect.width, rect.height);
+                    
+                    ripple.style.width = ripple.style.height = `${size}px`;
+                    ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
+                    ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
+                    
+                    ripple.classList.add('ripple');
+                    
+                    const existingRipple = button.querySelector('.ripple');
+                    if(existingRipple) {
+                        existingRipple.remove();
+                    }
+                    
+                    button.appendChild(ripple);
+
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+        }
+        addRippleEffect('button.filter-btn, a.gold-gradient, a.border-2, footer .w-10.h-10');
+    </script>
+
+    <style>
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4B357 0%, #E6C76A 50%, #D4B357 100%);
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Filter button active state */
+        .filter-btn.active {
+            background: #D4B357;
+            color: #1A1A1A;
+            border-color: #D4B357;
+        }
+
+        /* Project item transitions */
+        .project-item {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+    </style>
+</body>
+</html>
