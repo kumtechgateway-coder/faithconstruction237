@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details - FAITH Construction</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo.png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body class="antialiased bg-[#F8F8F8]">
+
+    <!-- Navbar Component -->
+    <app-navbar></app-navbar>
+
+    <!-- Page Header -->
+    <section id="page-header" class="relative pt-32 pb-20 md:pt-40 md:pb-24 bg-[#1A1A1A] overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-[#D4B357] rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-[#D4B357] rounded-full filter blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 lg:px-8 relative z-10">
+            <div class="max-w-4xl">
+                <!-- Breadcrumb -->
+                <div class="flex items-center space-x-2 text-sm mb-6" data-aos="fade-up">
+                    <a href="index.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Home</a>
+                    <i class="fas fa-chevron-right text-[#D4B357] text-xs"></i>
+                    <a href="projects.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Projects</a>
+                    <i class="fas fa-chevron-right text-[#D4B357] text-xs"></i>
+                    <span id="breadcrumb-title" class="text-[#D4B357]">Loading...</span>
+                </div>
+                
+                <!-- Title -->
+                <h1 id="header-title" class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-6" data-aos="fade-up" data-aos-delay="100">
+                    Project Details
+                </h1>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Detail Section -->
+    <main class="py-16 md:py-24">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div id="project-detail-content" class="bg-white p-6 md:p-12 rounded-3xl shadow-xl">
+                <!-- Spinner while loading -->
+                <div class="text-center py-20">
+                    <i class="fas fa-spinner fa-spin text-4xl text-[#D4B357]"></i>
+                    <p class="mt-4 text-gray-500">Loading project details...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- More Projects Section -->
+    <section class="py-16 md:py-24 bg-[#F8F8F8]">
+        <div class="container mx-auto px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-[#1A1A1A] text-center mb-12">More Projects</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="more-projects-grid">
+                <!-- Other projects will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <app-footer></app-footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="navbar.js"></script>
+    <script src="app-footer.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const projectTitle = urlParams.get('title');
+            
+            loadProjectDetails(projectTitle);
+        });
+
+        function getCategoryLabel(category) {
+            if (!category) return 'Project';
+            const labels = {
+                'luxury': 'Luxury Villa',
+                'modern': 'Modern Home',
+                'renovation': 'Renovation',
+                'estate': 'Estate'
+            };
+            return labels[category] || category.charAt(0).toUpperCase() + category.slice(1);
+        }
+
+        async function loadProjectDetails(title) {
+            const contentArea = document.getElementById('project-detail-content');
+            const breadcrumbTitle = document.getElementById('breadcrumb-title');
+            const headerTitle = document.getElementById('header-title');
+            const moreProjectsGrid = document.getElementById('more-projects-grid');
+
+            if (!title) {
+                contentArea.innerHTML = '<div class="text-center py-20"><p class="text-red-500 font-bold">Error: No project specified.</p><p>Please go back to the projects page and select a project.</p></div>';
+                return;
+            }
+
+            try {
+                const response = await fetch('data.json');
+                const projects = await response.json();
+                const project = projects.find(p => p.title === title);
+
+                if (project) {
+                    // Update page title and header
+                    document.title = `${project.title} - FAITH Construction`;
+                    breadcrumbTitle.textContent = project.title;
+                    headerTitle.innerHTML = `<span class="text-gradient-gold">${project.title}</span>`;
+
+                    // Render project details
+                    contentArea.innerHTML = `
+                        <div class="grid lg:grid-cols-5 gap-8 md:gap-12 items-start">
+                            <div class="lg:col-span-3" data-aos="fade-right">
+                                <img src="${project.image}" alt="${project.title}" class="rounded-2xl shadow-2xl w-full h-auto object-cover aspect-[4/3]">
+                            </div>
+                            <div class="lg:col-span-2" data-aos="fade-left">
+                                <span class="bg-[#D4B357]/10 text-[#D4B357] px-4 py-2 rounded-full text-sm font-semibold mb-6 inline-block">${getCategoryLabel(project.category)}</span>
+                                <h2 class="text-3xl md:text-4xl font-bold text-[#1A1A1A] mb-4">${project.title}</h2>
+                                <p class="text-lg text-gray-600 leading-relaxed mb-8">${project.description}</p>
+                                
+                                <div class="border-t border-gray-200 pt-6 space-y-4">
+                                    <div class="flex items-center"><i class="fas fa-tag text-[#D4B357] w-6"></i><span class="font-semibold ml-3">Category: ${getCategoryLabel(project.category)}</span></div>
+                                    <div class="flex items-center"><i class="fas fa-ruler-combined text-[#D4B357] w-6"></i><span class="font-semibold ml-3">Details: ${project.description}</span></div>
+                                    <div class="flex items-center"><i class="fas fa-map-marker-alt text-[#D4B357] w-6"></i><span class="font-semibold ml-3">Location: Cameroon</span></div>
+                                </div>
+
+                                <a href="contact.html" class="mt-10 group relative overflow-hidden bg-[#D4B357] text-[#1A1A1A] hover:text-white px-8 py-4 rounded text-sm font-semibold inline-flex items-center transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 hover:shadow-2xl w-full sm:w-auto justify-center">
+                                    <span class="relative z-10">Inquire About This Project</span>
+                                    <i class="fas fa-arrow-right ml-3 relative z-10 group-hover:translate-x-2 transition-transform"></i>
+                                    <div class="absolute inset-0 bg-black transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></div>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+
+                    // Load more projects
+                    const otherProjects = projects.filter(p => p.title !== project.title);
+                    const shuffled = otherProjects.sort(() => 0.5 - Math.random());
+                    moreProjectsGrid.innerHTML = '';
+                    shuffled.slice(0, 3).forEach((p, index) => {
+                        const item = document.createElement('div');
+                        item.className = 'project-item'; // Use same class for consistent styling
+                        item.setAttribute('data-aos', 'fade-up');
+                        item.setAttribute('data-aos-delay', (index * 100).toString());
+                        item.innerHTML = `
+                            <div class="project-img-wrapper">
+                                <a href="project-detail.html?title=${encodeURIComponent(p.title)}">
+                                    <img src="${p.image}" alt="${p.title}" loading="lazy">
+                                </a>
+                                <span class="category-badge">${getCategoryLabel(p.category)}</span>
+                            </div>
+                            <div class="project-info">
+                                <h3>${p.title}</h3>
+                                <p>${p.description}</p>
+                                <a href="project-detail.html?title=${encodeURIComponent(p.title)}" class="view-details-btn">View Details</a>
+                            </div>
+                        `;
+                        moreProjectsGrid.appendChild(item);
+                    });
+
+                } else {
+                    contentArea.innerHTML = '<div class="text-center py-20"><p class="text-red-500 font-bold">Error: Project not found.</p><p>The requested project does not exist. Please check the URL or go back.</p></div>';
+                    headerTitle.textContent = 'Project Not Found';
+                    breadcrumbTitle.textContent = 'Not Found';
+                }
+            } catch (error) {
+                console.error('Error loading project details:', error);
+                contentArea.innerHTML = `<div class="text-center py-20"><p class="text-red-500 font-bold">Unable to load project</p><p class="text-gray-500 text-sm mt-2">${error.message}</p></div>`;
+            }
+        }
+    </script>
+</body>
+</html>

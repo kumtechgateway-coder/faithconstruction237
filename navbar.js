@@ -10,86 +10,8 @@ class AppNavbar extends HTMLElement {
     }
 
     initStyles() {
-        const style = document.createElement('style');
-        style.textContent = `
-            /* Mobile Menu Styles */
-            .mobile-menu {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 80%;
-                max-width: 400px;
-                height: 100vh;
-                background: #1A1A1A;
-                z-index: 1000;
-                transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-                padding: 40px;
-                box-shadow: -10px 0 30px rgba(0,0,0,0.3);
-            }
-
-            .mobile-menu.active {
-                right: 0;
-            }
-
-            .menu-overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100vh;
-                background: rgba(0,0,0,0.8);
-                backdrop-filter: blur(5px);
-                z-index: 999;
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.5s;
-            }
-
-            .menu-overlay.active {
-                opacity: 1;
-                visibility: visible;
-            }
-
-            .gold-border-bottom {
-                position: relative;
-            }
-
-            .gold-border-bottom::after {
-                content: '';
-                position: absolute;
-                bottom: -5px;
-                left: 0;
-                width: 60px;
-                height: 2px;
-                background: #D4B357;
-                transition: width 0.3s ease;
-            }
-
-            .gold-border-bottom:hover::after {
-                width: 100px;
-            }
-
-            /* Ripple Effect */
-            .ripple-container {
-                position: relative;
-                overflow: hidden;
-            }
-            .ripple {
-                position: absolute;
-                border-radius: 50%;
-                background-color: rgba(212, 179, 87, 0.5);
-                transform: scale(0);
-                animation: ripple-animation 600ms ease-out;
-                pointer-events: none;
-            }
-            @keyframes ripple-animation {
-                to {
-                    transform: scale(4);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
+        // Styles are now handled in style.css to prevent duplication
+        // and ensure consistency across the application.
     }
 
     render() {
@@ -125,7 +47,7 @@ class AppNavbar extends HTMLElement {
             const activeClass = isActive ? 'text-[#D4B357]' : 'text-white hover:text-[#D4B357]';
             
             return `
-                <a href="${item.href}" class="${activeClass} text-xl font-light transition-colors gold-border-bottom inline-block">${item.name}</a>
+                <a href="${item.href}" class="${activeClass} text-2xl font-light transition-colors gold-border-bottom inline-block py-4">${item.name}</a>
             `;
         }).join('');
 
@@ -134,10 +56,11 @@ class AppNavbar extends HTMLElement {
                 <div class="container mx-auto px-6 lg:px-8">
                     <div class="flex justify-between items-center py-6">
                         <!-- Logo -->
-                        <a href="index.html" class="flex items-center gap-4">
+                        <a href="index.html" class="flex items-center gap-3">
                             <img src="images/logo.png" alt="Faith Construction Logo" class="h-12 w-auto rounded-[5px]">
-                            <div class="text-white">
-                                <span class="font-['Lora'] text-xl font-black tracking-tight">FAITH <span class="text-[#D4B357]">CONSTRUCTION</span></span>
+                            <div class="text-white flex flex-col leading-none">
+                                <span class="font-['Lora'] text-2xl font-black tracking-widest">FAITH</span>
+                                <span class="text-[#D4B357] text-[0.65rem] font-bold tracking-[0.2em]">CONSTRUCTION</span>
                             </div>
                         </a>
 
@@ -167,9 +90,9 @@ class AppNavbar extends HTMLElement {
 
             <!-- Mobile Menu -->
             <div class="menu-overlay" id="menuOverlay"></div>
-            <div class="mobile-menu" id="mobileMenu">
-                <div class="flex justify-end mb-12">
-                    <button class="text-white focus:outline-none" id="closeMenu">
+            <div class="mobile-menu bg-[#1A1A1A]" id="mobileMenu">
+                <div class="flex justify-end mb-8">
+                    <button class="text-white focus:outline-none p-2" id="closeMenu">
                         <i class="fas fa-times text-2xl"></i>
                     </button>
                 </div>
@@ -186,6 +109,38 @@ class AppNavbar extends HTMLElement {
                     </div>
                 </div>
             </div>
+
+            <!-- WhatsApp Widget -->
+            <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+                <!-- Message Bubble -->
+                <div id="whatsapp-bubble" class="bg-white text-gray-800 p-4 rounded-2xl shadow-2xl mb-4 mr-0 relative transform transition-all duration-500 opacity-0 translate-y-10 scale-90 origin-bottom-right max-w-xs border border-gray-100">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-green-500/10 p-2 rounded-full shrink-0">
+                            <i class="fas fa-comment-dots text-green-600 text-lg"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-sm text-[#1A1A1A]">You have a message!</p>
+                            <p class="text-xs text-gray-500 mt-0.5">Contact us on WhatsApp for instant support.</p>
+                        </div>
+                    </div>
+                    <!-- Arrow -->
+                    <div class="absolute -bottom-2 right-6 w-4 h-4 bg-white transform rotate-45 border-r border-b border-gray-100"></div>
+                    
+                    <!-- Close Button -->
+                    <button id="close-whatsapp" class="absolute -top-2 -right-2 bg-white hover:bg-gray-100 text-gray-400 hover:text-gray-600 border border-gray-200 rounded-full w-6 h-6 flex items-center justify-center text-xs shadow-sm transition-colors">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <!-- Button -->
+                <a href="https://wa.me/237674942469" target="_blank" aria-label="Chat on WhatsApp" class="bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full shadow-[0_4px_14px_0_rgba(37,211,102,0.39)] w-14 h-14 flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:rotate-12 relative group">
+                    <i class="fab fa-whatsapp text-3xl"></i>
+                    <span class="absolute top-0 right-0 flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                    </span>
+                </a>
+            </div>
         `;
     }
 
@@ -196,6 +151,36 @@ class AppNavbar extends HTMLElement {
         const mobileMenu = this.querySelector('#mobileMenu');
         const menuOverlay = this.querySelector('#menuOverlay');
         const isTransparent = this.getAttribute('transparent') === 'true';
+
+        // WhatsApp Bubble Logic
+        const whatsappBubble = this.querySelector('#whatsapp-bubble');
+        const closeWhatsapp = this.querySelector('#close-whatsapp');
+        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+
+        const handleWhatsAppBubble = () => {
+            // Conditions: Home page, not shown yet in this session, and user has scrolled down
+            if (currentPath === 'index.html' && !sessionStorage.getItem('whatsappBubbleShown') && window.scrollY > 200) {
+                if (whatsappBubble) {
+                    whatsappBubble.classList.remove('opacity-0', 'translate-y-10', 'scale-90');
+                    sessionStorage.setItem('whatsappBubbleShown', 'true'); // Set flag so it doesn't show again
+                    // Clean up the event listener so it doesn't keep firing
+                    window.removeEventListener('scroll', handleWhatsAppBubble);
+                }
+            }
+        };
+
+        // Only add the scroll listener on the home page
+        if (currentPath === 'index.html') {
+            window.addEventListener('scroll', handleWhatsAppBubble);
+        }
+
+        if (closeWhatsapp) {
+            closeWhatsapp.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                whatsappBubble.classList.add('opacity-0', 'translate-y-10', 'scale-90');
+            });
+        }
 
         // Scroll Effect
         window.addEventListener('scroll', () => {

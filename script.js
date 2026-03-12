@@ -3,9 +3,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Projects functionality
     const projectsGrid = document.getElementById('projects-grid');
+    const featuredGrid = document.getElementById('featured-projects-grid');
     const projectFilters = document.getElementById('project-filters');
 
-    if (projectsGrid) {
+    if (projectsGrid || featuredGrid) {
         loadProjects();
     }
 
@@ -24,30 +25,66 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch (error) {
             console.error('Error loading projects:', error);
-            projectsGrid.innerHTML = '<p class="text-center col-span-full text-gray-500">Failed to load projects. Please try again later.</p>';
+            const errorMsg = '<p class="text-center col-span-full text-gray-500">Failed to load projects. Please try again later.</p>';
+            if (projectsGrid) projectsGrid.innerHTML = errorMsg;
+            if (featuredGrid) featuredGrid.innerHTML = errorMsg;
         }
     }
 
     function renderProjects(projects) {
-        projectsGrid.innerHTML = '';
+        // Render main grid if it exists
+        if (projectsGrid) {
+            projectsGrid.innerHTML = '';
+            projects.forEach((project, index) => {
+                projectsGrid.appendChild(createProjectCard(project, index));
+            });
+        }
+
+        // Render featured grid if it exists (limit to 3)
+        if (featuredGrid) {
+            featuredGrid.innerHTML = '';
+            const shuffled = [...projects];
+            // Fisher-Yates shuffle to show random projects
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            shuffled.slice(0, 3).forEach((project, index) => {
+                featuredGrid.appendChild(createProjectCard(project, index));
+            });
+        }
+    }
+
+    function createProjectCard(project, index) {
+        const projectCard = document.createElement('div');
+        projectCard.className = 'project-item';
+        projectCard.setAttribute('data-aos', 'fade-up');
+        projectCard.setAttribute('data-aos-delay', `${100 + index * 100}`);
         
-        projects.forEach((project, index) => {
-            const projectCard = document.createElement('div');
-            projectCard.className = 'group relative overflow-hidden rounded-sm shadow-xl cursor-pointer h-[400px] animate-fade-in-up';
-            projectCard.style.animationDelay = `${index * 100}ms`;
-            
-            projectCard.innerHTML = `
-                <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
-                <div class="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-brand-black/20 to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="absolute bottom-0 left-0 p-8 w-full translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    <span class="text-brand-gold text-xs font-bold uppercase tracking-widest mb-2 block">${project.category}</span>
-                    <h3 class="text-2xl font-serif font-bold text-white mb-2">${project.title}</h3>
-                    <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">${project.description}</p>
-                </div>
-            `;
-            
-            projectsGrid.appendChild(projectCard);
-        });
+        const getCategoryLabel = (cat) => {
+            const labels = {
+                'luxury': 'Luxury Villa',
+                'modern': 'Modern Home',
+                'renovation': 'Renovation',
+                'estate': 'Estate'
+            };
+            return labels[cat] || cat.charAt(0).toUpperCase() + cat.slice(1);
+        };
+
+        projectCard.innerHTML = `
+            <div class="project-img-wrapper">
+                <a href="${project.image}" data-lightbox="featured-projects" data-title="${project.title}">
+                    <img src="${project.image}" alt="${project.title}" loading="lazy">
+                </a>
+                <span class="category-badge">${getCategoryLabel(project.category)}</span>
+            </div>
+            <div class="project-info">
+                <h3>${project.title}</h3>
+                <p>${project.description}</p>
+                <a href="project-detail.html?title=${encodeURIComponent(project.title)}" class="view-details-btn">View Details</a>
+            </div>
+        `;
+        return projectCard;
     }
 
     function setupFilters(allProjects) {
@@ -57,13 +94,13 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.addEventListener('click', () => {
                 // Remove active class from all
                 buttons.forEach(b => {
-                    b.classList.remove('bg-brand-black', 'text-white', 'shadow-lg');
+                    b.classList.remove('bg-[#1A1A1A]', 'text-white', 'shadow-lg');
                     b.classList.add('bg-white', 'text-gray-600', 'shadow-sm');
                 });
                 
                 // Add active class to clicked
                 btn.classList.remove('bg-white', 'text-gray-600', 'shadow-sm');
-                btn.classList.add('bg-brand-black', 'text-white', 'shadow-lg');
+                btn.classList.add('bg-[#1A1A1A]', 'text-white', 'shadow-lg');
                 
                 const filterValue = btn.getAttribute('data-filter');
                 

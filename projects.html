@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Projects - FAITH Construction | Premium Portfolio Cameroon</title>
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo.png">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -20,234 +23,40 @@
     <!-- Lightbox for project images -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
     
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            color: #1A1A1A;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Lora', serif;
-            font-weight: 700;
-        }
-
-        /* Filter Button Styles */
-        .filter-btn {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .filter-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(212, 179, 87, 0.2);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .filter-btn:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .filter-btn.active {
-            background: #D4B357;
-            color: #1A1A1A;
-            border-color: #D4B357;
-        }
-
-        /* Project Card Styles */
-        .project-card {
-            position: relative;
-            overflow: hidden;
-            border-radius: 1rem;
-            cursor: pointer;
-        }
-
-        .project-card img {
-            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        .project-card:hover img {
-            transform: scale(1.1);
-        }
-
-        .project-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(26, 26, 26, 0.95), rgba(26, 26, 26, 0.3));
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 2rem;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .project-card:hover .project-overlay {
-            opacity: 1;
-        }
-
-        .project-info {
-            transform: translateY(20px);
-            transition: transform 0.4s ease;
-        }
-
-        .project-card:hover .project-info {
-            transform: translateY(0);
-        }
-
-        /* Category Badge */
-        .category-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: #D4B357;
-            color: #1A1A1A;
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.875rem;
-            font-weight: 600;
-            z-index: 10;
-            transform: translateY(-10px);
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-
-        .project-card:hover .category-badge {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        /* Counter Number Style */
-        .counter-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            font-family: 'Lora', serif;
-            color: #D4B357;
-            line-height: 1;
-        }
-
-        /* Gold Gradient Text */
-        .text-gradient-gold {
-            background: linear-gradient(135deg, #D4B357 0%, #E6C76A 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #1A1A1A;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #D4B357;
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #B8963F;
-        }
-
-        /* Gold Border Animation */
-        .gold-border-bottom {
-            position: relative;
-        }
-
-        .gold-border-bottom::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 60px;
-            height: 2px;
-            background: #D4B357;
-            transition: width 0.3s ease;
-        }
-
-        .gold-border-bottom:hover::after {
-            width: 100px;
-        }
-
-        /* Masonry Grid */
-        .masonry-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
-        .masonry-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 1rem;
-        }
-
-        .masonry-item.large {
-            grid-column: span 2;
-            grid-row: span 2;
-        }
-
-        .masonry-item.medium {
-            grid-column: span 1;
-            grid-row: span 1;
-        }
-
-        .masonry-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        @media (max-width: 768px) {
-            .masonry-grid {
-                grid-template-columns: 1fr;
-            }
-            .masonry-item.large {
-                grid-column: span 1;
-                grid-row: span 1;
-            }
-        }
-
-        /* Project Stats Card */
-        .stat-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-    </style>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+    
 </head>
 <body class="antialiased">
 
     <!-- Navbar Component -->
     <app-navbar></app-navbar>
 
+    <!-- Filter Section (Sticky) -->
+    <section class="fixed w-full top-[96px] z-30 bg-white/90 backdrop-blur-xl shadow-sm border-b border-gray-100 py-4 transition-all duration-300">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="flex flex-wrap justify-center gap-2 md:gap-4">
+                <button class="filter-btn active" data-filter="all">
+                    All Projects
+                </button>
+                <button class="filter-btn" data-filter="luxury">
+                    Luxury Villas
+                </button>
+                <button class="filter-btn" data-filter="modern">
+                    Modern Homes
+                </button>
+                <button class="filter-btn" data-filter="renovation">
+                    Renovations
+                </button>
+                <button class="filter-btn" data-filter="estate">
+                    Estates
+                </button>
+            </div>
+        </div>
+    </section>
+
     <!-- Page Header -->
-    <section class="relative pt-32 pb-24 bg-[#1A1A1A] overflow-hidden">
+    <section class="relative pt-48 pb-16 md:pt-56 md:pb-24 bg-[#1A1A1A] overflow-hidden">
         <!-- Background Pattern -->
         <div class="absolute inset-0 opacity-10">
             <div class="absolute top-0 right-0 w-96 h-96 bg-[#D4B357] rounded-full filter blur-3xl"></div>
@@ -264,7 +73,7 @@
                 </div>
                 
                 <!-- Title -->
-                <h1 class="text-4xl lg:text-6xl font-black text-white mb-6" data-aos="fade-up" data-aos-delay="100">
+                <h1 class="text-3xl md:text-4xl lg:text-6xl font-black text-white mb-6" data-aos="fade-up" data-aos-delay="100">
                     Our <span class="text-gradient-gold">Portfolio</span>
                 </h1>
                 <p class="text-xl text-gray-300 max-w-2xl leading-relaxed" data-aos="fade-up" data-aos-delay="200">
@@ -275,22 +84,34 @@
     </section>
 
     <!-- Project Stats -->
-    <section class="py-16 bg-white border-b border-gray-100">
+    <section class="py-12 md:py-16 bg-white border-b border-gray-100">
         <div class="container mx-auto px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
                 <div class="stat-card text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 mx-auto bg-[#D4B357]/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-hard-hat text-2xl text-[#D4B357]"></i>
+                    </div>
                     <div class="counter-number">200+</div>
                     <div class="text-gray-600 font-semibold mt-2">Projects Completed</div>
                 </div>
                 <div class="stat-card text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 mx-auto bg-[#D4B357]/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-smile text-2xl text-[#D4B357]"></i>
+                    </div>
                     <div class="counter-number">150+</div>
                     <div class="text-gray-600 font-semibold mt-2">Happy Clients</div>
                 </div>
                 <div class="stat-card text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 mx-auto bg-[#D4B357]/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-map-marker-alt text-2xl text-[#D4B357]"></i>
+                    </div>
                     <div class="counter-number">12</div>
                     <div class="text-gray-600 font-semibold mt-2">Cities Covered</div>
                 </div>
                 <div class="stat-card text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-16 h-16 mx-auto bg-[#D4B357]/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-trophy text-2xl text-[#D4B357]"></i>
+                    </div>
                     <div class="counter-number">5</div>
                     <div class="text-gray-600 font-semibold mt-2">Design Awards</div>
                 </div>
@@ -298,39 +119,16 @@
         </div>
     </section>
 
-    <!-- Filter Section -->
-    <section class="py-12 bg-white">
-        <div class="container mx-auto px-6 lg:px-8">
-            <div class="flex flex-wrap justify-center gap-4" data-aos="fade-up">
-                <button class="filter-btn active px-5 py-2 rounded-full border-2 border-[#D4B357] text-[#1A1A1A] text-sm font-semibold transition-all hover:-translate-y-2 hover:shadow-xl" data-filter="all">
-                    All Projects
-                </button>
-                <button class="filter-btn px-5 py-2 rounded-full border-2 border-gray-300 text-gray-600 hover:border-[#D4B357] text-sm font-semibold transition-all hover:-translate-y-2 hover:shadow-xl" data-filter="luxury">
-                    Luxury Villas
-                </button>
-                <button class="filter-btn px-5 py-2 rounded-full border-2 border-gray-300 text-gray-600 hover:border-[#D4B357] text-sm font-semibold transition-all hover:-translate-y-2 hover:shadow-xl" data-filter="modern">
-                    Modern Homes
-                </button>
-                <button class="filter-btn px-5 py-2 rounded-full border-2 border-gray-300 text-gray-600 hover:border-[#D4B357] text-sm font-semibold transition-all hover:-translate-y-2 hover:shadow-xl" data-filter="renovation">
-                    Renovations
-                </button>
-                <button class="filter-btn px-5 py-2 rounded-full border-2 border-gray-300 text-gray-600 hover:border-[#D4B357] text-sm font-semibold transition-all hover:-translate-y-2 hover:shadow-xl" data-filter="estate">
-                    Estates
-                </button>
-            </div>
-        </div>
-    </section>
-
     <!-- Featured Project -->
-    <section class="py-16 bg-white">
+    <section class="py-12 md:py-16 bg-white">
         <div class="container mx-auto px-6 lg:px-8">
             <div class="relative rounded-3xl overflow-hidden" data-aos="fade-up">
-                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                <img src="images/project4.webp" 
                      alt="Featured Project" 
-                     class="w-full h-[600px] object-cover"
+                     class="w-full h-[450px] md:h-[600px] object-cover"
                      loading="lazy">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-[#1A1A1A]/50 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-12">
+                <div class="absolute bottom-0 left-0 right-0 p-6 md:p-12">
                     <span class="bg-[#D4B357] text-[#1A1A1A] px-4 py-2 rounded-full text-sm font-semibold mb-4 inline-block">FEATURED PROJECT</span>
                     <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Bonapriso Luxury Estate</h2>
                     <p class="text-lg text-gray-200 mb-6 max-w-2xl">A masterpiece of modern architecture spanning 5,000 sqm with 8 bedrooms, infinity pool, and panoramic ocean views.</p>
@@ -344,179 +142,26 @@
     </section>
 
     <!-- Projects Masonry Grid -->
-    <section class="py-16 bg-[#F8F8F8]">
+    <section class="py-12 md:py-16 bg-[#F8F8F8]">
         <div class="container mx-auto px-6 lg:px-8">
-            <div class="masonry-grid" id="projects-grid">
-                <!-- Project 1 - Luxury Villa -->
-                <div class="masonry-item large project-item" data-category="luxury" data-aos="fade-up">
-                    <a href="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" data-lightbox="projects" data-title="Bastos Luxury Villa - Yaoundé">
-                        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Bastos Luxury Villa" loading="lazy">
-                        <span class="category-badge">Luxury Villa</span>
-                        <div class="project-overlay">
-                            <div class="project-info">
-                                <h3 class="text-2xl font-bold text-white mb-2">Bastos Luxury Villa</h3>
-                                <p class="text-gray-200 mb-3">Yaoundé, Cameroon</p>
-                                <p class="text-gray-300 text-sm">6 Bedrooms • Pool • Smart Home • 800 sqm</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Project 2 - Modern Home -->
-                <div class="masonry-item medium project-item" data-category="modern" data-aos="fade-up" data-aos-delay="100">
-                    <a href="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" data-lightbox="projects" data-title="Kribi Beach House">
-                        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Kribi Beach House" loading="lazy">
-                        <span class="category-badge">Modern Home</span>
-                        <div class="project-overlay">
-                            <div class="project-info">
-                                <h3 class="text-2xl font-bold text-white mb-2">Kribi Beach House</h3>
-                                <p class="text-gray-200 mb-3">Kribi, Cameroon</p>
-                                <p class="text-gray-300 text-sm">4 Bedrooms • Ocean Front • Terrace</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Project 3 - Renovation -->
-                <div class="masonry-item medium project-item" data-category="renovation" data-aos="fade-up" data-aos-delay="200">
-                    <a href="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" data-lightbox="projects" data-title="Historic Bonanjo Renovation">
-                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Bonanjo Heritage Home" loading="lazy">
-                        <span class="category-badge">Renovation</span>
-                        <div class="project-overlay">
-                            <div class="project-info">
-                                <h3 class="text-2xl font-bold text-white mb-2">Bonanjo Heritage Home</h3>
-                                <p class="text-gray-200 mb-3">Douala, Cameroon</p>
-                                <p class="text-gray-300 text-sm">Historic Preservation • Modern Updates</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Project 4 - Luxury Villa -->
-                <div class="masonry-item medium project-item" data-category="luxury" data-aos="fade-up" data-aos-delay="300">
-                    <a href="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" data-lightbox="projects" data-title="Bonapriso Waterfront Villa">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Bonapriso Waterfront" loading="lazy">
-                        <span class="category-badge">Luxury Villa</span>
-                        <div class="project-overlay">
-                            <div class="project-info">
-                                <h3 class="text-2xl font-bold text-white mb-2">Bonapriso Waterfront</h3>
-                                <p class="text-gray-200 mb-3">Douala, Cameroon</p>
-                                <p class="text-gray-300 text-sm">5 Bedrooms • Infinity Pool • Dock</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Project 5 - Estate -->
-                <div class="masonry-item large project-item" data-category="estate" data-aos="fade-up" data-aos-delay="400">
-                    <a href="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" data-lightbox="projects" data-title="Santa Barbara Estates">
-                        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Santa Barbara Estates" loading="lazy">
-                        <span class="category-badge">Estate</span>
-                        <div class="project-overlay">
-                            <div class="project-info">
-                                <h3 class="text-2xl font-bold text-white mb-2">Santa Barbara Estates</h3>
-                                <p class="text-gray-200 mb-3">Limbe, Cameroon</p>
-                                <p class="text-gray-300 text-sm">12 Luxury Villas • Gated Community • Club House</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Project 6 - Modern Home -->
-                <div class="masonry-item medium project-item" data-category="modern" data-aos="fade-up" data-aos-delay="500">
-                    <a href="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" data-lightbox="projects" data-title="Mvog-Mbi Minimalist Home">
-                        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mvog-Mbi Modern Home" loading="lazy">
-                        <span class="category-badge">Modern Home</span>
-                        <div class="project-overlay">
-                            <div class="project-info">
-                                <h3 class="text-2xl font-bold text-white mb-2">Mvog-Mbi Residence</h3>
-                                <p class="text-gray-200 mb-3">Yaoundé, Cameroon</p>
-                                <p class="text-gray-300 text-sm">Minimalist • 4 Bedrooms • Garden</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Project 7 - Renovation -->
-                <div class="masonry-item medium project-item" data-category="renovation" data-aos="fade-up" data-aos-delay="600">
-                    <a href="https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" data-lightbox="projects" data-title="Akwa Colonial Restoration">
-                        <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Akwa Colonial Building" loading="lazy">
-                        <span class="category-badge">Renovation</span>
-                        <div class="project-overlay">
-                            <div class="project-info">
-                                <h3 class="text-2xl font-bold text-white mb-2">Akwa Colonial Building</h3>
-                                <p class="text-gray-200 mb-3">Douala, Cameroon</p>
-                                <p class="text-gray-300 text-sm">Heritage Restoration • Modern Office</p>
-                            </div>
-                        </div>
-                    </a>
+            <div class="projects-grid" id="gallery-grid">
+                <!-- Projects will be populated from data.json -->
+                <div class="col-span-full text-center py-12">
+                    <i class="fas fa-spinner fa-spin text-4xl text-[#D4B357]"></i>
+                    <p class="mt-4 text-gray-500">Loading projects...</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Project Categories Showcase -->
-    <section class="py-24 bg-white">
-        <div class="container mx-auto px-6 lg:px-8">
-            <!-- Section Header -->
-            <div class="text-center max-w-3xl mx-auto mb-20" data-aos="fade-up">
-                <div class="text-[#D4B357] text-sm tracking-[0.3em] mb-6">
-                    <span class="inline-block w-12 h-0.5 bg-[#D4B357] mr-4 align-middle"></span>
-                    CATEGORIES
-                    <span class="inline-block w-12 h-0.5 bg-[#D4B357] ml-4 align-middle"></span>
-                </div>
-                <h2 class="text-4xl font-bold text-[#1A1A1A] mb-8">
-                    Explore By <span class="text-gradient-gold">Type</span>
-                </h2>
+            
+            <!-- Infinite Scroll Loader & Sentinel -->
+            <div id="infinite-loader" class="text-center py-8 opacity-0 transition-opacity duration-300">
+                <i class="fas fa-circle-notch fa-spin text-3xl text-[#D4B357]"></i>
             </div>
-
-            <!-- Category Cards -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Category 1 -->
-                <div class="group relative overflow-hidden rounded-2xl cursor-pointer" data-aos="fade-up" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Luxury Villas" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] to-transparent"></div>
-                    <div class="absolute bottom-0 left-0 p-6">
-                        <h3 class="text-2xl font-bold text-white mb-2">Luxury Villas</h3>
-                        <p class="text-gray-200">12 Projects</p>
-                    </div>
-                </div>
-
-                <!-- Category 2 -->
-                <div class="group relative overflow-hidden rounded-2xl cursor-pointer" data-aos="fade-up" data-aos-delay="200">
-                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Modern Homes" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] to-transparent"></div>
-                    <div class="absolute bottom-0 left-0 p-6">
-                        <h3 class="text-2xl font-bold text-white mb-2">Modern Homes</h3>
-                        <p class="text-gray-200">8 Projects</p>
-                    </div>
-                </div>
-
-                <!-- Category 3 -->
-                <div class="group relative overflow-hidden rounded-2xl cursor-pointer" data-aos="fade-up" data-aos-delay="300">
-                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Renovations" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] to-transparent"></div>
-                    <div class="absolute bottom-0 left-0 p-6">
-                        <h3 class="text-2xl font-bold text-white mb-2">Renovations</h3>
-                        <p class="text-gray-200">15 Projects</p>
-                    </div>
-                </div>
-
-                <!-- Category 4 -->
-                <div class="group relative overflow-hidden rounded-2xl cursor-pointer" data-aos="fade-up" data-aos-delay="400">
-                    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Estates" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] to-transparent"></div>
-                    <div class="absolute bottom-0 left-0 p-6">
-                        <h3 class="text-2xl font-bold text-white mb-2">Estates</h3>
-                        <p class="text-gray-200">5 Projects</p>
-                    </div>
-                </div>
-            </div>
+            <div id="scroll-sentinel" class="h-4 w-full"></div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section class="py-24 bg-[#F8F8F8]">
+    <section class="py-16 md:py-24 bg-[#F8F8F8]">
         <div class="container mx-auto px-6 lg:px-8">
             <!-- Section Header -->
             <div class="text-center max-w-3xl mx-auto mb-20" data-aos="fade-up">
@@ -525,7 +170,7 @@
                     CLIENT FEEDBACK
                     <span class="inline-block w-12 h-0.5 bg-[#D4B357] ml-4 align-middle"></span>
                 </div>
-                <h2 class="text-4xl font-bold text-[#1A1A1A] mb-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-[#1A1A1A] mb-8">
                     What Our Clients <span class="text-gradient-gold">Say</span>
                 </h2>
             </div>
@@ -580,9 +225,9 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="relative py-24 overflow-hidden">
+    <section class="relative py-16 md:py-24 overflow-hidden">
         <div class="absolute inset-0">
-            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+            <img src="images/project5.webp" 
                  alt="Construction Background" 
                  class="w-full h-full object-cover"
                  loading="lazy">
@@ -591,7 +236,7 @@
 
         <div class="container mx-auto px-6 lg:px-8 relative z-10">
             <div class="max-w-3xl mx-auto text-center">
-                <h2 class="text-4xl font-bold text-white mb-8" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-8" data-aos="fade-up">
                     Ready to Create Your<br>
                     <span class="text-gradient-gold">Masterpiece?</span>
                 </h2>
@@ -613,164 +258,239 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-[#1A1A1A] border-t border-gray-800">
-        <div class="container mx-auto px-6 lg:px-8">
-            <!-- Main Footer -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 py-20">
-                <!-- Company Info -->
-                <div>
-                    <div class="mb-6 flex items-center gap-4">
-                        <img src="images/logo.png" alt="Faith Construction Logo" class="h-12 w-auto rounded-[5px]">
-                        <span class="font-['Lora'] text-2xl font-black text-white">FAITH <span class="text-[#D4B357]">CONSTRUCTION</span></span>
-                    </div>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                        Building Cameroon's premium residential future with integrity, excellence, and unwavering commitment to quality.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-[#D4B357] hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-[#D4B357] hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-[#D4B357] hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="text-white text-lg font-bold mb-6 gold-border-bottom inline-block">Quick Links</h4>
-                    <ul class="space-y-4">
-                        <li><a href="index.html" class="text-gray-400 hover:text-[#D4B357] transition-colors flex items-center group">
-                            <i class="fas fa-chevron-right text-xs mr-3 text-[#D4B357] group-hover:translate-x-2 transition-transform"></i>
-                            Home
-                        </a></li>
-                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors flex items-center group">
-                            <i class="fas fa-chevron-right text-xs mr-3 text-[#D4B357] group-hover:translate-x-2 transition-transform"></i>
-                            Services
-                        </a></li>
-                        <li><a href="projects.html" class="text-gray-400 hover:text-[#D4B357] transition-colors flex items-center group">
-                            <i class="fas fa-chevron-right text-xs mr-3 text-[#D4B357] group-hover:translate-x-2 transition-transform"></i>
-                            Projects
-                        </a></li>
-                        <li><a href="about.html" class="text-gray-400 hover:text-[#D4B357] transition-colors flex items-center group">
-                            <i class="fas fa-chevron-right text-xs mr-3 text-[#D4B357] group-hover:translate-x-2 transition-transform"></i>
-                            About Us
-                        </a></li>
-                        <li><a href="contact.html" class="text-gray-400 hover:text-[#D4B357] transition-colors flex items-center group">
-                            <i class="fas fa-chevron-right text-xs mr-3 text-[#D4B357] group-hover:translate-x-2 transition-transform"></i>
-                            Contact
-                        </a></li>
-                    </ul>
-                </div>
-
-                <!-- Services -->
-                <div>
-                    <h4 class="text-white text-lg font-bold mb-6 gold-border-bottom inline-block">Our Services</h4>
-                    <ul class="space-y-4">
-                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Residential Construction</a></li>
-                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Renovation & Remodeling</a></li>
-                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Architectural Design</a></li>
-                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Project Management</a></li>
-                        <li><a href="services.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Interior Design</a></li>
-                    </ul>
-                </div>
-
-                <!-- Contact Info -->
-                <div>
-                    <h4 class="text-white text-lg font-bold mb-6 gold-border-bottom inline-block">Contact Us</h4>
-                    <ul class="space-y-4">
-                        <li class="flex items-start space-x-3">
-                            <i class="fas fa-map-marker-alt text-[#D4B357] mt-1"></i>
-                            <span class="text-gray-400">Simbock, Yaoundé, Cameroon</span>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <i class="fas fa-phone text-[#D4B357]"></i>
-                            <span class="text-gray-400">+237 674 942 469</span>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <i class="fas fa-envelope text-[#D4B357]"></i>
-                            <span class="text-gray-400">faithconstruction8@gmail.com</span>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <i class="fas fa-clock text-[#D4B357]"></i>
-                            <span class="text-gray-400">Mon-Fri: 8:00 AM - 6:00 PM</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Bottom Bar -->
-            <div class="border-t border-gray-800 py-8">
-                <div class="flex flex-wrap justify-between items-center">
-                    <p class="text-gray-400 text-sm">
-                        &copy; 2024 FAITH Construction. All rights reserved.
-                    </p>
-                    <div class="flex space-x-6">
-                        <a href="#" class="text-gray-400 hover:text-[#D4B357] text-sm transition-colors">Privacy Policy</a>
-                        <a href="#" class="text-gray-400 hover:text-[#D4B357] text-sm transition-colors">Terms of Service</a>
-                        <a href="#" class="text-gray-400 hover:text-[#D4B357] text-sm transition-colors">Cookie Policy</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <app-footer></app-footer>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
     <script src="navbar.js"></script>
+    <script src="app-footer.js"></script>
     <script>
         // Initialize AOS
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100
-        });
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 1000,
+                once: true,
+                offset: 100
+            });
+        }
 
         // Initialize Lightbox
-        lightbox.option({
-            'resizeDuration': 200,
-            'wrapAround': true,
-            'albumLabel': 'Project %1 of %2',
-            'fadeDuration': 300,
-            'imageFadeDuration': 300
-        });
+        if (typeof lightbox !== 'undefined') {
+            lightbox.option({
+                'resizeDuration': 200,
+                'wrapAround': true,
+                'albumLabel': 'Project %1 of %2',
+                'fadeDuration': 300,
+                'imageFadeDuration': 300
+            });
+        }
 
         // Project Filtering
         const filterButtons = document.querySelectorAll('.filter-btn');
-        const projectItems = document.querySelectorAll('.project-item');
+        let projectItems = [];
 
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Remove active class from all buttons
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                // Add active class to clicked button
-                button.classList.add('active');
+        // Infinite Scroll State
+        let visibleCount = 6;
+        const itemsIncrement = 6;
+        let currentFilter = 'all';
 
-                const filterValue = button.getAttribute('data-filter');
+        // Fetch Projects from data.json
+        async function loadGalleryProjects() {
+            const grid = document.getElementById('gallery-grid');
+            try {
+                // Check if running on file protocol which blocks fetch
+                if (window.location.protocol === 'file:') {
+                    throw new Error('Browsers block local file access. Please use a local server (like Live Server extension in VS Code).');
+                }
+                const response = await fetch('data.json');
+                if (!response.ok) throw new Error(`Failed to load projects: ${response.status}`);
+                const projects = await response.json();
+                renderGallery(projects);
+            } catch (error) {
+                console.error('Error loading projects:', error);
+                if (grid) {
+                    grid.innerHTML = `<div class="col-span-full text-center py-10"><p class="text-red-500 font-bold">Unable to load projects</p><p class="text-gray-500 text-sm mt-2">${error.message}</p></div>`;
+                }
+            }
+        }
 
-                projectItems.forEach(item => {
-                    const anchor = item.querySelector('a');
-                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                        item.style.display = 'block';
-                        if(anchor) anchor.setAttribute('data-lightbox', 'projects');
+        function getCategoryLabel(category) {
+            if (!category) return 'Project';
+            const labels = {
+                'luxury': 'Luxury Villa',
+                'modern': 'Modern Home',
+                'renovation': 'Renovation',
+                'estate': 'Estate'
+            };
+            return labels[category] || category.charAt(0).toUpperCase() + category.slice(1);
+        }
+
+        function renderGallery(projects) {
+            const grid = document.getElementById('gallery-grid');
+            if (!grid) return;
+            
+            grid.innerHTML = ''; // Clear loading spinner
+
+            projects.forEach((project, index) => {
+                const item = document.createElement('div');
+                item.className = 'project-item';
+                item.setAttribute('data-category', project.category);
+                item.setAttribute('data-aos', 'fade-up');
+                
+                // Recreate the HTML structure
+                item.innerHTML = `
+                    <div class="project-img-wrapper">
+                        <a href="${project.image}" data-lightbox="projects" data-title="${project.title}">
+                            <img src="${project.image}" alt="${project.title}" loading="lazy">
+                        </a>
+                        <span class="category-badge">${getCategoryLabel(project.category)}</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>${project.title}</h3>
+                        <p>${project.description}</p>
+                        <a href="project-detail.html?title=${encodeURIComponent(project.title)}" class="view-details-btn">View Details</a>
+                    </div>
+                `;
+                grid.appendChild(item);
+            });
+
+            // Initialize project items for filtering/pagination
+            projectItems = document.querySelectorAll('.project-item');
+            initInfiniteScroll();
+            updateDisplay();
+        }
+
+        function scrollToTopGrid() {
+            const projectsGrid = document.getElementById('gallery-grid');
+            if (projectsGrid) {
+                const headerOffset = 200; // Account for fixed navbar and filter bar
+                const elementPosition = projectsGrid.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
+        }
+
+        function updateDisplay() {
+            const matchedItems = [];
+
+            // First pass: identify matched items
+            projectItems.forEach(item => {
+                if (currentFilter === 'all' || item.getAttribute('data-category') === currentFilter) {
+                    matchedItems.push(item);
+                }
+            });
+
+            // Infinite Scroll Slicing
+            // Show items from 0 to visibleCount
+            const itemsToShow = matchedItems.slice(0, visibleCount);
+
+            // Second pass: update visibility
+            let staggerIndex = 0;
+
+            projectItems.forEach(item => {
+                // Clear any pending timeout to prevent race conditions
+                if (item.dataset.timeoutId) {
+                    clearTimeout(parseInt(item.dataset.timeoutId));
+                    delete item.dataset.timeoutId;
+                }
+
+                const anchor = item.querySelector('a');
+                const shouldShow = itemsToShow.includes(item);
+
+                if (shouldShow) {
+                    const wasHidden = item.style.display === 'none' || item.style.opacity === '0';
+                    
+                    item.style.display = 'block';
+                    if(anchor) anchor.setAttribute('data-lightbox', 'projects');
+                    
+                    if (wasHidden) {
+                        // Prepare for animation if it was hidden
+                        item.style.opacity = '0';
+                        item.style.transform = 'scale(0.95)';
+                        
                         setTimeout(() => {
                             item.style.opacity = '1';
                             item.style.transform = 'scale(1)';
-                        }, 50);
+                        }, 50 + (staggerIndex * 100));
+                        staggerIndex++;
                     } else {
-                        if(anchor) anchor.setAttribute('data-lightbox', 'hidden');
-                        item.style.opacity = '0';
-                        item.style.transform = 'scale(0.8)';
-                        setTimeout(() => {
-                            item.style.display = 'none';
-                        }, 300);
+                        // Ensure visible items stay visible
+                        item.style.opacity = '1';
+                        item.style.transform = 'scale(1)';
                     }
-                });
+                } else {
+                    if(anchor) anchor.setAttribute('data-lightbox', 'hidden');
+                    item.style.opacity = '0';
+                    item.style.transform = 'scale(0.95)';
+                    
+                    const timeoutId = setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 300);
+                    item.dataset.timeoutId = timeoutId.toString();
+                }
             });
+        }
+
+        function initInfiniteScroll() {
+            const sentinel = document.getElementById('scroll-sentinel');
+            const loader = document.getElementById('infinite-loader');
+            
+            if (!sentinel) return;
+            
+            const observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    const matchedItems = Array.from(projectItems).filter(item => 
+                        currentFilter === 'all' || item.getAttribute('data-category') === currentFilter
+                    );
+                    
+                    if (visibleCount < matchedItems.length) {
+                        if (loader) loader.classList.remove('opacity-0');
+                        
+                        // Simulate loading delay for better UX
+                        setTimeout(() => {
+                            visibleCount += itemsIncrement;
+                            updateDisplay();
+                            if (loader) loader.classList.add('opacity-0');
+                        }, 600);
+                    }
+                }
+            }, { rootMargin: '100px' });
+            
+            observer.observe(sentinel);
+        }
+
+        // Global function to be accessible from onclick attributes
+        window.filterProjects = function(filterValue) {
+            currentFilter = filterValue;
+            visibleCount = itemsIncrement;
+            scrollToTopGrid();
+
+            // Update active button state
+            filterButtons.forEach(btn => {
+                if (btn.getAttribute('data-filter') === filterValue) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            updateDisplay();
+        };
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterProjects(button.getAttribute('data-filter'));
+            });
+        });
+
+        // Initialize pagination on load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadGalleryProjects();
         });
 
         // Counter Animation
