@@ -932,6 +932,53 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 10;
 }
 
+.testimonial-card {
+    background: white;
+    border: 1px solid #e5e7eb; /* border-gray-200 */
+    border-radius: 1.5rem; /* rounded-3xl */
+    padding: 2rem; /* p-8 */
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    border-color: rgba(212, 179, 87, 0.5);
+}
+
+.testimonial-card::before {
+    content: '\f10d'; /* fa-quote-left */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 5rem;
+    color: #D4B357;
+    opacity: 0.07;
+    z-index: 1;
+    transition: transform 0.4s ease;
+}
+
+.testimonial-content {
+    position: relative;
+    z-index: 2;
+    flex-grow: 1;
+}
+
+.testimonial-author {
+    position: relative;
+    z-index: 2;
+    margin-top: auto; /* Pushes author to the bottom */
+    padding-top: 1.5rem; /* space above author */
+    border-top: 1px solid #f3f4f6; /* border-gray-100 */
+}
+
 .stat-card {
     background: white;
     padding: 2rem;
