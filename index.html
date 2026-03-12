@@ -410,56 +410,14 @@
                 <div class="relative" id="testimonial-slider">
                     <div class="overflow-hidden">
                         <div class="flex transition-transform duration-500 ease-in-out" id="testimonial-track">
-                            <!-- Slide 1 -->
-                            <div class="w-full flex-shrink-0 p-2">
-                                <div class="testimonial-card">
-                                    <div class="testimonial-content">
-                                        <p class="text-lg italic text-gray-700 leading-relaxed">
-                                            "FAITH Construction transformed our vision into a masterpiece. Their attention to detail, professionalism, and commitment to quality exceeded our expectations. They didn't just build a house; they created our dream home."
-                                        </p>
-                                    </div>
-                                    <div class="testimonial-author flex items-center">
-                                        <h4 class="font-bold text-[#1A1A1A]">Jean-Pierre Djoufack</h4>
-                                        <p class="text-gray-500 ml-auto pl-4">Bonapriso Residence, Douala</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Slide 2 -->
-                            <div class="w-full flex-shrink-0 p-2">
-                                <div class="testimonial-card">
-                                    <div class="testimonial-content">
-                                        <p class="text-lg italic text-gray-700 leading-relaxed">
-                                            "The renovation of our family estate was handled with such care. They preserved the history while adding modern luxury. Truly exceptional work."
-                                        </p>
-                                    </div>
-                                    <div class="testimonial-author flex items-center">
-                                        <h4 class="font-bold text-[#1A1A1A]">Marie Etoa</h4>
-                                        <p class="text-gray-500 ml-auto pl-4">Bastos Renovation, Yaoundé</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Slide 3 -->
-                            <div class="w-full flex-shrink-0 p-2">
-                                <div class="testimonial-card">
-                                    <div class="testimonial-content">
-                                        <p class="text-lg italic text-gray-700 leading-relaxed">
-                                            "Professional, timely, and transparent. Building from abroad was stressful until we found FAITH Construction. They kept us updated every step of the way."
-                                        </p>
-                                    </div>
-                                    <div class="testimonial-author flex items-center">
-                                        <h4 class="font-bold text-[#1A1A1A]">Paul Ngu</h4>
-                                        <p class="text-gray-500 ml-auto pl-4">Kribi Beach House</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- Slides will be loaded dynamically -->
+                            <div class="w-full flex-shrink-0 p-2 text-center text-gray-500">Loading testimonials...</div>
                         </div>
                     </div>
 
                     <!-- Navigation Dots -->
                     <div class="flex justify-center mt-8 space-x-2" id="slider-dots">
-                        <button class="w-6 h-3 rounded-full bg-[#D4B357] transition-all duration-300"></button>
-                        <button class="w-3 h-3 rounded-full bg-gray-300 hover:bg-[#D4B357] transition-all duration-300"></button>
-                        <button class="w-3 h-3 rounded-full bg-gray-300 hover:bg-[#D4B357] transition-all duration-300"></button>
+                        <!-- Dots will be loaded dynamically -->
                     </div>
 
                     <!-- Navigation Arrows -->
@@ -531,28 +489,30 @@
             'albumLabel': 'Project %1 of %2'
         });
 
-        // Testimonial Slider Logic
-        const slider = document.getElementById('testimonial-slider');
-        if (slider) {
+        function initializeTestimonialSlider() {
             const track = document.getElementById('testimonial-track');
             const dotsContainer = document.getElementById('slider-dots');
             const prevBtn = document.getElementById('prev-slide');
             const nextBtn = document.getElementById('next-slide');
-            
-            if (track && dotsContainer && prevBtn && nextBtn) {
+
+            if (track && dotsContainer && prevBtn && nextBtn && track.children.length > 1) {
                 const slides = Array.from(track.children);
                 const slideCount = slides.length;
                 const dots = Array.from(dotsContainer.children);
                 let currentIndex = 0;
 
                 const goToSlide = (index) => {
+                    if (index < 0 || index >= slideCount) return;
                     currentIndex = index;
                     track.style.transform = `translateX(-${currentIndex * 100}%)`;
                     dots.forEach((dot, i) => {
-                        dot.classList.toggle('bg-[#D4B357]', i === currentIndex);
-                        dot.classList.toggle('w-6', i === currentIndex);
-                        dot.classList.toggle('bg-gray-300', i !== currentIndex);
-                        dot.classList.toggle('w-3', i !== currentIndex);
+                        if (i === currentIndex) {
+                            dot.classList.add('bg-[#D4B357]', 'w-6');
+                            dot.classList.remove('bg-gray-300', 'w-3');
+                        } else {
+                            dot.classList.add('bg-gray-300', 'w-3');
+                            dot.classList.remove('bg-[#D4B357]', 'w-6');
+                        }
                     });
                 };
 
@@ -561,6 +521,50 @@
                 prevBtn.addEventListener('click', () => goToSlide((currentIndex - 1 + slideCount) % slideCount));
             }
         }
+
+        async function loadTestimonials() {
+            const track = document.getElementById('testimonial-track');
+            const dotsContainer = document.getElementById('slider-dots');
+            if (!track || !dotsContainer) return;
+
+            try {
+                const response = await fetch('reviews.json');
+                if (!response.ok) throw new Error('Failed to fetch reviews');
+                const reviews = await response.json();
+
+                track.innerHTML = '';
+                dotsContainer.innerHTML = '';
+
+                // Use first 3 reviews for the homepage slider
+                reviews.slice(0, 3).forEach((review, index) => {
+                    const slide = document.createElement('div');
+                    slide.className = 'w-full flex-shrink-0 p-2';
+                    slide.innerHTML = `
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p class="text-lg italic text-gray-700 leading-relaxed">"${review.quote}"</p>
+                            </div>
+                            <div class="testimonial-author flex items-center">
+                                <h4 class="font-bold text-[#1A1A1A]">${review.author}</h4>
+                                <p class="text-gray-500 ml-auto pl-4">${review.location}</p>
+                            </div>
+                        </div>
+                    `;
+                    track.appendChild(slide);
+
+                    const dot = document.createElement('button');
+                    dot.className = `rounded-full transition-all duration-300 ${index === 0 ? 'w-6 h-3 bg-[#D4B357]' : 'w-3 h-3 bg-gray-300 hover:bg-[#D4B357]'}`;
+                    dotsContainer.appendChild(dot);
+                });
+
+                initializeTestimonialSlider();
+            } catch (error) {
+                console.error('Error loading testimonials:', error);
+                track.innerHTML = `<div class="w-full text-center text-red-500 p-4">${error.message}</div>`;
+            }
+        }
+
+        loadTestimonials();
     </script>
 </body>
 </html>

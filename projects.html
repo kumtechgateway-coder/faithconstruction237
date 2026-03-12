@@ -175,39 +175,9 @@
                 </h2>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Testimonial 1 -->
-                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="testimonial-content">
-                        <p class="text-lg italic text-gray-700 leading-relaxed">"FAITH Construction built our dream villa in Bastos. The attention to detail and quality of craftsmanship is exceptional. They truly deliver on their promises."</p>
-                    </div>
-                    <div class="testimonial-author flex items-center">
-                        <h4 class="font-bold text-[#1A1A1A]">Michel Tchouta</h4>
-                        <p class="text-gray-500 ml-auto pl-4">Bastos Villa Owner</p>
-                    </div>
-                </div>
-
-                <!-- Testimonial 2 -->
-                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="testimonial-content">
-                        <p class="text-lg italic text-gray-700 leading-relaxed">"The renovation of our family home in Bonanjo was handled with such care and professionalism. They preserved the heritage while adding modern comforts."</p>
-                    </div>
-                    <div class="testimonial-author flex items-center">
-                        <h4 class="font-bold text-[#1A1A1A]">Helene Ewane</h4>
-                        <p class="text-gray-500 ml-auto pl-4">Bonanjo Residence</p>
-                    </div>
-                </div>
-
-                <!-- Testimonial 3 -->
-                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="testimonial-content">
-                        <p class="text-lg italic text-gray-700 leading-relaxed">"Working with FAITH on our Kribi beach house was a pleasure. Their team's expertise and dedication made the entire process smooth and enjoyable."</p>
-                    </div>
-                    <div class="testimonial-author flex items-center">
-                        <h4 class="font-bold text-[#1A1A1A]">Paul Nganou</h4>
-                        <p class="text-gray-500 ml-auto pl-4">Kribi Beach House</p>
-                    </div>
-                </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="project-testimonials-grid">
+                <!-- Testimonials will be loaded dynamically -->
+                <p class="col-span-full text-center text-gray-500">Loading testimonials...</p>
             </div>
         </div>
     </section>
@@ -481,6 +451,42 @@
             loadGalleryProjects();
         });
 
+        async function loadProjectTestimonials() {
+            const grid = document.getElementById('project-testimonials-grid');
+            if (!grid) return;
+
+            try {
+                const response = await fetch('reviews.json');
+                if (!response.ok) throw new Error('Failed to fetch reviews');
+                const reviews = await response.json();
+
+                grid.innerHTML = ''; // Clear loading message
+
+                // Shuffle reviews and take the first 3 for variety
+                const shuffled = reviews.sort(() => 0.5 - Math.random());
+                
+                shuffled.slice(0, 3).forEach((review, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'testimonial-card';
+                    card.setAttribute('data-aos', 'fade-up');
+                    card.setAttribute('data-aos-delay', (index + 1) * 100);
+                    card.innerHTML = `
+                        <div class="testimonial-content">
+                            <p class="text-lg italic text-gray-700 leading-relaxed">"${review.quote}"</p>
+                        </div>
+                        <div class="testimonial-author flex items-center">
+                            <h4 class="font-bold text-[#1A1A1A]">${review.author}</h4>
+                            <p class="text-gray-500 ml-auto pl-4">${review.location}</p>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            } catch (error) {
+                console.error('Failed to load testimonials:', error);
+                grid.innerHTML = `<p class="text-red-500 col-span-full text-center">${error.message}</p>`;
+            }
+        }
+
         // Counter Animation
         function animateCounter(element, start, end, duration) {
             let startTimestamp = null;
@@ -512,6 +518,9 @@
         if (document.querySelector('.counter-number')) {
             counterObserver.observe(document.querySelector('.counter-number'));
         }
+
+        // Load testimonials on this page
+        loadProjectTestimonials();
 
         // Ripple Effect on Buttons
         function addRippleEffect(selector) {

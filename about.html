@@ -435,39 +435,9 @@
                 </h2>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Testimonial 1 -->
-                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="testimonial-content">
-                        <p class="text-lg italic text-gray-700 leading-relaxed">"FAITH Construction built our dream home in Bonapriso. Their attention to detail and professionalism exceeded our expectations. They listened to our needs and delivered beyond what we imagined."</p>
-                    </div>
-                    <div class="testimonial-author flex items-center">
-                        <h4 class="font-bold text-[#1A1A1A]">Jean Djoufack</h4>
-                        <p class="text-gray-500 ml-auto pl-4">Bonapriso Residence</p>
-                    </div>
-                </div>
-
-                <!-- Testimonial 2 -->
-                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="testimonial-content">
-                        <p class="text-lg italic text-gray-700 leading-relaxed">"The team at FAITH transformed our outdated family home into a modern masterpiece. Their renovation expertise is unmatched in Cameroon. We couldn't be happier with the result."</p>
-                    </div>
-                    <div class="testimonial-author flex items-center">
-                        <h4 class="font-bold text-[#1A1A1A]">Marie Etoa</h4>
-                        <p class="text-gray-500 ml-auto pl-4">Bastos Renovation</p>
-                    </div>
-                </div>
-
-                <!-- Testimonial 3 -->
-                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="testimonial-content">
-                        <p class="text-lg italic text-gray-700 leading-relaxed">"As an architect myself, I'm extremely particular about quality. FAITH Construction not only met but exceeded my high standards. Their craftsmanship is truly exceptional."</p>
-                    </div>
-                    <div class="testimonial-author flex items-center">
-                        <h4 class="font-bold text-[#1A1A1A]">Paul Ngu</h4>
-                        <p class="text-gray-500 ml-auto pl-4">Kribi Beach House</p>
-                    </div>
-                </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="testimonials-grid">
+                <!-- Testimonials will be loaded dynamically -->
+                <p class="col-span-full text-center text-gray-500">Loading testimonials...</p>
             </div>
         </div>
     </section>
@@ -513,5 +483,50 @@
     <script src="navbar.js"></script>
     <script src="app-footer.js"></script>
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({
+                duration: 1000,
+                once: true,
+                offset: 100
+            });
+
+            async function loadAboutTestimonials() {
+                const grid = document.getElementById('testimonials-grid');
+                if (!grid) return;
+
+                try {
+                    const response = await fetch('reviews.json');
+                    if (!response.ok) throw new Error('Failed to fetch reviews');
+                    const reviews = await response.json();
+
+                    grid.innerHTML = ''; // Clear loading message
+
+                    // Use a different set of 3 reviews for this page (e.g., the last 3)
+                    reviews.slice(-3).forEach((review, index) => {
+                        const card = document.createElement('div');
+                        card.className = 'testimonial-card';
+                        card.setAttribute('data-aos', 'fade-up');
+                        card.setAttribute('data-aos-delay', (index + 1) * 100);
+                        card.innerHTML = `
+                            <div class="testimonial-content">
+                                <p class="text-lg italic text-gray-700 leading-relaxed">"${review.quote}"</p>
+                            </div>
+                            <div class="testimonial-author flex items-center">
+                                <h4 class="font-bold text-[#1A1A1A]">${review.author}</h4>
+                                <p class="text-gray-500 ml-auto pl-4">${review.location}</p>
+                            </div>
+                        `;
+                        grid.appendChild(card);
+                    });
+                } catch (error) {
+                    console.error('Failed to load testimonials:', error);
+                    grid.innerHTML = `<p class="text-red-500 col-span-full text-center">${error.message}</p>`;
+                }
+            }
+
+            loadAboutTestimonials();
+        });
+    </script>
 </body>
 </html>
