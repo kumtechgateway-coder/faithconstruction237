@@ -3,8 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Services - FAITH Construction | Premium Building Solutions Cameroon</title>
+    <title>Construction Services in Cameroon | FAITH Construction</title>
+    <meta name="description" content="Explore the comprehensive construction services offered by FAITH Construction, including architectural design, residential building, renovations, and project management.">
+    <meta name="keywords" content="construction services, architectural design, residential construction, home renovation, project management, soil testing, real estate cameroon">
+    <link rel="canonical" href="https://www.faithconstruction237.com/services.html">
     
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.faithconstruction237.com/services.html">
+    <meta property="og:title" content="Construction Services in Cameroon | FAITH Construction">
+    <meta property="og:description" content="Explore our services: architectural design, residential building, renovations, and project management.">
+    <meta property="og:image" content="https://www.faithconstruction237.com/images/project5.webp">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.faithconstruction237.com/services.html">
+    <meta property="twitter:title" content="Construction Services in Cameroon | FAITH Construction">
+    <meta property="twitter:description" content="Explore our services: architectural design, residential building, renovations, and project management.">
+    <meta property="twitter:image" content="https://www.faithconstruction237.com/images/project5.webp">
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/logo.png">
 
@@ -22,6 +39,15 @@
     
     <!-- Custom Styles -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Theme switcher script to prevent FOUC -->
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
     
 </head>
 <body class="antialiased">
@@ -515,5 +541,49 @@
     <script src="navbar.js"></script>
     <script src="app-footer.js"></script>
     <script src="script.js"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.faithconstruction237.com/index.html"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Services"
+      }]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": "Residential Construction",
+        "provider": {
+            "@type": "LocalBusiness",
+            "name": "FAITH Construction"
+        },
+        "areaServed": {
+            "@type": "Country",
+            "name": "Cameroon"
+        },
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Construction Services",
+            "itemListElement": [
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Architectural Design" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Residential Construction" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Interior & Exterior Finishing" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Renovation & Remodeling" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Project Management" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Soil Testing & Site Analysis" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Real Estate Services" } }
+            ]
+        }
+    }
+    </script>
 </body>
 </html>

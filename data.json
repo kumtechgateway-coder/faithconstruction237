@@ -1,434 +1,101 @@
 [
   {
-    "title": "Bastos Luxury Villa",
-    "category": "luxury",
+    "title": "Bono Luxury Residence",
+    "category": "Luxury Villas",
+    "image": "images/bono.webp",
+    "description": "A stunning multi-story luxury villa featuring expansive glass facades and premium modern finishes.",
+    "town": "Limbe",
+    "status": "Completed",
+    "timeline": "2023 - 2024"
+  },
+  {
+    "title": "Carrefour Edua Complex",
+    "category": "Estates",
+    "image": "images/carefour edua.webp",
+    "description": "A large-scale commercial and residential estate designed for high-density urban living and accessibility.",
+    "town": "Yaoundé",
+    "status": "In Progress",
+    "timeline": "2024 - Present"
+  },
+  {
+    "title": "Summit View Residence",
+    "category": "Modern Homes",
+    "image": "images/project5.webp",
+    "description": "A sophisticated modern home featuring a distinctive flat-roof design and high-contrast exterior finishes.",
+    "town": "Limbe",
+    "status": "Completed",
+    "timeline": "2023 - 2024"
+  },
+  {
+    "title": "The Pavilion Estate",
+    "category": "Estates",
+    "image": "images/project7.webp",
+    "description": "A luxury estate development focused on expansive floor plans and seamless indoor-outdoor living spaces.",
+    "town": "Yaoundé",
+    "status": "In Progress",
+    "timeline": "2025 - 2026"
+  }, 
+  {
+    "title": "Ngog Hillside Manor",
+    "category": "Modern Homes",
+    "image": "images/ngog.webp",
+    "description": "An architectural masterpiece integrated into the natural landscape, focusing on sustainability and open-plan living.",
+    "town": "Douala",
+    "status": "Completed",
+    "timeline": "2022 - 2023"
+  },
+  {
+    "title": "The Crocodile Estate - Phase 2",
+    "category": "Estates",
+    "image": "images/crocotie2.webp",
+    "description": "The second phase of a gated community project, offering secure and modern family housing.",
+    "town": "Kribi",
+    "status": "In Progress",
+    "timeline": "2024 - 2026"
+  },
+  {
+    "title": "Urban Renewal Project 6",
+    "category": "Renovations",
+    "image": "images/project 6.webp",
+    "description": "A complete structural and aesthetic overhaul of an existing city building to meet modern safety and design standards.",
+    "town": "Buea",
+    "status": "Completed",
+    "timeline": "2023"
+  },
+  {
+    "title": "Modern Suburban Home",
+    "category": "Modern Homes",
     "image": "images/project1.webp",
-    "description": "6 Bedrooms • Pool • Smart Home • 800 sqm"
+    "description": "A contemporary single-family home featuring minimalist design and energy-efficient lighting systems.",
+    "town": "Limbe",
+    "status": "Completed",
+    "timeline": "2023"
   },
   {
-    "title": "Kribi Beach House",
-    "category": "modern",
+    "title": "Elite Villa Project 2",
+    "category": "Luxury Villas",
     "image": "images/project2.webp",
-    "description": "4 Bedrooms • Ocean Front • Terrace"
+    "description": "A bespoke luxury villa designed with private amenities and high-end security features.",
+    "town": "Yaoundé",
+    "status": "Completed",
+    "timeline": "2022 - 2024"
   },
   {
-    "title": "Bonanjo Heritage Home",
-    "category": "renovation",
+    "title": "Downtown Renovation Project 3",
+    "category": "Renovations",
     "image": "images/project3.webp",
-    "description": "Historic Preservation • Modern Updates"
+    "description": "Revitalizing a historic building with modern interior design while preserving its exterior character.",
+    "town": "Douala",
+    "status": "Completed",
+    "timeline": "2024"
   },
   {
-    "title": "Bonapriso Waterfront",
-    "category": "luxury",
+    "title": "Heritage Estate Phase 1",
+    "category": "Estates",
     "image": "images/project4.webp",
-    "description": "5 Bedrooms • Infinity Pool • Dock"
-  },
-  {
-    "title": "Santa Barbara Estates",
-    "category": "estate",
-    "image": "images/project5.webp",
-    "description": "12 Luxury Villas • Gated Community"
-  },
-  {
-    "title": "Mvog-Mbi Residence",
-    "category": "modern",
-    "image": "images/project9.webp",
-    "description": "Minimalist • 4 Bedrooms • Garden"
-  },
-  {
-    "title": "Bonapriso Waterfront",
-    "category": "luxury",
-    "image": "images/project4.webp",
-    "description": "5 Bedrooms • Infinity Pool • Dock"
-  },
-  {
-    "title": "Santa Barbara Estates",
-    "category": "estate",
-    "image": "images/project5.webp",
-    "description": "12 Luxury Villas • Gated Community"
-  },
-  {
-    "title": "Mvog-Mbi Residence",
-    "category": "modern",
-    "image": "images/project9.webp",
-    "description": "Minimalist • 4 Bedrooms • Garden"
-  },
-  {
-    "title": "Bonapriso Waterfront",
-    "category": "luxury",
-    "image": "images/project4.webp",
-    "description": "5 Bedrooms • Infinity Pool • Dock"
-  },
-  {
-    "title": "Santa Barbara Estates",
-    "category": "estate",
-    "image": "images/project5.webp",
-    "description": "12 Luxury Villas • Gated Community"
-  },
-  {
-    "title": "Mvog-Mbi Residence",
-    "category": "modern",
-    "image": "images/project9.webp",
-    "description": "Minimalist • 4 Bedrooms • Garden"
-  },
-  {
-    "title": "Bonapriso Waterfront",
-    "category": "luxury",
-    "image": "images/project4.webp",
-    "description": "5 Bedrooms • Infinity Pool • Dock"
-  },
-  {
-    "title": "Santa Barbara Estates",
-    "category": "estate",
-    "image": "images/project5.webp",
-    "description": "12 Luxury Villas • Gated Community"
-  },
-  {
-    "title": "Mvog-Mbi Residence",
-    "category": "modern",
-    "image": "images/project9.webp",
-    "description": "Minimalist • 4 Bedrooms • Garden"
-  },
-  {
-    "title": "Bonapriso Waterfront",
-    "category": "luxury",
-    "image": "images/project4.webp",
-    "description": "5 Bedrooms • Infinity Pool • Dock"
-  },
-  {
-    "title": "Santa Barbara Estates",
-    "category": "estate",
-    "image": "images/project5.webp",
-    "description": "12 Luxury Villas • Gated Community"
-  },
-  {
-    "title": "Mvog-Mbi Residence",
-    "category": "modern",
-    "image": "images/project9.webp",
-    "description": "Minimalist • 4 Bedrooms • Garden"
-  },
-  {
-    "title": "Bonapriso Waterfront",
-    "category": "luxury",
-    "image": "images/project4.webp",
-    "description": "5 Bedrooms • Infinity Pool • Dock"
-  },
-  {
-    "title": "Santa Barbara Estates",
-    "category": "estate",
-    "image": "images/project5.webp",
-    "description": "12 Luxury Villas • Gated Community"
-  },
-  {
-    "title": "Mvog-Mbi Residence",
-    "category": "modern",
-    "image": "images/project9.webp",
-    "description": "Minimalist • 4 Bedrooms • Garden"
-  },
-  {
-    "title": "Bonapriso Waterfront",
-    "category": "luxury",
-    "image": "images/project4.webp",
-    "description": "5 Bedrooms • Infinity Pool • Dock"
-  },
-  {
-    "title": "Santa Barbara Estates",
-    "category": "estate",
-    "image": "images/project5.webp",
-    "description": "12 Luxury Villas • Gated Community"
-  },
-  {
-    "title": "Mvog-Mbi Residence",
-    "category": "modern",
-    "image": "images/project9.webp",
-    "description": "Minimalist • 4 Bedrooms • Garden"
-  },
-  {
-    "title": "Bonapriso Waterfront",
-    "category": "luxury",
-    "image": "images/project4.webp",
-    "description": "5 Bedrooms • Infinity Pool • Dock"
-  },
-  {
-    "title": "Santa Barbara Estates",
-    "category": "estate",
-    "image": "images/project5.webp",
-    "description": "12 Luxury Villas • Gated Community"
-  },
-  {
-    "title": "Mvog-Mbi Residence",
-    "category": "modern",
-    "image": "images/project9.webp",
-    "description": "Minimalist • 4 Bedrooms • Garden"
-  },
-  {
-    "title": "Bonapriso Waterfront",
-    "category": "luxury",
-    "image": "images/project4.webp",
-    "description": "5 Bedrooms • Infinity Pool • Dock"
-  },
-  {
-    "title": "Santa Barbara Estates",
-    "category": "estate",
-    "image": "images/project5.webp",
-    "description": "12 Luxury Villas • Gated Community"
-  },
-  {
-    "title": "Mvog-Mbi Residence",
-    "category": "modern",
-    "image": "images/project9.webp",
-    "description": "Minimalist • 4 Bedrooms • Garden"
-  },
-  {
-    "title": "Bonapriso Waterfront",
-    "category": "luxury",
-    "image": "images/project4.webp",
-    "description": "5 Bedrooms • Infinity Pool • Dock"
-  },
-  {
-    "title": "Santa Barbara Estates",
-    "category": "estate",
-    "image": "images/project5.webp",
-    "description": "12 Luxury Villas • Gated Community"
-  },
-  {
-    "title": "Mvog-Mbi Residence",
-    "category": "modern",
-    "image": "images/project9.webp",
-    "description": "Minimalist • 4 Bedrooms • Garden"
-  },
-  {
-    "title": "Bonapriso Waterfront",
-    "category": "luxury",
-    "image": "images/project4.webp",
-    "description": "5 Bedrooms • Infinity Pool • Dock"
-  },
-  {
-    "title": "Santa Barbara Estates",
-    "category": "estate",
-    "image": "images/project5.webp",
-    "description": "12 Luxury Villas • Gated Community"
-  },
-  {
-    "title": "Mvog-Mbi Residence",
-    "category": "modern",
-    "image": "images/project9.webp",
-    "description": "Minimalist • 4 Bedrooms • Garden"
-  },
-  {
-    "title": "Bonapriso Waterfront",
-    "category": "luxury",
-    "image": "images/project4.webp",
-    "description": "5 Bedrooms • Infinity Pool • Dock"
-  },
-  {
-    "title": "Santa Barbara Estates",
-    "category": "estate",
-    "image": "images/project5.webp",
-    "description": "12 Luxury Villas • Gated Community"
-  },
-  {
-    "title": "Mvog-Mbi Residence",
-    "category": "modern",
-    "image": "images/project9.webp",
-    "description": "Minimalist • 4 Bedrooms • Garden"
-  },
-  {
-    "title": "Bonapriso Waterfront",
-    "category": "luxury",
-    "image": "images/project4.webp",
-    "description": "5 Bedrooms • Infinity Pool • Dock"
-  },
-  {
-    "title": "Santa Barbara Estates",
-    "category": "estate",
-    "image": "images/project5.webp",
-    "description": "12 Luxury Villas • Gated Community"
-  },
-  {
-    "title": "Mvog-Mbi Residence",
-    "category": "modern",
-    "image": "images/project9.webp",
-    "description": "Minimalist • 4 Bedrooms • Garden"
-  },
-  {
-    "title": "Bonapriso Waterfront",
-    "category": "luxury",
-    "image": "images/project4.webp",
-    "description": "5 Bedrooms • Infinity Pool • Dock"
-  },
-  {
-    "title": "Santa Barbara Estates",
-    "category": "estate",
-    "image": "images/project5.webp",
-    "description": "12 Luxury Villas • Gated Community"
-  },
-  {
-    "title": "Mvog-Mbi Residence",
-    "category": "modern",
-    "image": "images/project9.webp",
-    "description": "Minimalist • 4 Bedrooms • Garden"
-  },
-  {
-    "title": "Bonapriso Waterfront",
-    "category": "luxury",
-    "image": "images/project4.webp",
-    "description": "5 Bedrooms • Infinity Pool • Dock"
-  },
-  {
-    "title": "Santa Barbara Estates",
-    "category": "estate",
-    "image": "images/project5.webp",
-    "description": "12 Luxury Villas • Gated Community"
-  },
-  {
-    "title": "Mvog-Mbi Residence",
-    "category": "modern",
-    "image": "images/project9.webp",
-    "description": "Minimalist • 4 Bedrooms • Garden"
-  },
-  {
-    "title": "Bonapriso Waterfront",
-    "category": "luxury",
-    "image": "images/project4.webp",
-    "description": "5 Bedrooms • Infinity Pool • Dock"
-  },
-  {
-    "title": "Santa Barbara Estates",
-    "category": "estate",
-    "image": "images/project5.webp",
-    "description": "12 Luxury Villas • Gated Community"
-  },
-  {
-    "title": "Mvog-Mbi Residence",
-    "category": "modern",
-    "image": "images/project9.webp",
-    "description": "Minimalist • 4 Bedrooms • Garden"
-  },
-  {
-    "title": "Bonapriso Waterfront",
-    "category": "luxury",
-    "image": "images/project4.webp",
-    "description": "5 Bedrooms • Infinity Pool • Dock"
-  },
-  {
-    "title": "Santa Barbara Estates",
-    "category": "estate",
-    "image": "images/project5.webp",
-    "description": "12 Luxury Villas • Gated Community"
-  },
-  {
-    "title": "Mvog-Mbi Residence",
-    "category": "modern",
-    "image": "images/project9.webp",
-    "description": "Minimalist • 4 Bedrooms • Garden"
-  },
-  {
-    "title": "Bonapriso Waterfront",
-    "category": "luxury",
-    "image": "images/project4.webp",
-    "description": "5 Bedrooms • Infinity Pool • Dock"
-  },
-  {
-    "title": "Santa Barbara Estates",
-    "category": "estate",
-    "image": "images/project5.webp",
-    "description": "12 Luxury Villas • Gated Community"
-  },
-  {
-    "title": "Mvog-Mbi Residence",
-    "category": "modern",
-    "image": "images/project9.webp",
-    "description": "Minimalist • 4 Bedrooms • Garden"
-  },
-  {
-    "title": "Bonapriso Waterfront",
-    "category": "luxury",
-    "image": "images/project4.webp",
-    "description": "5 Bedrooms • Infinity Pool • Dock"
-  },
-  {
-    "title": "Santa Barbara Estates",
-    "category": "estate",
-    "image": "images/project5.webp",
-    "description": "12 Luxury Villas • Gated Community"
-  },
-  {
-    "title": "Mvog-Mbi Residence",
-    "category": "modern",
-    "image": "images/project9.webp",
-    "description": "Minimalist • 4 Bedrooms • Garden"
-  },
-  {
-    "title": "Bonapriso Waterfront",
-    "category": "luxury",
-    "image": "images/project4.webp",
-    "description": "5 Bedrooms • Infinity Pool • Dock"
-  },
-  {
-    "title": "Santa Barbara Estates",
-    "category": "estate",
-    "image": "images/project5.webp",
-    "description": "12 Luxury Villas • Gated Community"
-  },
-  {
-    "title": "Mvog-Mbi Residence",
-    "category": "modern",
-    "image": "images/project9.webp",
-    "description": "Minimalist • 4 Bedrooms • Garden"
-  },
-  {
-    "title": "Bonapriso Waterfront",
-    "category": "luxury",
-    "image": "images/project4.webp",
-    "description": "5 Bedrooms • Infinity Pool • Dock"
-  },
-  {
-    "title": "Santa Barbara Estates",
-    "category": "estate",
-    "image": "images/project5.webp",
-    "description": "12 Luxury Villas • Gated Community"
-  },
-  {
-    "title": "Mvog-Mbi Residence",
-    "category": "modern",
-    "image": "images/project9.webp",
-    "description": "Minimalist • 4 Bedrooms • Garden"
-  },
-  {
-    "title": "Bonapriso Waterfront",
-    "category": "luxury",
-    "image": "images/project4.webp",
-    "description": "5 Bedrooms • Infinity Pool • Dock"
-  },
-  {
-    "title": "Santa Barbara Estates",
-    "category": "estate",
-    "image": "images/project5.webp",
-    "description": "12 Luxury Villas • Gated Community"
-  },
-  {
-    "title": "Mvog-Mbi Residence",
-    "category": "modern",
-    "image": "images/project9.webp",
-    "description": "Minimalist • 4 Bedrooms • Garden"
-  },
-  {
-    "title": "Bonapriso Waterfront",
-    "category": "luxury",
-    "image": "images/project4.webp",
-    "description": "5 Bedrooms • Infinity Pool • Dock"
-  },
-  {
-    "title": "Santa Barbara Estates",
-    "category": "estate",
-    "image": "images/project5.webp",
-    "description": "12 Luxury Villas • Gated Community"
-  },
-  {
-    "title": "Mvog-Mbi Residence",
-    "category": "modern",
-    "image": "images/project9.webp",
-    "description": "Minimalist • 4 Bedrooms • Garden"
+    "description": "Spacious residential estate focusing on community spaces and green living environments.",
+    "town": "Bafoussam",
+    "status": "In Progress",
+    "timeline": "2025 - 2027"
   }
 ]

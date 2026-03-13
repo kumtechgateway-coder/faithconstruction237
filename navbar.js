@@ -57,7 +57,7 @@ class AppNavbar extends HTMLElement {
                     <div class="flex justify-between items-center py-6">
                         <!-- Logo -->
                         <a href="index.html" class="flex items-center gap-3">
-                            <img src="images/logo.png" alt="Faith Construction Logo" class="h-12 w-auto rounded-[5px]">
+                            <img src="images/logo.png" alt="Faith Construction Logo" class="h-12 w-auto rounded-[5px]" fetchpriority="high">
                             <div class="text-white flex flex-col leading-none">
                                 <span class="font-['Lora'] text-2xl font-black tracking-widest">FAITH</span>
                                 <span class="text-[#D4B357] text-[0.65rem] font-bold tracking-[0.2em]">CONSTRUCTION</span>
@@ -71,9 +71,13 @@ class AppNavbar extends HTMLElement {
 
                         <!-- Contact Info Desktop -->
                         <div class="hidden lg:flex items-center space-x-4">
+                            <button type="button" class="theme-toggle-btn text-gray-400 hover:text-white p-2 rounded-lg text-sm">
+                                <i class="fas fa-moon text-xl"></i>
+                                <i class="fas fa-sun text-xl hidden"></i>
+                            </button>
                             <div class="text-right hidden xl:block">
                                 <div class="text-[#D4B357] text-sm font-light">24/7 SUPPORT</div>
-                                <div class="text-white text-lg font-semibold">+237 674 942 469</div>
+                                <div class="text-white text-lg font-semibold dark:text-white">+237 674 942 469</div>
                             </div>
                             <a href="contact.html" class="btn-ripple-nav bg-[#D4B357] hover:bg-[#B8963F] text-[#1A1A1A] px-6 py-3 rounded-md text-sm font-semibold transition-all duration-300 transform hover:scale-110 hover:-translate-y-3 hover:shadow-2xl">
                                 GET QUOTE
@@ -100,18 +104,24 @@ class AppNavbar extends HTMLElement {
                     ${mobileLinks}
                 </div>
                 <div class="absolute bottom-10 left-10 right-10">
-                    <div class="border-t border-gray-800 pt-8">
+                    <div class="border-t border-gray-700 dark:border-gray-800 pt-8">
                         <div class="text-[#D4B357] mb-2 text-sm">CALL US</div>
                         <div class="text-white text-xl font-semibold mb-6">+237 674 942 469</div>
-                        <a href="contact.html" class="btn-ripple-nav block text-center bg-[#D4B357] hover:bg-[#B8963F] text-[#1A1A1A] px-6 py-4 rounded-md text-sm font-semibold transition-all transform hover:scale-110 hover:-translate-y-3 hover:shadow-2xl">
-                            GET A QUOTE
-                        </a>
+                        <div class="flex items-center justify-center gap-4">
+                            <a href="contact.html" class="btn-ripple-nav block text-center bg-[#D4B357] hover:bg-[#B8963F] text-[#1A1A1A] px-6 py-4 rounded-md text-sm font-semibold transition-all transform hover:scale-110 hover:-translate-y-3 hover:shadow-2xl flex-grow">
+                                GET A QUOTE
+                            </a>
+                            <button type="button" class="theme-toggle-btn text-gray-400 hover:text-white p-4 rounded-lg text-sm bg-gray-800/50 dark:bg-gray-700">
+                                <i class="fas fa-moon text-xl"></i>
+                                <i class="fas fa-sun text-xl hidden"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- WhatsApp Widget -->
-            <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+            <div class="fixed bottom-[6.5rem] right-6 z-50 flex flex-col items-end">
                 <!-- Message Bubble -->
                 <div id="whatsapp-bubble" class="bg-white text-gray-800 p-4 rounded-2xl shadow-2xl mb-4 mr-0 relative transform transition-all duration-500 opacity-0 translate-y-10 scale-90 origin-bottom-right max-w-xs border border-gray-100">
                     <div class="flex items-center gap-3">
@@ -240,6 +250,34 @@ class AppNavbar extends HTMLElement {
                 setTimeout(() => {
                     ripple.remove();
                 }, 600);
+            });
+        });
+
+        // Theme Toggle Logic
+        const themeToggleBtns = this.querySelectorAll('.theme-toggle-btn');
+
+        const updateThemeIcons = (isDarkMode) => {
+            themeToggleBtns.forEach(btn => {
+                const darkIcon = btn.querySelector('.fa-moon');
+                const lightIcon = btn.querySelector('.fa-sun');
+                if (isDarkMode) {
+                    darkIcon.classList.add('hidden');
+                    lightIcon.classList.remove('hidden');
+                } else {
+                    darkIcon.classList.remove('hidden');
+                    lightIcon.classList.add('hidden');
+                }
+            });
+        };
+
+        // Set initial icon state based on the class on <html>
+        updateThemeIcons(document.documentElement.classList.contains('dark'));
+
+        themeToggleBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const isDarkMode = document.documentElement.classList.toggle('dark');
+                localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+                updateThemeIcons(isDarkMode);
             });
         });
     }

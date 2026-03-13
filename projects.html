@@ -3,8 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Projects - FAITH Construction | Premium Portfolio Cameroon</title>
+    <title>Construction Projects Portfolio | FAITH Construction Cameroon</title>
+    <meta name="description" content="Browse the portfolio of FAITH Construction. See our completed and in-progress luxury villas, modern homes, and renovation projects across Cameroon.">
+    <meta name="keywords" content="construction portfolio, project gallery, luxury homes cameroon, modern villas, faith construction projects">
+    <link rel="canonical" href="https://www.faithconstruction237.com/projects.html">
     
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.faithconstruction237.com/projects.html">
+    <meta property="og:title" content="Construction Projects Portfolio | FAITH Construction Cameroon">
+    <meta property="og:description" content="Browse the portfolio of FAITH Construction. See our completed and in-progress luxury villas, modern homes, and renovation projects across Cameroon.">
+    <meta property="og:image" content="https://www.faithconstruction237.com/images/project4.webp">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.faithconstruction237.com/projects.html">
+    <meta property="twitter:title" content="Construction Projects Portfolio | FAITH Construction Cameroon">
+    <meta property="twitter:description" content="Browse the portfolio of FAITH Construction. See our completed and in-progress luxury villas, modern homes, and renovation projects across Cameroon.">
+    <meta property="twitter:image" content="https://www.faithconstruction237.com/images/project4.webp">
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/logo.png">
 
@@ -25,6 +42,15 @@
     
     <!-- Custom Styles -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Theme switcher script to prevent FOUC -->
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
     
 </head>
 <body class="antialiased">
@@ -121,23 +147,8 @@
 
     <!-- Featured Project -->
     <section class="py-12 md:py-16 bg-white">
-        <div class="container mx-auto px-6 lg:px-8">
-            <div class="relative rounded-3xl overflow-hidden" data-aos="fade-up">
-                <img src="images/project4.webp" 
-                     alt="Featured Project" 
-                     class="w-full h-[450px] md:h-[600px] object-cover"
-                     loading="lazy">
-                <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-[#1A1A1A]/50 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-6 md:p-12">
-                    <span class="bg-[#D4B357] text-[#1A1A1A] px-4 py-2 rounded-full text-sm font-semibold mb-4 inline-block">FEATURED PROJECT</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Bonapriso Luxury Estate</h2>
-                    <p class="text-lg text-gray-200 mb-6 max-w-2xl">A masterpiece of modern architecture spanning 5,000 sqm with 8 bedrooms, infinity pool, and panoramic ocean views.</p>
-                    <a href="#project-details" class="inline-flex items-center text-white hover:text-[#D4B357] transition-colors group">
-                        <span class="text-sm font-semibold">View Project Details</span>
-                        <i class="fas fa-arrow-right ml-3 group-hover:translate-x-2 transition-transform"></i>
-                    </a>
-                </div>
-            </div>
+        <div class="container mx-auto px-6 lg:px-8" id="featured-project-container">
+            <!-- Featured project will be loaded dynamically -->
         </div>
     </section>
 
@@ -152,11 +163,9 @@
                 </div>
             </div>
             
-            <!-- Infinite Scroll Loader & Sentinel -->
-            <div id="infinite-loader" class="text-center py-8 opacity-0 transition-opacity duration-300">
-                <i class="fas fa-circle-notch fa-spin text-3xl text-[#D4B357]"></i>
+            <!-- Pagination Controls -->
+            <div id="pagination-controls" class="flex flex-wrap justify-center mt-12 gap-2">
             </div>
-            <div id="scroll-sentinel" class="h-4 w-full"></div>
         </div>
     </section>
 
@@ -248,9 +257,9 @@
         const filterButtons = document.querySelectorAll('.filter-btn');
         let projectItems = [];
 
-        // Infinite Scroll State
-        let visibleCount = 6;
-        const itemsIncrement = 6;
+        // Pagination State
+        const itemsPerPage = 12;
+        let currentPage = 1;
         let currentFilter = 'all';
 
         // Fetch Projects from data.json
@@ -265,6 +274,7 @@
                 if (!response.ok) throw new Error(`Failed to load projects: ${response.status}`);
                 const projects = await response.json();
                 renderGallery(projects);
+                renderFeaturedProject(projects);
             } catch (error) {
                 console.error('Error loading projects:', error);
                 if (grid) {
@@ -284,6 +294,16 @@
             return labels[category] || category.charAt(0).toUpperCase() + category.slice(1);
         }
 
+        function getCategorySlug(category) {
+            const slugMap = {
+                'Luxury Villas': 'luxury',
+                'Modern Homes': 'modern',
+                'Renovations': 'renovation',
+                'Estates': 'estate'
+            };
+            return slugMap[category] || category.toLowerCase().replace(/\s+/g, '-');
+        }
+
         function renderGallery(projects) {
             const grid = document.getElementById('gallery-grid');
             if (!grid) return;
@@ -293,15 +313,16 @@
             projects.forEach((project, index) => {
                 const item = document.createElement('div');
                 item.className = 'project-item';
-                item.setAttribute('data-category', project.category);
+                item.setAttribute('data-category', getCategorySlug(project.category));
                 item.setAttribute('data-aos', 'fade-up');
                 
                 // Recreate the HTML structure
                 item.innerHTML = `
                     <div class="project-img-wrapper">
                         <a href="${project.image}" data-lightbox="projects" data-title="${project.title}">
-                            <img src="${project.image}" alt="${project.title}" loading="lazy">
+                            <img src="${project.image}" alt="${project.title}" loading="lazy" decoding="async" width="300" height="230">
                         </a>
+                        ${project.status ? `<span class="status-badge">${project.status}</span>` : ''}
                         <span class="category-badge">${getCategoryLabel(project.category)}</span>
                     </div>
                     <div class="project-info">
@@ -315,8 +336,36 @@
 
             // Initialize project items for filtering/pagination
             projectItems = document.querySelectorAll('.project-item');
-            initInfiniteScroll();
             updateDisplay();
+        }
+
+        function renderFeaturedProject(projects) {
+            const container = document.getElementById('featured-project-container');
+            if (!container || projects.length === 0) return;
+
+            // Pick a random project to feature
+            const featured = projects[Math.floor(Math.random() * projects.length)];
+
+            container.innerHTML = `
+                <div class="relative rounded-3xl overflow-hidden" data-aos="fade-up">
+                    <img src="${featured.image}" 
+                         alt="${featured.title}"
+                         decoding="async"
+                         fetchpriority="high"
+                         class="w-full h-[450px] md:h-[600px] object-cover"
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-[#1A1A1A]/50 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 md:p-12">
+                        <span class="bg-[#D4B357] text-[#1A1A1A] px-4 py-2 rounded-full text-sm font-semibold mb-4 inline-block">FEATURED PROJECT</span>
+                        ${featured.status ? `<span class="ml-2 bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-semibold mb-4 inline-block">${featured.status}</span>` : ''}
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">${featured.title}</h2>
+                        <p class="text-lg text-gray-200 mb-6 max-w-2xl">${featured.description}</p>
+                        <a href="project-detail.html?title=${encodeURIComponent(featured.title)}" class="inline-flex items-center text-white hover:text-[#D4B357] transition-colors group">
+                            <span class="text-sm font-semibold">View Project Details</span>
+                            <i class="fas fa-arrow-right ml-3 group-hover:translate-x-2 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+            `;
         }
 
         function scrollToTopGrid() {
@@ -343,9 +392,12 @@
                 }
             });
 
-            // Infinite Scroll Slicing
-            // Show items from 0 to visibleCount
-            const itemsToShow = matchedItems.slice(0, visibleCount);
+            const totalPages = Math.ceil(matchedItems.length / itemsPerPage);
+            if (currentPage > totalPages) currentPage = 1;
+            
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const itemsToShow = matchedItems.slice(startIndex, endIndex);
 
             // Second pass: update visibility
             let staggerIndex = 0;
@@ -392,40 +444,52 @@
                     item.dataset.timeoutId = timeoutId.toString();
                 }
             });
+            
+            renderPagination(totalPages);
         }
 
-        function initInfiniteScroll() {
-            const sentinel = document.getElementById('scroll-sentinel');
-            const loader = document.getElementById('infinite-loader');
+        function renderPagination(totalPages) {
+            const paginationContainer = document.getElementById('pagination-controls');
+            if (!paginationContainer) return;
             
-            if (!sentinel) return;
+            paginationContainer.innerHTML = '';
             
-            const observer = new IntersectionObserver((entries) => {
-                if (entries[0].isIntersecting) {
-                    const matchedItems = Array.from(projectItems).filter(item => 
-                        currentFilter === 'all' || item.getAttribute('data-category') === currentFilter
-                    );
-                    
-                    if (visibleCount < matchedItems.length) {
-                        if (loader) loader.classList.remove('opacity-0');
-                        
-                        // Simulate loading delay for better UX
-                        setTimeout(() => {
-                            visibleCount += itemsIncrement;
-                            updateDisplay();
-                            if (loader) loader.classList.add('opacity-0');
-                        }, 600);
-                    }
+            if (totalPages <= 1) return;
+
+            const createButton = (text, page, isActive = false, isDisabled = false) => {
+                const btn = document.createElement('button');
+                btn.className = `w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-300 ${
+                    isActive 
+                        ? 'bg-[#D4B357] text-[#1A1A1A] shadow-lg scale-110' 
+                        : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
+                } ${isDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:-translate-y-1 hover:shadow-md'}`;
+                btn.innerHTML = text;
+                if (!isDisabled && !isActive) {
+                    btn.onclick = () => {
+                        currentPage = page;
+                        updateDisplay();
+                        scrollToTopGrid();
+                    };
                 }
-            }, { rootMargin: '100px' });
-            
-            observer.observe(sentinel);
+                return btn;
+            };
+
+            // Prev Button
+            paginationContainer.appendChild(createButton('<i class="fas fa-chevron-left"></i>', currentPage - 1, false, currentPage === 1));
+
+            // Page Numbers
+            for (let i = 1; i <= totalPages; i++) {
+                paginationContainer.appendChild(createButton(i, i, i === currentPage));
+            }
+
+            // Next Button
+            paginationContainer.appendChild(createButton('<i class="fas fa-chevron-right"></i>', currentPage + 1, false, currentPage === totalPages));
         }
 
         // Global function to be accessible from onclick attributes
         window.filterProjects = function(filterValue) {
             currentFilter = filterValue;
-            visibleCount = itemsIncrement;
+            currentPage = 1;
             scrollToTopGrid();
 
             // Update active button state
@@ -445,47 +509,6 @@
                 filterProjects(button.getAttribute('data-filter'));
             });
         });
-
-        // Initialize pagination on load
-        document.addEventListener('DOMContentLoaded', () => {
-            loadGalleryProjects();
-        });
-
-        async function loadProjectTestimonials() {
-            const grid = document.getElementById('project-testimonials-grid');
-            if (!grid) return;
-
-            try {
-                const response = await fetch('reviews.json');
-                if (!response.ok) throw new Error('Failed to fetch reviews');
-                const reviews = await response.json();
-
-                grid.innerHTML = ''; // Clear loading message
-
-                // Shuffle reviews and take the first 3 for variety
-                const shuffled = reviews.sort(() => 0.5 - Math.random());
-                
-                shuffled.slice(0, 3).forEach((review, index) => {
-                    const card = document.createElement('div');
-                    card.className = 'testimonial-card';
-                    card.setAttribute('data-aos', 'fade-up');
-                    card.setAttribute('data-aos-delay', (index + 1) * 100);
-                    card.innerHTML = `
-                        <div class="testimonial-content">
-                            <p class="text-lg italic text-gray-700 leading-relaxed">"${review.quote}"</p>
-                        </div>
-                        <div class="testimonial-author flex items-center">
-                            <h4 class="font-bold text-[#1A1A1A]">${review.author}</h4>
-                            <p class="text-gray-500 ml-auto pl-4">${review.location}</p>
-                        </div>
-                    `;
-                    grid.appendChild(card);
-                });
-            } catch (error) {
-                console.error('Failed to load testimonials:', error);
-                grid.innerHTML = `<p class="text-red-500 col-span-full text-center">${error.message}</p>`;
-            }
-        }
 
         // Counter Animation
         function animateCounter(element, start, end, duration) {
@@ -519,8 +542,9 @@
             counterObserver.observe(document.querySelector('.counter-number'));
         }
 
-        // Load testimonials on this page
-        loadProjectTestimonials();
+        document.addEventListener('DOMContentLoaded', () => {
+            loadGalleryProjects();
+        });
 
         // Ripple Effect on Buttons
         function addRippleEffect(selector) {
@@ -552,6 +576,27 @@
             });
         }
         addRippleEffect('button.filter-btn, a.gold-gradient, a.border-2, footer .w-10.h-10');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const breadcrumbSchema = {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": [{
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://www.faithconstruction237.com/index.html"
+                }, {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Projects"
+                }]
+            };
+            const script = document.createElement('script');
+            script.type = 'application/ld+json';
+            script.text = JSON.stringify(breadcrumbSchema);
+            document.head.appendChild(script);
+        });
     </script>
 
     <style>

@@ -3,8 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAITH Construction - Premier Residential Construction Cameroon</title>
+    <title>FAITH Construction - Premier Residential Construction in Cameroon</title>
+    <meta name="description" content="FAITH Construction is Cameroon's leading residential construction company, specializing in luxury villas, modern homes, and premium renovations. Building dreams since 2009.">
+    <meta name="keywords" content="construction cameroon, residential construction, luxury homes, modern homes, renovation, building company yaounde, douala, faith construction">
+    <link rel="canonical" href="https://www.faithconstruction237.com/index.html">
     
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.faithconstruction237.com/index.html">
+    <meta property="og:title" content="FAITH Construction - Premier Residential Construction in Cameroon">
+    <meta property="og:description" content="FAITH Construction is Cameroon's leading residential construction company, specializing in luxury villas, modern homes, and premium renovations.">
+    <meta property="og:image" content="https://www.faithconstruction237.com/images/project5.webp">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.faithconstruction237.com/index.html">
+    <meta property="twitter:title" content="FAITH Construction - Premier Residential Construction in Cameroon">
+    <meta property="twitter:description" content="FAITH Construction is Cameroon's leading residential construction company, specializing in luxury villas, modern homes, and premium renovations.">
+    <meta property="twitter:image" content="https://www.faithconstruction237.com/images/project5.webp">
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/logo.png">
 
@@ -23,8 +40,20 @@
     <!-- Lightbox for project images -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
     
+    <!-- Preload Hero Image for faster loading -->
+    <link rel="preload" as="image" href="images/project5.webp">
+
     <!-- Custom Styles -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Theme switcher script to prevent FOUC -->
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
     
 </head>
 <body class="antialiased">
@@ -165,13 +194,15 @@
                         <div class="space-y-6">
                             <div class="image-zoom rounded-2xl overflow-hidden shadow-2xl">
                                 <img src="images/about1.webp" 
-                                     alt="Luxury Home" 
+                                     alt="Luxury Home"
+                                     decoding="async"
                                      class="w-full h-64 object-cover"
                                      loading="lazy">
                             </div>
                             <div class="image-zoom rounded-2xl overflow-hidden shadow-2xl">
                                 <img src="images/about2.webp" 
-                                     alt="Modern Interior" 
+                                     alt="Modern Interior"
+                                     decoding="async"
                                      class="w-full h-48 object-cover"
                                      loading="lazy">
                             </div>
@@ -179,7 +210,8 @@
                         <div class="pt-0 sm:pt-12">
                             <div class="image-zoom rounded-2xl overflow-hidden shadow-2xl">
                                 <img src="images/about3.webp" 
-                                     alt="Architecture Detail" 
+                                     alt="Architecture Detail"
+                                     decoding="async"
                                      class="w-full h-80 object-cover"
                                      loading="lazy">
                             </div>
@@ -474,97 +506,53 @@
     <script src="navbar.js"></script>
     <script src="app-footer.js"></script>
     <script src="script.js"></script>
-    <script>
-        // Initialize AOS (Animate on Scroll)
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100
-        });
-
-        // Initialize Lightbox
-        lightbox.option({
-            'resizeDuration': 200,
-            'wrapAround': true,
-            'albumLabel': 'Project %1 of %2'
-        });
-
-        function initializeTestimonialSlider() {
-            const track = document.getElementById('testimonial-track');
-            const dotsContainer = document.getElementById('slider-dots');
-            const prevBtn = document.getElementById('prev-slide');
-            const nextBtn = document.getElementById('next-slide');
-
-            if (track && dotsContainer && prevBtn && nextBtn && track.children.length > 1) {
-                const slides = Array.from(track.children);
-                const slideCount = slides.length;
-                const dots = Array.from(dotsContainer.children);
-                let currentIndex = 0;
-
-                const goToSlide = (index) => {
-                    if (index < 0 || index >= slideCount) return;
-                    currentIndex = index;
-                    track.style.transform = `translateX(-${currentIndex * 100}%)`;
-                    dots.forEach((dot, i) => {
-                        if (i === currentIndex) {
-                            dot.classList.add('bg-[#D4B357]', 'w-6');
-                            dot.classList.remove('bg-gray-300', 'w-3');
-                        } else {
-                            dot.classList.add('bg-gray-300', 'w-3');
-                            dot.classList.remove('bg-[#D4B357]', 'w-6');
-                        }
-                    });
-                };
-
-                dots.forEach((dot, index) => dot.addEventListener('click', () => goToSlide(index)));
-                nextBtn.addEventListener('click', () => goToSlide((currentIndex + 1) % slideCount));
-                prevBtn.addEventListener('click', () => goToSlide((currentIndex - 1 + slideCount) % slideCount));
-            }
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "FAITH Construction",
+      "image": "https://www.faithconstruction237.com/images/logo.png",
+      "@id": "https://www.faithconstruction237.com",
+      "url": "https://www.faithconstruction237.com",
+      "telephone": "+237 674 942 469",
+      "email": "faithconstruction8@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Simbock",
+        "addressLocality": "Yaoundé",
+        "addressCountry": "CM"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "08:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:00",
+          "closes": "13:00"
         }
-
-        async function loadTestimonials() {
-            const track = document.getElementById('testimonial-track');
-            const dotsContainer = document.getElementById('slider-dots');
-            if (!track || !dotsContainer) return;
-
-            try {
-                const response = await fetch('reviews.json');
-                if (!response.ok) throw new Error('Failed to fetch reviews');
-                const reviews = await response.json();
-
-                track.innerHTML = '';
-                dotsContainer.innerHTML = '';
-
-                // Use first 3 reviews for the homepage slider
-                reviews.slice(0, 3).forEach((review, index) => {
-                    const slide = document.createElement('div');
-                    slide.className = 'w-full flex-shrink-0 p-2';
-                    slide.innerHTML = `
-                        <div class="testimonial-card">
-                            <div class="testimonial-content">
-                                <p class="text-lg italic text-gray-700 leading-relaxed">"${review.quote}"</p>
-                            </div>
-                            <div class="testimonial-author flex items-center">
-                                <h4 class="font-bold text-[#1A1A1A]">${review.author}</h4>
-                                <p class="text-gray-500 ml-auto pl-4">${review.location}</p>
-                            </div>
-                        </div>
-                    `;
-                    track.appendChild(slide);
-
-                    const dot = document.createElement('button');
-                    dot.className = `rounded-full transition-all duration-300 ${index === 0 ? 'w-6 h-3 bg-[#D4B357]' : 'w-3 h-3 bg-gray-300 hover:bg-[#D4B357]'}`;
-                    dotsContainer.appendChild(dot);
-                });
-
-                initializeTestimonialSlider();
-            } catch (error) {
-                console.error('Error loading testimonials:', error);
-                track.innerHTML = `<div class="w-full text-center text-red-500 p-4">${error.message}</div>`;
-            }
-        }
-
-        loadTestimonials();
+      ],
+      "sameAs": [
+        "https://facebook.com/your-page",
+        "https://linkedin.com/your-page"
+      ],
+      "priceRange": "$$$",
+      "description": "Premier residential construction company in Cameroon, specializing in luxury homes, modern architecture, and high-quality renovations.",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Cameroon"
+      }
+    }
     </script>
 </body>
 </html>

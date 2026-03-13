@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.faithconstruction237.com/index.html</loc>
+    <lastmod>2026-03-13</lastmod>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://www.faithconstruction237.com/about.html</loc>
+    <lastmod>2026-03-13</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.faithconstruction237.com/services.html</loc>
+    <lastmod>2026-03-13</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.faithconstruction237.com/projects.html</loc>
+    <lastmod>2026-03-13</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.faithconstruction237.com/contact.html</loc>
+    <lastmod>2026-03-13</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <!-- 
+    Project detail pages should be added here dynamically when your sitemap is generated.
+    For example:
+    <url>
+      <loc>https://www.faithconstruction237.com/project-detail.html?title=Bono%20Luxury%20Residence</loc>
+      <lastmod>2026-03-13</lastmod>
+      <priority>0.64</priority>
+    </url>
+  -->
+</urlset>

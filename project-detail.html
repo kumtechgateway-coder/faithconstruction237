@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Details - FAITH Construction</title>
+    <title>Project Details - FAITH Construction</title> <!-- This will be updated dynamically -->
     
+    <!-- SEO meta tags will be injected dynamically by JavaScript -->
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/logo.png">
 
@@ -22,6 +23,15 @@
     
     <!-- Custom Styles -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Theme switcher script to prevent FOUC -->
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
     
 </head>
 <body class="antialiased bg-[#F8F8F8]">
@@ -110,6 +120,63 @@
             return labels[category] || category.charAt(0).toUpperCase() + category.slice(1);
         }
 
+        function updateSEOTags(project) {
+            const baseUrl = 'https://www.faithconstruction237.com'; // Replace with your actual domain
+            const projectUrl = `${baseUrl}/project-detail.html?title=${encodeURIComponent(project.title)}`;
+            const imageUrl = `${baseUrl}/${project.image}`;
+
+            // Update Title
+            document.title = `${project.title} - Project by FAITH Construction`;
+
+            // --- Standard Meta Tags ---
+            const metaDescription = project.description.substring(0, 160);
+            updateOrCreateMeta('description', metaDescription);
+            updateOrCreateMeta('keywords', `faith construction, ${project.category}, ${project.title}, construction in ${project.town}`);
+
+            // --- Canonical URL ---
+            let canonicalLink = document.querySelector('link[rel="canonical"]');
+            if (!canonicalLink) {
+                canonicalLink = document.createElement('link');
+                canonicalLink.setAttribute('rel', 'canonical');
+                document.head.appendChild(canonicalLink);
+            }
+            canonicalLink.setAttribute('href', projectUrl);
+
+            // --- Open Graph & Twitter ---
+            updateOrCreateMetaProperty('og:title', `${project.title} - FAITH Construction`);
+            updateOrCreateMetaProperty('og:description', metaDescription);
+            updateOrCreateMetaProperty('og:type', 'article');
+            updateOrCreateMetaProperty('og:url', projectUrl);
+            updateOrCreateMetaProperty('og:image', imageUrl);
+            updateOrCreateMetaProperty('twitter:card', 'summary_large_image');
+            updateOrCreateMetaProperty('twitter:title', `${project.title} - FAITH Construction`);
+            updateOrCreateMetaProperty('twitter:description', metaDescription);
+            updateOrCreateMetaProperty('twitter:image', imageUrl);
+
+            // --- JSON-LD Schema ---
+            updateProjectSchema(project, projectUrl, imageUrl);
+        }
+
+        function updateOrCreateMeta(name, content) {
+            let tag = document.querySelector(`meta[name="${name}"]`);
+            if (!tag) {
+                tag = document.createElement('meta');
+                tag.setAttribute('name', name);
+                document.head.appendChild(tag);
+            }
+            tag.setAttribute('content', content);
+        }
+
+        function updateOrCreateMetaProperty(property, content) {
+            let tag = document.querySelector(`meta[property="${property}"]`);
+            if (!tag) {
+                tag = document.createElement('meta');
+                tag.setAttribute('property', property);
+                document.head.appendChild(tag);
+            }
+            tag.setAttribute('content', content);
+        }
+
         async function loadProjectDetails(title) {
             const contentArea = document.getElementById('project-detail-content');
             const breadcrumbTitle = document.getElementById('breadcrumb-title');
@@ -128,15 +195,15 @@
 
                 if (project) {
                     // Update page title and header
-                    document.title = `${project.title} - FAITH Construction`;
                     breadcrumbTitle.textContent = project.title;
                     headerTitle.innerHTML = `<span class="text-gradient-gold">${project.title}</span>`;
+                    updateSEOTags(project); // <-- Inject SEO data
 
                     // Render project details
                     contentArea.innerHTML = `
                         <div class="grid lg:grid-cols-5 gap-8 md:gap-12 items-start">
                             <div class="lg:col-span-3" data-aos="fade-right">
-                                <img src="${project.image}" alt="${project.title}" class="rounded-2xl shadow-2xl w-full h-auto object-cover aspect-[4/3]">
+                                <img src="${project.image}" alt="${project.title}" class="rounded-2xl shadow-2xl w-full h-auto object-cover aspect-[4/3]" fetchpriority="high" decoding="async">
                             </div>
                             <div class="lg:col-span-2" data-aos="fade-left">
                                 <span class="bg-[#D4B357]/10 text-[#D4B357] px-4 py-2 rounded-full text-sm font-semibold mb-6 inline-block">${getCategoryLabel(project.category)}</span>
@@ -145,8 +212,9 @@
                                 
                                 <div class="border-t border-gray-200 pt-6 space-y-4">
                                     <div class="flex items-center"><i class="fas fa-tag text-[#D4B357] w-6"></i><span class="font-semibold ml-3">Category: ${getCategoryLabel(project.category)}</span></div>
-                                    <div class="flex items-center"><i class="fas fa-ruler-combined text-[#D4B357] w-6"></i><span class="font-semibold ml-3">Details: ${project.description}</span></div>
-                                    <div class="flex items-center"><i class="fas fa-map-marker-alt text-[#D4B357] w-6"></i><span class="font-semibold ml-3">Location: Cameroon</span></div>
+                                    <div class="flex items-center"><i class="fas fa-tasks text-[#D4B357] w-6"></i><span class="font-semibold ml-3">Status: ${project.status || 'N/A'}</span></div>
+                                    <div class="flex items-center"><i class="fas fa-calendar-alt text-[#D4B357] w-6"></i><span class="font-semibold ml-3">Timeline: ${project.timeline || 'N/A'}</span></div>
+                                    <div class="flex items-center"><i class="fas fa-map-marker-alt text-[#D4B357] w-6"></i><span class="font-semibold ml-3">Location: ${project.town || 'Cameroon'}</span></div>
                                 </div>
 
                                 <a href="contact.html" class="mt-10 group relative overflow-hidden bg-[#D4B357] text-[#1A1A1A] hover:text-white px-8 py-4 rounded text-sm font-semibold inline-flex items-center transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 hover:shadow-2xl w-full sm:w-auto justify-center">
@@ -170,8 +238,9 @@
                         item.innerHTML = `
                             <div class="project-img-wrapper">
                                 <a href="project-detail.html?title=${encodeURIComponent(p.title)}">
-                                    <img src="${p.image}" alt="${p.title}" loading="lazy">
+                                    <img src="${p.image}" alt="${p.title}" loading="lazy" decoding="async" width="300" height="230">
                                 </a>
+                                ${p.status ? `<span class="status-badge">${p.status}</span>` : ''}
                                 <span class="category-badge">${getCategoryLabel(p.category)}</span>
                             </div>
                             <div class="project-info">
@@ -192,6 +261,45 @@
                 console.error('Error loading project details:', error);
                 contentArea.innerHTML = `<div class="text-center py-20"><p class="text-red-500 font-bold">Unable to load project</p><p class="text-gray-500 text-sm mt-2">${error.message}</p></div>`;
             }
+        }
+
+        function updateProjectSchema(project, projectUrl, imageUrl) {
+            let schemaScript = document.getElementById('project-schema');
+            if (!schemaScript) {
+                schemaScript = document.createElement('script');
+                schemaScript.type = 'application/ld+json';
+                schemaScript.id = 'project-schema';
+                document.head.appendChild(schemaScript);
+            }
+
+            const projectSchema = {
+                "@context": "https://schema.org",
+                "@type": "Product", // Using Product for rich details like brand and offers
+                "name": project.title,
+                "image": imageUrl,
+                "description": project.description,
+                "brand": {
+                    "@type": "Brand",
+                    "name": "FAITH Construction"
+                },
+                "offers": {
+                    "@type": "Offer",
+                    "url": projectUrl,
+                    "priceCurrency": "XAF", // CFA Franc
+                    "availability": project.status === 'Completed' ? "https://schema.org/Discontinued" : "https://schema.org/InStock",
+                    "seller": {
+                        "@type": "LocalBusiness",
+                        "name": "FAITH Construction",
+                        "url": "https://www.faithconstruction237.com"
+                    }
+                },
+                "additionalProperty": [
+                    { "@type": "PropertyValue", "name": "Category", "value": project.category },
+                    { "@type": "PropertyValue", "name": "Location", "value": project.town },
+                    { "@type": "PropertyValue", "name": "Timeline", "value": project.timeline }
+                ]
+            };
+            schemaScript.textContent = JSON.stringify(projectSchema, null, 2);
         }
     </script>
 </body>

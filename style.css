@@ -899,20 +899,20 @@ h1, h2, h3, h4, h5, h6 {
 /* Updated Grid Layout */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 35px;
 }
 
 /* Reset old responsive rules that might conflict with auto-fit */
 @media (min-width: 768px) {
     .projects-grid {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     }
 }
 
 @media (min-width: 1024px) {
     .projects-grid {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     }
 }
 
@@ -1008,3 +1008,146 @@ h1, h2, h3, h4, h5, h6 {
 .leaflet-popup-tip {
     background: white;
 }
+
+/* Status Badge */
+.status-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #D4B357;
+    color: #1A1A1A;
+    padding: 0.4rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* --- Dark Mode Styles --- */
+html.dark {
+    color-scheme: dark;
+}
+
+.dark body {
+    background-color: #121212;
+    color: #E0E0E0;
+}
+
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+    color: #ffffff;
+}
+
+/* Tailwind Class Overrides */
+.dark .bg-white {
+    background-color: #1E1E1E !important;
+}
+
+.dark .bg-\[\#F8F8F8\] {
+    background-color: #121212 !important;
+}
+
+.dark .text-\[\#1A1A1A\] {
+    color: #ffffff !important;
+}
+
+.dark .text-gray-500 {
+    color: #a0aec0 !important;
+}
+
+.dark .text-gray-600 {
+    color: #b0b0b0 !important;
+}
+
+.dark .text-gray-700 {
+    color: #c0c0c0 !important;
+}
+
+.dark .text-gray-300 {
+    color: #d1d5db !important;
+}
+
+.dark .text-gray-400 {
+    color: #9ca3af !important;
+}
+
+/* Borders */
+.dark .border-gray-100,
+.dark .border-gray-200,
+.dark .border-t.border-gray-800 {
+    border-color: #2D3748 !important; /* gray.700 */
+}
+
+/* Specific Components */
+.dark .premium-card,
+.dark .service-card,
+.dark .project-item,
+.dark .testimonial-card,
+.dark .value-card,
+.dark .stat-card,
+.dark .contact-card,
+.dark .faq-item,
+.dark .bg-white.p-8.rounded-2xl,
+.dark .bg-white.p-6.rounded-2xl,
+.dark .bg-white.rounded-3xl,
+.dark .faq-btn {
+    background-color: #1E1E1E;
+    border-color: #2D3748;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+.dark .premium-card:hover,
+.dark .service-card:hover,
+.dark .project-item:hover,
+.dark .testimonial-card:hover,
+.dark .value-card:hover,
+.dark .stat-card:hover,
+.dark .contact-card:hover {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+}
+
+.dark .filter-btn {
+    color: #A0AEC0;
+    background-color: #2D3748;
+}
+
+.dark .filter-btn:hover {
+    color: #D4B357;
+    background: rgba(212, 179, 87, 0.1);
+}
+
+.dark .filter-btn.active {
+    background: #D4B357;
+    color: #1A1A1A;
+    box-shadow: 0 4px 12px rgba(212, 179, 87, 0.2);
+}
+
+.dark .form-input {
+    background-color: #2D3748;
+    border-color: #4A5568;
+    color: #E0E0E0;
+}
+
+.dark .form-label {
+    background-color: #2D3748;
+    color: #A0AEC0;
+}
+
+.dark .leaflet-popup-content-wrapper, .dark .leaflet-popup-tip {
+    background: #2D3748;
+    color: #E0E0E0;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+}
+
+.dark #map {
+    filter: invert(1) hue-rotate(180deg) brightness(0.9) contrast(1.1);
+}
+
+.dark .prose { color: #b0b0b0; }
+.dark .prose h1, .dark .prose h2, .dark .prose h3 { color: #ffffff; }
+.dark .prose a { color: #D4B357; }
+.dark .prose strong { color: #ffffff; }
+.dark .bg-gray-100 { background-color: #2D3748 !important; }
+.dark .bg-gray-800 { background-color: #1A202C !important; }
