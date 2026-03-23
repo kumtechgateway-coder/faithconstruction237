@@ -71,7 +71,7 @@ class AppNavbar extends HTMLElement {
 
                         <!-- Contact Info Desktop -->
                         <div class="hidden lg:flex items-center space-x-4">
-                            <button type="button" class="theme-toggle-btn text-gray-400 hover:text-white p-2 rounded-lg text-sm">
+                            <button type="button" aria-label="Toggle theme" class="theme-toggle-btn text-gray-400 hover:text-white p-2 rounded-lg text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4B357] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1A1A1A]">
                                 <i class="fas fa-moon text-xl"></i>
                                 <i class="fas fa-sun text-xl hidden"></i>
                             </button>
@@ -85,7 +85,7 @@ class AppNavbar extends HTMLElement {
                         </div>
 
                         <!-- Mobile Menu Button -->
-                        <button class="lg:hidden text-white focus:outline-none" id="menuToggle">
+                        <button class="lg:hidden text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4B357] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1A1A1A] rounded-md" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
                             <i class="fas fa-bars text-2xl"></i>
                         </button>
                     </div>
@@ -96,7 +96,7 @@ class AppNavbar extends HTMLElement {
             <div class="menu-overlay" id="menuOverlay"></div>
             <div class="mobile-menu bg-[#1A1A1A]" id="mobileMenu">
                 <div class="flex justify-end mb-8">
-                    <button class="text-white focus:outline-none p-2" id="closeMenu">
+                    <button class="text-white p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4B357] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1A1A1A] rounded-md" id="closeMenu" aria-label="Close navigation menu">
                         <i class="fas fa-times text-2xl"></i>
                     </button>
                 </div>
@@ -111,7 +111,7 @@ class AppNavbar extends HTMLElement {
                             <a href="contact.html" class="btn-ripple-nav block text-center bg-[#D4B357] hover:bg-[#B8963F] text-[#1A1A1A] px-6 py-4 rounded-md text-sm font-semibold transition-all transform hover:scale-110 hover:-translate-y-3 hover:shadow-2xl flex-grow">
                                 GET A QUOTE
                             </a>
-                            <button type="button" class="theme-toggle-btn text-gray-400 hover:text-white p-4 rounded-lg text-sm bg-gray-800/50 dark:bg-gray-700">
+                            <button type="button" aria-label="Toggle theme" class="theme-toggle-btn text-gray-400 hover:text-white p-4 rounded-lg text-sm bg-gray-800/50 dark:bg-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4B357] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1A1A1A]">
                                 <i class="fas fa-moon text-xl"></i>
                                 <i class="fas fa-sun text-xl hidden"></i>
                             </button>
@@ -137,13 +137,13 @@ class AppNavbar extends HTMLElement {
                     <div class="absolute -bottom-2 right-6 w-4 h-4 bg-white transform rotate-45 border-r border-b border-gray-100"></div>
                     
                     <!-- Close Button -->
-                    <button id="close-whatsapp" class="absolute -top-2 -right-2 bg-white hover:bg-gray-100 text-gray-400 hover:text-gray-600 border border-gray-200 rounded-full w-6 h-6 flex items-center justify-center text-xs shadow-sm transition-colors">
+                    <button id="close-whatsapp" aria-label="Dismiss WhatsApp message bubble" class="absolute -top-2 -right-2 bg-white hover:bg-gray-100 text-gray-400 hover:text-gray-600 border border-gray-200 rounded-full w-6 h-6 flex items-center justify-center text-xs shadow-sm transition-colors">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
 
                 <!-- Button -->
-                <a href="https://wa.me/237674942469" target="_blank" aria-label="Chat on WhatsApp" class="bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full shadow-[0_4px_14px_0_rgba(37,211,102,0.39)] w-14 h-14 flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:rotate-12 relative group">
+                <a href="https://wa.me/237674942469" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" class="bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full shadow-[0_4px_14px_0_rgba(37,211,102,0.39)] w-14 h-14 flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:rotate-12 relative group">
                     <i class="fab fa-whatsapp text-3xl"></i>
                     <span class="absolute top-0 right-0 flex h-3 w-3">
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -166,35 +166,23 @@ class AppNavbar extends HTMLElement {
         const whatsappBubble = this.querySelector('#whatsapp-bubble');
         const closeWhatsapp = this.querySelector('#close-whatsapp');
         const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-
-        const handleWhatsAppBubble = () => {
-            // Conditions: Home page, not shown yet in this session, and user has scrolled down
-            if (currentPath === 'index.html' && !sessionStorage.getItem('whatsappBubbleShown') && window.scrollY > 200) {
-                if (whatsappBubble) {
-                    whatsappBubble.classList.remove('opacity-0', 'translate-y-10', 'scale-90');
-                    sessionStorage.setItem('whatsappBubbleShown', 'true'); // Set flag so it doesn't show again
-                    // Clean up the event listener so it doesn't keep firing
-                    window.removeEventListener('scroll', handleWhatsAppBubble);
-                }
-            }
-        };
-
-        // Only add the scroll listener on the home page
-        if (currentPath === 'index.html') {
-            window.addEventListener('scroll', handleWhatsAppBubble);
-        }
+        let shouldShowWhatsAppBubble = currentPath === 'index.html' && !sessionStorage.getItem('whatsappBubbleShown');
 
         if (closeWhatsapp) {
             closeWhatsapp.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 whatsappBubble.classList.add('opacity-0', 'translate-y-10', 'scale-90');
+                shouldShowWhatsAppBubble = false;
             });
         }
 
-        // Scroll Effect
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
+        // Scroll Effect (rAF-throttled and passive for smoother scrolling)
+        let latestScrollY = window.scrollY;
+        let isScrollTicking = false;
+
+        const applyScrollState = () => {
+            if (latestScrollY > 50) {
                 navbar.classList.add('bg-[#1A1A1A]', 'shadow-2xl');
                 if (isTransparent) navbar.classList.remove('bg-transparent');
             } else {
@@ -206,19 +194,49 @@ class AppNavbar extends HTMLElement {
                     navbar.classList.add('bg-[#1A1A1A]');
                 }
             }
-        });
+
+            if (shouldShowWhatsAppBubble && latestScrollY > 200 && whatsappBubble) {
+                whatsappBubble.classList.remove('opacity-0', 'translate-y-10', 'scale-90');
+                sessionStorage.setItem('whatsappBubbleShown', 'true');
+                shouldShowWhatsAppBubble = false;
+            }
+        };
+
+        const onWindowScroll = () => {
+            latestScrollY = window.scrollY;
+            if (isScrollTicking) return;
+
+            isScrollTicking = true;
+            window.requestAnimationFrame(() => {
+                applyScrollState();
+                isScrollTicking = false;
+            });
+        };
+
+        applyScrollState();
+        window.addEventListener('scroll', onWindowScroll, { passive: true });
 
         // Mobile Menu Logic
+        if (menuToggle) {
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.setAttribute('aria-controls', 'mobileMenu');
+        }
+        if (mobileMenu) mobileMenu.setAttribute('aria-hidden', 'true');
+
         const openMobileMenu = () => {
             mobileMenu.classList.add('active');
             menuOverlay.classList.add('active');
             document.body.style.overflow = 'hidden';
+            if (menuToggle) menuToggle.setAttribute('aria-expanded', 'true');
+            if (mobileMenu) mobileMenu.setAttribute('aria-hidden', 'false');
         };
 
         const closeMobileMenu = () => {
             mobileMenu.classList.remove('active');
             menuOverlay.classList.remove('active');
             document.body.style.overflow = 'auto';
+            if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+            if (mobileMenu) mobileMenu.setAttribute('aria-hidden', 'true');
         };
 
         if (menuToggle) menuToggle.addEventListener('click', openMobileMenu);

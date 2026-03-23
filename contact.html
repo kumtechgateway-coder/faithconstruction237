@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
     <title>Contact FAITH Construction | Get a Quote Today</title>
     <meta name="description" content="Contact FAITH Construction for a free consultation on your next project. Reach us by phone, email, or WhatsApp. Let's build your dream together in Cameroon.">
     <meta name="keywords" content="contact faith construction, get a quote, construction consultation, phone number, email address, yaounde office">
@@ -124,7 +128,7 @@
     </section>
 
     <!-- Main Interaction Section -->
-    <section class="py-16 md:py-24 bg-white overflow-hidden">
+    <section id="contactForm" class="py-16 md:py-24 bg-white overflow-hidden">
         <div class="container mx-auto px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
                 <!-- Selection Logic -->
@@ -134,6 +138,7 @@
                     <p class="text-gray-600 mb-10 text-lg">
                         Select your preferred communication channel below and we'll connect you directly with our team.
                     </p>
+                    <p id="selectedService" class="hidden mb-6 rounded-lg border border-[#D4B357]/40 bg-[#D4B357]/10 px-4 py-3 text-sm font-semibold text-[#1A1A1A]"></p>
 
                     <div class="space-y-4 mb-10">
                         <!-- Email Option -->
@@ -215,9 +220,9 @@
                          <div class="bg-white p-6 rounded-2xl shadow-lg flex flex-col justify-center">
                              <h4 class="font-bold text-[#1A1A1A] mb-4">Follow Us</h4>
                              <div class="flex gap-4">
-                                <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all"><i class="fab fa-instagram"></i></a>
-                                <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="https://wa.me/237674942469" target="_blank" rel="noopener noreferrer" aria-label="Chat with Faith Construction on WhatsApp" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all"><i class="fab fa-whatsapp"></i></a>
+                                <a href="mailto:faithconstruction8@gmail.com" aria-label="Email Faith Construction" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all"><i class="fas fa-envelope"></i></a>
+                                <a href="tel:+237674942469" aria-label="Call Faith Construction" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all"><i class="fas fa-phone-alt"></i></a>
                              </div>
                          </div>
                     </div>
@@ -328,7 +333,7 @@
                         <i class="fas fa-phone-alt mr-3"></i>
                         Call Us Now
                     </a>
-                    <a href="#" class="border-2 border-white text-white hover:border-[#D4B357] hover:text-[#D4B357] px-6 py-3 rounded text-sm font-semibold inline-flex items-center transition-all transform hover:scale-110 hover:-translate-y-3 hover:shadow-2xl">
+                    <a href="https://wa.me/237674942469" target="_blank" rel="noopener noreferrer" class="border-2 border-white text-white hover:border-[#D4B357] hover:text-[#D4B357] px-6 py-3 rounded text-sm font-semibold inline-flex items-center transition-all transform hover:scale-110 hover:-translate-y-3 hover:shadow-2xl">
                         <i class="fab fa-whatsapp mr-3"></i>
                         WhatsApp
                     </a>
@@ -360,6 +365,13 @@
     <script src="app-footer.js"></script>
     <script src="script.js"></script>
     <script>
+        function closeSuccessMessage() {
+            const overlay = document.getElementById('overlay');
+            const successMessage = document.getElementById('successMessage');
+            if (overlay) overlay.classList.remove('show');
+            if (successMessage) successMessage.classList.remove('show');
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const breadcrumbSchema = {
                 "@context": "https://schema.org",
@@ -379,49 +391,87 @@
             script.type = 'application/ld+json';
             script.text = JSON.stringify(breadcrumbSchema);
             document.head.appendChild(script);
-        });
 
-        // Init Map
-        document.addEventListener('DOMContentLoaded', () => {
-            const map = L.map('map').setView([3.8480, 11.5021], 13);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
-            L.marker([3.8480, 11.5021]).addTo(map)
-                .bindPopup('FAITH Construction<br>Simbock, Yaoundé')
-                .openPopup();
-            
-            // FAQ Accordion Logic
+            const mapElement = document.getElementById('map');
+            let isMapInitialized = false;
+            const initMap = () => {
+                if (isMapInitialized || !mapElement || typeof L === 'undefined') return;
+                isMapInitialized = true;
+                const map = L.map(mapElement).setView([3.8480, 11.5021], 13);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
+                L.marker([3.8480, 11.5021]).addTo(map)
+                    .bindPopup('FAITH Construction<br>Simbock, Yaounde')
+                    .openPopup();
+            };
+
+            const scheduleMapInit = () => {
+                if ('requestIdleCallback' in window) {
+                    window.requestIdleCallback(() => initMap(), { timeout: 1200 });
+                } else {
+                    setTimeout(initMap, 200);
+                }
+            };
+
+            if (mapElement && 'IntersectionObserver' in window) {
+                const mapObserver = new IntersectionObserver((entries) => {
+                    if (entries.some(entry => entry.isIntersecting)) {
+                        scheduleMapInit();
+                        mapObserver.disconnect();
+                    }
+                }, { rootMargin: '300px 0px' });
+                mapObserver.observe(mapElement);
+            } else {
+                scheduleMapInit();
+            }
+
             const faqBtns = document.querySelectorAll('.faq-btn');
             faqBtns.forEach(btn => {
+                const answer = btn.nextElementSibling;
+                const icon = btn.querySelector('i');
+                const panelId = `faq-panel-${Math.random().toString(36).slice(2, 10)}`;
+
+                btn.setAttribute('aria-expanded', 'false');
+                btn.setAttribute('aria-controls', panelId);
+                answer.setAttribute('id', panelId);
+                answer.setAttribute('aria-hidden', 'true');
+                answer.style.maxHeight = '0px';
+
                 btn.addEventListener('click', () => {
-                    const answer = btn.nextElementSibling;
-                    const icon = btn.querySelector('i');
-                    
-                    if (answer.classList.contains('hidden')) {
-                        answer.classList.remove('hidden');
-                        icon.classList.add('rotate-180');
-                    } else {
-                        answer.classList.add('hidden');
+                    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+                    if (isOpen) {
+                        btn.setAttribute('aria-expanded', 'false');
+                        answer.setAttribute('aria-hidden', 'true');
+                        answer.style.maxHeight = '0px';
                         icon.classList.remove('rotate-180');
+                        return;
                     }
+
+                    btn.setAttribute('aria-expanded', 'true');
+                    answer.setAttribute('aria-hidden', 'false');
+                    answer.style.maxHeight = `${answer.scrollHeight}px`;
+                    icon.classList.add('rotate-180');
                 });
             });
-        });
 
-        document.addEventListener('DOMContentLoaded', () => {
+            const selectedServiceTag = document.getElementById('selectedService');
+            const serviceName = new URLSearchParams(window.location.search).get('service');
+            if (serviceName && selectedServiceTag) {
+                selectedServiceTag.textContent = `Selected service: ${serviceName}`;
+                selectedServiceTag.classList.remove('hidden');
+            }
+
             const contactBtn = document.getElementById('performContactBtn');
-            
             if (contactBtn) {
                 contactBtn.addEventListener('click', () => {
                     const selectedMethod = document.querySelector('input[name="contact-method"]:checked').value;
-                    
                     if (selectedMethod === 'email') {
                         window.location.href = 'mailto:faithconstruction8@gmail.com';
                     } else if (selectedMethod === 'phone') {
                         window.location.href = 'tel:+237674942469';
                     } else if (selectedMethod === 'whatsapp') {
-                        window.open('https://wa.me/237674942469', '_blank');
+                        window.open('https://wa.me/237674942469', '_blank', 'noopener,noreferrer');
                     }
                 });
             }
@@ -429,3 +479,6 @@
     </script>
 </body>
 </html>
+
+
+

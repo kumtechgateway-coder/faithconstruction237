@@ -3,6 +3,13 @@
     "public": ".",
     "ignore": [
       "firebase.json",
+      ".firebaserc",
+      "index.js",
+      "package.json",
+      "package-lock.json",
+      "color usage guide.docx",
+      "images/sticker faith.ai",
+      "images/sticker faith.pdf",
       "**/.*",
       "**/node_modules/**"
     ],

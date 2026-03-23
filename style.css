@@ -228,6 +228,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 80%;
     max-width: 400px;
     height: 100vh;
+    height: 100dvh; /* Use dynamic viewport height for mobile browsers */
     background: #1A1A1A;
     z-index: 2000;
     transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
@@ -874,7 +875,11 @@ h1, h2, h3, h4, h5, h6 {
     color: #4B5563; /* text-gray-600 */
     opacity: 1;
     transform: none;
-    max-height: none;
+    /* Enforce 3 lines max for consistent card heights */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .view-details-btn {
@@ -1124,6 +1129,14 @@ html.dark {
     box-shadow: 0 4px 12px rgba(212, 179, 87, 0.2);
 }
 
+.dark .project-info h3 {
+    color: #ffffff;
+}
+
+.dark .project-info p {
+    color: #b0b0b0;
+}
+
 .dark .form-input {
     background-color: #2D3748;
     border-color: #4A5568;
@@ -1151,3 +1164,17 @@ html.dark {
 .dark .prose strong { color: #ffffff; }
 .dark .bg-gray-100 { background-color: #2D3748 !important; }
 .dark .bg-gray-800 { background-color: #1A202C !important; }
+
+/* --- Reduced Motion --- */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .parallax {
+        background-attachment: scroll !important;
+    }
+}

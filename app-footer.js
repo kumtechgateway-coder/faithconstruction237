@@ -22,7 +22,7 @@ class AppFooter extends HTMLElement {
                             </div>
                         </a>
                         <p class="text-gray-400 text-sm leading-relaxed">
-                            Building Cameroon's premium residential future with integrity, excellence, and an unwavering commitment to quality since 2009.
+                            Building Cameroon's premium residential future with integrity, excellence, and an unwavering commitment to quality since 2010.
                         </p>
                     </div>
 
@@ -53,7 +53,7 @@ class AppFooter extends HTMLElement {
                         <ul class="space-y-4 text-sm">
                             <li class="flex items-start">
                                 <i class="fas fa-map-marker-alt text-[#D4B357] mt-1 mr-3 w-4"></i>
-                                <span class="text-gray-400">Simbock, Yaoundé, Cameroon</span>
+                                <span class="text-gray-400">Simbock, Yaounde, Cameroon</span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fas fa-phone-alt text-[#D4B357] mt-1 mr-3 w-4"></i>
@@ -65,9 +65,9 @@ class AppFooter extends HTMLElement {
                             </li>
                         </ul>
                         <div class="flex space-x-4 mt-6">
-                            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all"><i class="fab fa-whatsapp"></i></a>
+                            <a href="https://wa.me/237674942469" target="_blank" rel="noopener noreferrer" aria-label="Chat with Faith Construction on WhatsApp" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all"><i class="fab fa-whatsapp"></i></a>
+                            <a href="mailto:faithconstruction8@gmail.com" aria-label="Email Faith Construction" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all"><i class="fas fa-envelope"></i></a>
+                            <a href="tel:+237674942469" aria-label="Call Faith Construction" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all"><i class="fas fa-phone-alt"></i></a>
                         </div>
                     </div>
                 </div>
@@ -88,3 +88,4 @@ class AppFooter extends HTMLElement {
 }
 
 customElements.define('app-footer', AppFooter);
+

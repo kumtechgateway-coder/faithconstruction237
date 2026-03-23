@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
     <title>Project Details - FAITH Construction</title> <!-- This will be updated dynamically -->
     
     <!-- SEO meta tags will be injected dynamically by JavaScript -->
@@ -54,7 +58,7 @@
                     <i class="fas fa-chevron-right text-[#D4B357] text-xs"></i>
                     <a href="projects.html" class="text-gray-400 hover:text-[#D4B357] transition-colors">Projects</a>
                     <i class="fas fa-chevron-right text-[#D4B357] text-xs"></i>
-                    <span id="breadcrumb-title" class="text-[#D4B357]">Loading...</span>
+                    <span id="breadcrumb-title" class="text-[#D4B357] truncate max-w-[150px] md:max-w-md block">Loading...</span>
                 </div>
                 
                 <!-- Title -->
@@ -118,6 +122,17 @@
                 'estate': 'Estate'
             };
             return labels[category] || category.charAt(0).toUpperCase() + category.slice(1);
+        }
+
+        // Security: Escape HTML
+        function escapeHtml(text) {
+            if (!text) return text;
+            return String(text)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
         }
 
         function updateSEOTags(project) {
@@ -196,25 +211,32 @@
                 if (project) {
                     // Update page title and header
                     breadcrumbTitle.textContent = project.title;
-                    headerTitle.innerHTML = `<span class="text-gradient-gold">${project.title}</span>`;
+                    
+                    // Safer way to set header title
+                    headerTitle.innerHTML = '';
+                    const titleSpan = document.createElement('span');
+                    titleSpan.className = 'text-gradient-gold';
+                    titleSpan.textContent = project.title;
+                    headerTitle.appendChild(titleSpan);
+
                     updateSEOTags(project); // <-- Inject SEO data
 
                     // Render project details
                     contentArea.innerHTML = `
                         <div class="grid lg:grid-cols-5 gap-8 md:gap-12 items-start">
                             <div class="lg:col-span-3" data-aos="fade-right">
-                                <img src="${project.image}" alt="${project.title}" class="rounded-2xl shadow-2xl w-full h-auto object-cover aspect-[4/3]" fetchpriority="high" decoding="async">
+                                <img src="${escapeHtml(project.image)}" alt="${escapeHtml(project.title)}" class="rounded-2xl shadow-2xl w-full h-auto object-cover aspect-[4/3]" fetchpriority="high" decoding="async">
                             </div>
                             <div class="lg:col-span-2" data-aos="fade-left">
-                                <span class="bg-[#D4B357]/10 text-[#D4B357] px-4 py-2 rounded-full text-sm font-semibold mb-6 inline-block">${getCategoryLabel(project.category)}</span>
-                                <h2 class="text-3xl md:text-4xl font-bold text-[#1A1A1A] mb-4">${project.title}</h2>
-                                <p class="text-lg text-gray-600 leading-relaxed mb-8">${project.description}</p>
+                                <span class="bg-[#D4B357]/10 text-[#D4B357] px-4 py-2 rounded-full text-sm font-semibold mb-6 inline-block">${escapeHtml(getCategoryLabel(project.category))}</span>
+                                <h2 class="text-3xl md:text-4xl font-bold text-[#1A1A1A] mb-4">${escapeHtml(project.title)}</h2>
+                                <p class="text-lg text-gray-600 leading-relaxed mb-8">${escapeHtml(project.description)}</p>
                                 
                                 <div class="border-t border-gray-200 pt-6 space-y-4">
-                                    <div class="flex items-center"><i class="fas fa-tag text-[#D4B357] w-6"></i><span class="font-semibold ml-3">Category: ${getCategoryLabel(project.category)}</span></div>
-                                    <div class="flex items-center"><i class="fas fa-tasks text-[#D4B357] w-6"></i><span class="font-semibold ml-3">Status: ${project.status || 'N/A'}</span></div>
-                                    <div class="flex items-center"><i class="fas fa-calendar-alt text-[#D4B357] w-6"></i><span class="font-semibold ml-3">Timeline: ${project.timeline || 'N/A'}</span></div>
-                                    <div class="flex items-center"><i class="fas fa-map-marker-alt text-[#D4B357] w-6"></i><span class="font-semibold ml-3">Location: ${project.town || 'Cameroon'}</span></div>
+                                    <div class="flex items-center"><i class="fas fa-tag text-[#D4B357] w-6"></i><span class="font-semibold ml-3">Category: ${escapeHtml(getCategoryLabel(project.category))}</span></div>
+                                    <div class="flex items-center"><i class="fas fa-tasks text-[#D4B357] w-6"></i><span class="font-semibold ml-3">Status: ${escapeHtml(project.status || 'N/A')}</span></div>
+                                    <div class="flex items-center"><i class="fas fa-calendar-alt text-[#D4B357] w-6"></i><span class="font-semibold ml-3">Timeline: ${escapeHtml(project.timeline || 'N/A')}</span></div>
+                                    <div class="flex items-center"><i class="fas fa-map-marker-alt text-[#D4B357] w-6"></i><span class="font-semibold ml-3">Location: ${escapeHtml(project.town || 'Cameroon')}</span></div>
                                 </div>
 
                                 <a href="contact.html" class="mt-10 group relative overflow-hidden bg-[#D4B357] text-[#1A1A1A] hover:text-white px-8 py-4 rounded text-sm font-semibold inline-flex items-center transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 hover:shadow-2xl w-full sm:w-auto justify-center">
@@ -237,15 +259,15 @@
                         item.setAttribute('data-aos-delay', (index * 100).toString());
                         item.innerHTML = `
                             <div class="project-img-wrapper">
-                                <a href="project-detail.html?title=${encodeURIComponent(p.title)}">
-                                    <img src="${p.image}" alt="${p.title}" loading="lazy" decoding="async" width="300" height="230">
+                                <a href="project-detail.html?title=${encodeURIComponent(p.title)}" aria-label="View details for ${escapeHtml(p.title)}">
+                                    <img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.title)}" loading="lazy" decoding="async" width="300" height="230">
                                 </a>
-                                ${p.status ? `<span class="status-badge">${p.status}</span>` : ''}
-                                <span class="category-badge">${getCategoryLabel(p.category)}</span>
+                                ${p.status ? `<span class="status-badge">${escapeHtml(p.status)}</span>` : ''}
+                                <span class="category-badge">${escapeHtml(getCategoryLabel(p.category))}</span>
                             </div>
                             <div class="project-info">
-                                <h3>${p.title}</h3>
-                                <p>${p.description}</p>
+                                <h3 class="truncate">${escapeHtml(p.title)}</h3>
+                                <p class="line-clamp-3">${escapeHtml(p.description)}</p>
                                 <a href="project-detail.html?title=${encodeURIComponent(p.title)}" class="view-details-btn">View Details</a>
                             </div>
                         `;
@@ -304,3 +326,5 @@
     </script>
 </body>
 </html>
+
+

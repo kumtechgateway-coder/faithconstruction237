@@ -1,101 +1,128 @@
 [
   {
-    "title": "Bono Luxury Residence",
-    "category": "Luxury Villas",
+    "title": "The Arched Pavilion",
+    "category": "Modern Homes",
     "image": "images/bono.webp",
-    "description": "A stunning multi-story luxury villa featuring expansive glass facades and premium modern finishes.",
-    "town": "Limbe",
+    "description": "A modern home designed with elegant arch-shaped verandas and a clean, simple look. The house focuses on comfortable outdoor spaces that stay cool and shaded, creating a peaceful and stylish living environment.",
+    "town": "Yaounde",
     "status": "Completed",
     "timeline": "2023 - 2024"
   },
   {
-    "title": "Carrefour Edua Complex",
-    "category": "Estates",
-    "image": "images/carefour edua.webp",
-    "description": "A large-scale commercial and residential estate designed for high-density urban living and accessibility.",
+    "title": "The Mosaic Terracotta",
+    "category": "Renovations",
+    "image": "images/carefour-edua.webp",
+    "description": "A renovation project in Yaoundé that transforms an old commercial and residential building into a more attractive and modern space. The design uses warm terracotta colors and unique patterns to improve the building’s appearance and strength.",
     "town": "Yaoundé",
     "status": "In Progress",
     "timeline": "2024 - Present"
   },
   {
-    "title": "Summit View Residence",
+    "title": "The Amber Meridian",
+    "category": "Estates",
+    "image": "images/crocotie2.webp",
+    "description": "A striking residential building designed with bright colors and modern balconies. Each apartment includes a private outdoor space, offering residents comfort while giving the building a bold urban presence.",
+    "town": "Douala",
+    "status": "Completed",
+    "timeline": "2024 - 2025"
+  },
+  {
+    "title": "The Terracotta Collective",
+    "category": "Estates",
+    "image": "images/ngog.webp",
+    "description": "A multi-family residential complex designed for comfort and natural airflow. The warm earth-colored exterior and spacious balconies create a welcoming and balanced living environment for residents.",
+    "town": "Yaounde",
+    "status": "Completed",
+    "timeline": "2024 - 2025"
+  },
+  {
+    "title": "The Crimson Crest Estate",
+    "category": "Estates",
+    "image": "images/ngog1.webp",
+    "description": "A large residential estate designed with a bold roof style and multiple levels. Wide balconies and a strong structural design create a spacious and impressive living space.",
+    "town": "Yaoundé",
+    "status": "In Progress",
+    "timeline": "2025 - Present"
+  },
+  {
+    "title": "The Graphite Monolith",
+    "category": "Estates",
+    "image": "images/project6.webp",
+    "description": "A modern residential building with a strong stone-like exterior and decorative design features. The balconies and bold color contrasts give the building a unique and powerful appearance.",
+    "town": "Yaounde",
+    "status": "Completed",
+    "timeline": "2023 - 2024"
+  },
+  {
+    "title": "The Meridian Foundation",
+    "category": "Estates",
+    "image": "images/project1.webp",
+    "description": "This project highlights the early construction stage of a large residential estate. The focus is on building a strong reinforced concrete structure that will support a safe and durable building.",
+    "town": "Yaoundé",
+    "status": "Under Construction",
+    "timeline": "2025 - 2026"
+  },
+  {
+    "title": "The Skyline Skeleton",
+    "category": "Estates",
+    "image": "images/project2.webp",
+    "description": "A multi-story residential building currently under construction. The design focuses on strong structural work and well-placed windows that allow natural light and good ventilation for every floor.",
+    "town": "Yaoundé",
+    "status": "In Progress",
+    "timeline": "2025 - Present"
+  },
+  {
+    "title": "The Highland Manor",
     "category": "Modern Homes",
-    "image": "images/project5.webp",
-    "description": "A sophisticated modern home featuring a distinctive flat-roof design and high-contrast exterior finishes.",
+    "image": "images/project3.webp",
+    "description": "A spacious home designed with a wide layout and a distinctive tiered roof. The house provides large interior spaces and a strong visual presence surrounded by natural greenery.",
+    "town": "Yaoundé",
+    "status": "In Progress",
+    "timeline": "2024 - 2025"
+  },
+  {
+    "title": "The Lions Gate Atrium",
+    "category": "Estates",
+    "image": "images/project7.webp",
+    "description": "A modern commercial and residential building with large glass windows and stylish wood accents. The design allows plenty of natural light and offers beautiful views of the surrounding city.",
     "town": "Limbe",
     "status": "Completed",
     "timeline": "2023 - 2024"
   },
   {
-    "title": "The Pavilion Estate",
-    "category": "Estates",
-    "image": "images/project7.webp",
-    "description": "A luxury estate development focused on expansive floor plans and seamless indoor-outdoor living spaces.",
-    "town": "Yaoundé",
-    "status": "In Progress",
-    "timeline": "2025 - 2026"
-  }, 
-  {
-    "title": "Ngog Hillside Manor",
-    "category": "Modern Homes",
-    "image": "images/ngog.webp",
-    "description": "An architectural masterpiece integrated into the natural landscape, focusing on sustainability and open-plan living.",
-    "town": "Douala",
-    "status": "Completed",
-    "timeline": "2022 - 2023"
-  },
-  {
-    "title": "The Crocodile Estate - Phase 2",
-    "category": "Estates",
-    "image": "images/crocotie2.webp",
-    "description": "The second phase of a gated community project, offering secure and modern family housing.",
-    "town": "Kribi",
-    "status": "In Progress",
-    "timeline": "2024 - 2026"
-  },
-  {
-    "title": "Urban Renewal Project 6",
-    "category": "Renovations",
-    "image": "images/project 6.webp",
-    "description": "A complete structural and aesthetic overhaul of an existing city building to meet modern safety and design standards.",
-    "town": "Buea",
-    "status": "Completed",
-    "timeline": "2023"
-  },
-  {
-    "title": "Modern Suburban Home",
-    "category": "Modern Homes",
-    "image": "images/project1.webp",
-    "description": "A contemporary single-family home featuring minimalist design and energy-efficient lighting systems.",
-    "town": "Limbe",
-    "status": "Completed",
-    "timeline": "2023"
-  },
-  {
-    "title": "Elite Villa Project 2",
-    "category": "Luxury Villas",
-    "image": "images/project2.webp",
-    "description": "A bespoke luxury villa designed with private amenities and high-end security features.",
-    "town": "Yaoundé",
-    "status": "Completed",
-    "timeline": "2022 - 2024"
-  },
-  {
-    "title": "Downtown Renovation Project 3",
-    "category": "Renovations",
-    "image": "images/project3.webp",
-    "description": "Revitalizing a historic building with modern interior design while preserving its exterior character.",
-    "town": "Douala",
-    "status": "Completed",
-    "timeline": "2024"
-  },
-  {
-    "title": "Heritage Estate Phase 1",
+    "title": "The Rosewood Columns",
     "category": "Estates",
     "image": "images/project4.webp",
-    "description": "Spacious residential estate focusing on community spaces and green living environments.",
-    "town": "Bafoussam",
-    "status": "In Progress",
-    "timeline": "2025 - 2027"
+    "description": "A multi-story residential building with a warm exterior color and elegant white columns. Spacious balconies and a secure gated design create a comfortable and attractive living environment.",
+    "town": "Yaoundé",
+    "status": "Completed",
+    "timeline": "2023 - 2024"
+  },
+  {
+    "title": "The Crimson Corner",
+    "category": "Estates",
+    "image": "images/project5.webp",
+    "description": "A modern residential building with bold colors and unique corner balconies. The design maximizes natural light and city views while giving the building a strong contemporary style.",
+    "town": "Yaoundé",
+    "status": "Completed",
+    "timeline": "2023 - 2024"
+  },
+  {
+    "title": "Modern Horizon Villa",
+    "category": "Modern Homes",
+    "image": "images/modern.webp",
+    "description": "A modern home designed with clean architectural lines and large windows that allow plenty of natural light. The design combines comfort, style, and open living spaces.",
+    "town": "Limbe",
+    "status": "Completed",
+    "timeline": "2023 - 2024"
+  },
+  {
+    "title": "Riverside Estate Development",
+    "category": "Estates",
+    "image": "images/uncompleted.webp",
+    "description": "A large residential estate currently under construction. The project focuses on building a strong structure that will support comfortable and modern living spaces.",
+    "town": "Douala",
+    "status": "Under Construction",
+    "timeline": "2025 - Present"
   }
 ]

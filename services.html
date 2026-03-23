@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
     <title>Construction Services in Cameroon | FAITH Construction</title>
     <meta name="description" content="Explore the comprehensive construction services offered by FAITH Construction, including architectural design, residential building, renovations, and project management.">
     <meta name="keywords" content="construction services, architectural design, residential construction, home renovation, project management, soil testing, real estate cameroon">
@@ -541,6 +545,38 @@
     <script src="navbar.js"></script>
     <script src="app-footer.js"></script>
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const faqButtons = document.querySelectorAll('.faq-btn');
+            faqButtons.forEach((button, index) => {
+                const panel = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                if (!panel) return;
+
+                const panelId = `services-faq-panel-${index + 1}`;
+                button.setAttribute('aria-expanded', 'false');
+                button.setAttribute('aria-controls', panelId);
+                panel.setAttribute('id', panelId);
+                panel.setAttribute('aria-hidden', 'true');
+
+                button.addEventListener('click', () => {
+                    const isOpen = button.getAttribute('aria-expanded') === 'true';
+                    if (isOpen) {
+                        button.setAttribute('aria-expanded', 'false');
+                        panel.setAttribute('aria-hidden', 'true');
+                        panel.classList.add('hidden');
+                        if (icon) icon.classList.remove('rotate-180');
+                        return;
+                    }
+
+                    button.setAttribute('aria-expanded', 'true');
+                    panel.setAttribute('aria-hidden', 'false');
+                    panel.classList.remove('hidden');
+                    if (icon) icon.classList.add('rotate-180');
+                });
+            });
+        });
+    </script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -587,3 +623,6 @@
     </script>
 </body>
 </html>
+
+
+
