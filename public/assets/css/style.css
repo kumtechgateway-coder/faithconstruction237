@@ -381,6 +381,279 @@ h1, h2, h3, h4, h5, h6 {
     text-shadow: 0 0 12px rgba(212, 179, 87, 0.6);
 }
 
+.pricing-section-shell {
+    background:
+        radial-gradient(circle at top right, rgba(212, 179, 87, 0.18), transparent 28%),
+        linear-gradient(180deg, #131313 0%, #1A1A1A 100%);
+}
+
+.pricing-frame {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 32px;
+    padding: 32px;
+    background:
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)),
+        rgba(255,255,255,0.02);
+    box-shadow: 0 30px 70px rgba(0,0,0,0.25);
+}
+
+.pricing-frame::before {
+    content: '';
+    position: absolute;
+    inset: -25% auto auto -8%;
+    width: 280px;
+    height: 280px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(212, 179, 87, 0.22) 0%, rgba(212, 179, 87, 0) 70%);
+    pointer-events: none;
+}
+
+.pricing-frame > * {
+    position: relative;
+    z-index: 1;
+}
+
+.pricing-lead {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.pricing-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    min-height: 100%;
+    padding: 28px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025)),
+        rgba(12, 12, 12, 0.72);
+    box-shadow: 0 18px 35px rgba(0,0,0,0.22);
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.pricing-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(212, 179, 87, 0.45);
+    box-shadow: 0 30px 45px rgba(0,0,0,0.3);
+}
+
+.pricing-card-featured {
+    border-color: rgba(212, 179, 87, 0.55);
+    background:
+        linear-gradient(180deg, rgba(212,179,87,0.18), rgba(255,255,255,0.03)),
+        rgba(19, 19, 19, 0.88);
+    transform: translateY(-12px);
+}
+
+.pricing-card-featured:hover {
+    transform: translateY(-18px);
+}
+
+.pricing-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 0.45rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(212, 179, 87, 0.14);
+    color: #E6C76A;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.pricing-card-top h3,
+.pricing-addon-heading h3,
+.pricing-addon-card h4,
+.pricing-note-panel h3 {
+    color: #ffffff;
+}
+
+.pricing-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #D4B357;
+}
+
+.pricing-tagline,
+.pricing-addon-heading p,
+.pricing-addon-card li,
+.pricing-note-panel p {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.pricing-price {
+    font-family: 'Lora', serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    line-height: 1;
+    color: #ffffff;
+}
+
+.pricing-feature-list {
+    list-style: none;
+    display: grid;
+    gap: 12px;
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.pricing-feature-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    line-height: 1.6;
+}
+
+.pricing-feature-list li::before {
+    content: '\f058';
+    position: absolute;
+    left: 0;
+    top: 0.1rem;
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: #D4B357;
+}
+
+.pricing-action {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    width: 100%;
+    padding: 0.95rem 1.2rem;
+    border-radius: 14px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
+}
+
+.pricing-action:hover {
+    transform: translateY(-4px);
+}
+
+.pricing-action-light {
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: #ffffff;
+    background: rgba(255,255,255,0.04);
+}
+
+.pricing-action-light:hover {
+    border-color: rgba(212, 179, 87, 0.55);
+    color: #1A1A1A;
+    background: #D4B357;
+    box-shadow: 0 18px 30px rgba(212, 179, 87, 0.2);
+}
+
+.pricing-action-gold {
+    color: #1A1A1A;
+    background: linear-gradient(135deg, #D4B357 0%, #E6C76A 100%);
+    box-shadow: 0 16px 28px rgba(212, 179, 87, 0.24);
+}
+
+.pricing-action-gold:hover {
+    box-shadow: 0 22px 34px rgba(212, 179, 87, 0.34);
+}
+
+.pricing-addons {
+    align-items: stretch;
+}
+
+.pricing-addon-panel,
+.pricing-note-panel {
+    border-radius: 24px;
+    padding: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pricing-addon-panel {
+    background: rgba(255,255,255,0.035);
+}
+
+.pricing-addon-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 24px;
+}
+
+.pricing-addon-card {
+    border-radius: 18px;
+    padding: 20px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.pricing-addon-card ul {
+    list-style: none;
+    display: grid;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.pricing-note-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    background:
+        linear-gradient(180deg, rgba(212,179,87,0.14), rgba(212,179,87,0)),
+        rgba(255,255,255,0.03);
+}
+
+.pricing-note-label {
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #D4B357;
+}
+
+.pricing-note-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.pricing-note-link:hover {
+    color: #E6C76A;
+}
+
+@media (max-width: 1024px) {
+    .pricing-card-featured,
+    .pricing-card-featured:hover {
+        transform: translateY(0);
+    }
+
+    .pricing-addon-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .pricing-frame {
+        padding: 22px;
+        border-radius: 24px;
+    }
+
+    .pricing-card,
+    .pricing-addon-panel,
+    .pricing-note-panel {
+        padding: 22px;
+    }
+}
+
 /* --- About Page Specifics --- */
 .about-hero-shell {
     position: relative;
@@ -1857,6 +2130,12 @@ html.dark {
 .dark .stat-card:hover,
 .dark .contact-card:hover {
     box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+}
+
+.dark .pricing-section-shell {
+    background:
+        radial-gradient(circle at top right, rgba(212, 179, 87, 0.16), transparent 28%),
+        linear-gradient(180deg, #0b0b0b 0%, #121212 100%);
 }
 
 .dark .about-story-point {
