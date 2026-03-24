@@ -1,27 +1,11 @@
 {
-  "functions": {
-    "source": ".",
-    "codebase": "default",
-    "ignore": [
-      ".firebase/**",
-      ".git/**",
-      ".gitignore",
-      ".vscode/**",
-      "docs/**",
-      "firebase-debug.log",
-      "firebase-debug.*.log*",
-      "node_modules/**",
-      "public/**",
-      "README.md"
-    ]
-  },
   "hosting": {
     "public": "public",
     "ignore": [
       "**/.*",
       "**/node_modules/**",
-        "assets/images/faith-brand-sticker.ai",
-        "assets/images/faith-brand-sticker.pdf"
+      "assets/images/faith-brand-sticker.ai",
+      "assets/images/faith-brand-sticker.pdf"
     ],
     "rewrites": [
       {
