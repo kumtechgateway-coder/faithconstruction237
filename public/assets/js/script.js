@@ -92,6 +92,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function refreshScrollAnimations() {
+        if (typeof AOS === 'undefined' || prefersReducedMotion) return;
+        window.requestAnimationFrame(() => {
+            AOS.refreshHard();
+        });
+    }
+
     // Initialize Lightbox
     if (typeof lightbox !== 'undefined' && document.querySelector('[data-lightbox]')) {
         lightbox.option({
@@ -164,6 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 fragment.appendChild(createProjectCard(project, index));
             });
             projectsGrid.appendChild(fragment);
+            refreshScrollAnimations();
         }
 
         // Render featured grid if it exists (limit to 3)
@@ -180,6 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 fragment.appendChild(createProjectCard(project, index));
             });
             featuredGrid.appendChild(fragment);
+            refreshScrollAnimations();
         }
     }
 
@@ -498,6 +507,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             track.appendChild(slideFragment);
             dotsContainer.appendChild(dotFragment);
+            refreshScrollAnimations();
             initializeTestimonialSlider(slider, track, dotsContainer, prevBtn, nextBtn);
         } catch (error) {
             console.error('Error loading testimonials:', error);
@@ -538,6 +548,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     fragment.appendChild(createReviewCard(review, index));
                 });
                 grid.appendChild(fragment);
+                refreshScrollAnimations();
             }
 
             renderGrid();
