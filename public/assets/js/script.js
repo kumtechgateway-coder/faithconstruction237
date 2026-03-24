@@ -483,8 +483,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const dotFragment = document.createDocumentFragment();
 
             featuredReviews.forEach((review, index) => {
-                const slide = createReviewCard(review, index);
-                slide.classList.add('w-full', 'flex-shrink-0');
+                const slide = document.createElement('div');
+                slide.className = 'review-slide w-full flex-shrink-0';
+
+                const card = createReviewCard(review, index);
+                slide.appendChild(card);
                 slideFragment.appendChild(slide);
 
                 const dot = document.createElement('button');

@@ -1029,6 +1029,21 @@ h1, h2, h3, h4, h5, h6 {
 .review-card {
     background: linear-gradient(180deg, #ffffff 0%, #fffdf7 100%);
     border-color: rgba(212, 179, 87, 0.25);
+    width: 100%;
+    max-width: 420px;
+    min-height: 420px;
+    margin-inline: auto;
+}
+
+.review-slide {
+    display: flex;
+    justify-content: center;
+    padding: 0.15rem 0.25rem;
+}
+
+.testimonials-grid .review-card {
+    max-width: 420px;
+    min-height: 420px;
 }
 
 .review-header {
@@ -1068,6 +1083,10 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.75;
     color: #374151;
     font-style: italic;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .review-meta {
@@ -1272,6 +1291,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 640px) {
+    .review-card {
+        min-height: 390px;
+    }
+
     .review-meta {
         flex-direction: column;
         align-items: flex-start;
