@@ -173,7 +173,7 @@
             <div class="text-center max-w-3xl mx-auto mb-20" data-aos="fade-up">
                 <div class="text-[#D4B357] text-sm tracking-[0.3em] mb-6">
                     <span class="inline-block w-12 h-0.5 bg-[#D4B357] mr-4 align-middle"></span>
-                    CLIENT FEEDBACK
+                    CLIENT TESTIMONIALS
                     <span class="inline-block w-12 h-0.5 bg-[#D4B357] ml-4 align-middle"></span>
                 </div>
                 <h2 class="text-3xl md:text-4xl font-bold text-[#1A1A1A] mb-8">
@@ -181,7 +181,7 @@
                 </h2>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="project-testimonials-grid">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 testimonials-grid" id="project-testimonials-grid">
                 <!-- Testimonials will be loaded dynamically -->
                 <p class="col-span-full text-center text-gray-500">Loading testimonials...</p>
             </div>
@@ -229,28 +229,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
     <script src="navbar.js"></script>
     <script src="app-footer.js"></script>
+    <script src="script.js"></script>
     <script>
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-        // Initialize AOS
-        if (typeof AOS !== 'undefined' && !prefersReducedMotion) {
-            AOS.init({
-                duration: 1000,
-                once: true,
-                offset: 100
-            });
-        }
-
-        // Initialize Lightbox
-        if (typeof lightbox !== 'undefined' && document.querySelector('[data-lightbox]')) {
-            lightbox.option({
-                'resizeDuration': 200,
-                'wrapAround': true,
-                'albumLabel': 'Project %1 of %2',
-                'fadeDuration': 300,
-                'imageFadeDuration': 300
-            });
-        }
 
         // Project Filtering
         const filterButtons = document.querySelectorAll('.filter-btn');
@@ -343,8 +324,8 @@
                         <span class="category-badge">${safeCategoryLabel}</span>
                     </div>
                     <div class="project-info">
-                        <h3>${safeTitle}</h3>
-                        <p>${safeDescription}</p>
+                        <h3 class="truncate">${safeTitle}</h3>
+                        <p class="line-clamp-3">${safeDescription}</p>
                         <a href="project-detail.html?title=${encodeURIComponent(project.title)}" class="view-details-btn">View Details</a>
                     </div>
                 `;
