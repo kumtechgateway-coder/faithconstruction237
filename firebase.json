@@ -20,8 +20,8 @@
     "ignore": [
       "**/.*",
       "**/node_modules/**",
-      "assets/images/sticker faith.ai",
-      "assets/images/sticker faith.pdf"
+        "assets/images/faith-brand-sticker.ai",
+        "assets/images/faith-brand-sticker.pdf"
     ],
     "rewrites": [
       {
