@@ -223,8 +223,8 @@
             </div>
 
             <div class="mx-auto max-w-3xl space-y-4" data-aos="fade-up">
-                <div class="overflow-hidden rounded-xl bg-white shadow-sm" data-aos="fade-up">
-                    <button class="faq-btn">
+                <div class="faq-item overflow-hidden rounded-xl bg-white shadow-sm" data-aos="fade-up">
+                    <button type="button" class="faq-btn">
                         <span class="font-semibold text-base">How do I get a quote for my project?</span>
                         <i class="fas fa-chevron-down text-[#D4B357] transition-transform"></i>
                     </button>
@@ -233,8 +233,8 @@
                     </div>
                 </div>
 
-                <div class="overflow-hidden rounded-xl bg-white shadow-sm" data-aos="fade-up" data-aos-delay="100">
-                    <button class="faq-btn">
+                <div class="faq-item overflow-hidden rounded-xl bg-white shadow-sm" data-aos="fade-up" data-aos-delay="100">
+                    <button type="button" class="faq-btn">
                         <span class="font-semibold text-base">What areas do you serve?</span>
                         <i class="fas fa-chevron-down text-[#D4B357] transition-transform"></i>
                     </button>
@@ -243,8 +243,8 @@
                     </div>
                 </div>
 
-                <div class="overflow-hidden rounded-xl bg-white shadow-sm" data-aos="fade-up" data-aos-delay="200">
-                    <button class="faq-btn">
+                <div class="faq-item overflow-hidden rounded-xl bg-white shadow-sm" data-aos="fade-up" data-aos-delay="200">
+                    <button type="button" class="faq-btn">
                         <span class="font-semibold text-base">How long does a typical project take?</span>
                         <i class="fas fa-chevron-down text-[#D4B357] transition-transform"></i>
                     </button>
@@ -253,8 +253,8 @@
                     </div>
                 </div>
 
-                <div class="overflow-hidden rounded-xl bg-white shadow-sm" data-aos="fade-up" data-aos-delay="300">
-                    <button class="faq-btn">
+                <div class="faq-item overflow-hidden rounded-xl bg-white shadow-sm" data-aos="fade-up" data-aos-delay="300">
+                    <button type="button" class="faq-btn">
                         <span class="font-semibold text-base">Do you offer free consultations?</span>
                         <i class="fas fa-chevron-down text-[#D4B357] transition-transform"></i>
                     </button>
@@ -263,8 +263,8 @@
                     </div>
                 </div>
 
-                <div class="overflow-hidden rounded-xl bg-white shadow-sm" data-aos="fade-up" data-aos-delay="400">
-                    <button class="faq-btn">
+                <div class="faq-item overflow-hidden rounded-xl bg-white shadow-sm" data-aos="fade-up" data-aos-delay="400">
+                    <button type="button" class="faq-btn">
                         <span class="font-semibold text-base">What payment options do you accept?</span>
                         <i class="fas fa-chevron-down text-[#D4B357] transition-transform"></i>
                     </button>
@@ -368,6 +368,20 @@
             }
 
             const faqBtns = document.querySelectorAll('.faq-btn');
+            const closeFaq = (btn, answer, icon) => {
+                btn.setAttribute('aria-expanded', 'false');
+                answer.setAttribute('aria-hidden', 'true');
+                answer.style.maxHeight = '0px';
+                icon.classList.remove('rotate-180');
+            };
+
+            const openFaq = (btn, answer, icon) => {
+                btn.setAttribute('aria-expanded', 'true');
+                answer.setAttribute('aria-hidden', 'false');
+                answer.style.maxHeight = `${answer.scrollHeight}px`;
+                icon.classList.add('rotate-180');
+            };
+
             faqBtns.forEach((btn) => {
                 const answer = btn.nextElementSibling;
                 const icon = btn.querySelector('i');
@@ -382,17 +396,26 @@
                 btn.addEventListener('click', () => {
                     const isOpen = btn.getAttribute('aria-expanded') === 'true';
                     if (isOpen) {
-                        btn.setAttribute('aria-expanded', 'false');
-                        answer.setAttribute('aria-hidden', 'true');
-                        answer.style.maxHeight = '0px';
-                        icon.classList.remove('rotate-180');
+                        closeFaq(btn, answer, icon);
                         return;
                     }
 
-                    btn.setAttribute('aria-expanded', 'true');
-                    answer.setAttribute('aria-hidden', 'false');
+                    faqBtns.forEach((otherBtn) => {
+                        if (otherBtn === btn) return;
+                        const otherAnswer = otherBtn.nextElementSibling;
+                        const otherIcon = otherBtn.querySelector('i');
+                        closeFaq(otherBtn, otherAnswer, otherIcon);
+                    });
+
+                    openFaq(btn, answer, icon);
+                });
+            });
+
+            window.addEventListener('resize', () => {
+                faqBtns.forEach((btn) => {
+                    if (btn.getAttribute('aria-expanded') !== 'true') return;
+                    const answer = btn.nextElementSibling;
                     answer.style.maxHeight = `${answer.scrollHeight}px`;
-                    icon.classList.add('rotate-180');
                 });
             });
 
