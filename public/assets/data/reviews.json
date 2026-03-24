@@ -1,27 +1,82 @@
 [
   {
-    "quote": "FAITH Construction transformed our vision into a masterpiece. Their attention to detail, professionalism, and commitment to quality exceeded our expectations. They didn't just build a house; they created our dream home.",
+    "quote": "FAITH Construction transformed our vision into a masterpiece. Their attention to detail, professionalism, and commitment to quality exceeded our expectations. They did not just build a house; they created our dream home.",
     "author": "Jean-Pierre Djoufack",
-    "location": "Bonapriso Residence, Douala"
+    "location": "Bonapriso Residence, Douala",
+    "rating": 5,
+    "service": "Custom Home Build",
+    "projectType": "Luxury Villa",
+    "year": 2025,
+    "verified": true
   },
   {
     "quote": "The renovation of our family estate was handled with such care. They preserved the history while adding modern luxury. Truly exceptional work.",
     "author": "Marie Etoa",
-    "location": "Bastos Renovation, Yaoundé"
+    "location": "Bastos Renovation, Yaounde",
+    "rating": 5,
+    "service": "Renovation and Remodeling",
+    "projectType": "Family Estate",
+    "year": 2024,
+    "verified": true
   },
   {
     "quote": "FAITH Construction built our dream villa in Bastos. The attention to detail and quality of craftsmanship is exceptional. They truly deliver on their promises.",
     "author": "Michel Tchouta",
-    "location": "Bastos Villa Owner"
+    "location": "Bastos Villa Owner, Yaounde",
+    "rating": 5,
+    "service": "Architectural Design",
+    "projectType": "Modern Home",
+    "year": 2025,
+    "verified": true
   },
   {
     "quote": "The renovation of our family home in Bonanjo was handled with such care and professionalism. They preserved the heritage while adding modern comforts.",
     "author": "Helene Ewane",
-    "location": "Bonanjo Residence"
+    "location": "Bonanjo Residence, Douala",
+    "rating": 4,
+    "service": "Interior and Exterior Finishing",
+    "projectType": "Residential Renovation",
+    "year": 2024,
+    "verified": true
   },
   {
     "quote": "Working with FAITH on our Kribi beach house was a pleasure. Their team's expertise and dedication made the entire process smooth and enjoyable.",
     "author": "Paul Nganou",
-    "location": "Kribi Beach House"
+    "location": "Kribi Beach House, Kribi",
+    "rating": 5,
+    "service": "Project Management",
+    "projectType": "Luxury Home",
+    "year": 2025,
+    "verified": true
+  },
+  {
+    "quote": "Their soil testing and site analysis helped us avoid expensive structural problems before construction started. The report was clear and practical.",
+    "author": "Celine Mbia",
+    "location": "Ndogbong Plot, Douala",
+    "rating": 4,
+    "service": "Soil Testing and Site Analysis",
+    "projectType": "Site Preparation",
+    "year": 2023,
+    "verified": true
+  },
+  {
+    "quote": "From permit support to final handover, the communication stayed professional. We always knew what phase we were in and what came next.",
+    "author": "Armand Ewane",
+    "location": "Odza Duplex, Yaounde",
+    "rating": 5,
+    "service": "Residential Construction",
+    "projectType": "Duplex",
+    "year": 2024,
+    "verified": true
+  },
+  {
+    "quote": "Our property upgrade delivered exactly the modern look we wanted, while keeping the structure strong and safe. The finishing quality stands out.",
+    "author": "Nadine Foko",
+    "location": "Makepe Residence, Douala",
+    "rating": 4,
+    "service": "Renovation and Remodeling",
+    "projectType": "Property Upgrade",
+    "year": 2025,
+    "verified": true
   }
 ]
