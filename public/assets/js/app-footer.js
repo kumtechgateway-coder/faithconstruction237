@@ -65,6 +65,7 @@ class AppFooter extends HTMLElement {
                             </li>
                         </ul>
                         <div class="flex space-x-4 mt-6">
+                            <a href="https://www.facebook.com/profile.php?id=100076953641937" target="_blank" rel="noopener noreferrer" aria-label="Visit Faith Construction on Facebook" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#1877F2] hover:text-white transition-all"><i class="fab fa-facebook-f"></i></a>
                             <a href="https://wa.me/237674942469" target="_blank" rel="noopener noreferrer" aria-label="Chat with Faith Construction on WhatsApp" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all"><i class="fab fa-whatsapp"></i></a>
                             <a href="mailto:faithconstruction8@gmail.com" aria-label="Email Faith Construction" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all"><i class="fas fa-envelope"></i></a>
                             <a href="tel:+237674942469" aria-label="Call Faith Construction" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-[#D4B357] hover:text-[#1A1A1A] transition-all"><i class="fas fa-phone-alt"></i></a>
