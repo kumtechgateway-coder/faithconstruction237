@@ -2,36 +2,97 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.faithconstruction237.com/index.html</loc>
-    <lastmod>2026-03-13</lastmod>
+    <lastmod>2026-03-24</lastmod>
     <priority>1.00</priority>
   </url>
   <url>
     <loc>https://www.faithconstruction237.com/about.html</loc>
-    <lastmod>2026-03-13</lastmod>
+    <lastmod>2026-03-24</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://www.faithconstruction237.com/services.html</loc>
-    <lastmod>2026-03-13</lastmod>
+    <lastmod>2026-03-24</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://www.faithconstruction237.com/projects.html</loc>
-    <lastmod>2026-03-13</lastmod>
+    <lastmod>2026-03-24</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://www.faithconstruction237.com/contact.html</loc>
-    <lastmod>2026-03-13</lastmod>
+    <lastmod>2026-03-24</lastmod>
     <priority>0.80</priority>
   </url>
-  <!-- 
-    Project detail pages should be added here dynamically when your sitemap is generated.
-    For example:
-    <url>
-      <loc>https://www.faithconstruction237.com/project-detail.html?title=Bono%20Luxury%20Residence</loc>
-      <lastmod>2026-03-13</lastmod>
-      <priority>0.64</priority>
-    </url>
-  -->
+  <url>
+    <loc>https://www.faithconstruction237.com/project-detail.html?title=The%20Arched%20Pavilion</loc>
+    <lastmod>2026-03-24</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.faithconstruction237.com/project-detail.html?title=The%20Mosaic%20Terracotta</loc>
+    <lastmod>2026-03-24</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.faithconstruction237.com/project-detail.html?title=The%20Amber%20Meridian</loc>
+    <lastmod>2026-03-24</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.faithconstruction237.com/project-detail.html?title=The%20Terracotta%20Collective</loc>
+    <lastmod>2026-03-24</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.faithconstruction237.com/project-detail.html?title=The%20Crimson%20Crest%20Estate</loc>
+    <lastmod>2026-03-24</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.faithconstruction237.com/project-detail.html?title=The%20Graphite%20Monolith</loc>
+    <lastmod>2026-03-24</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.faithconstruction237.com/project-detail.html?title=The%20Meridian%20Foundation</loc>
+    <lastmod>2026-03-24</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.faithconstruction237.com/project-detail.html?title=The%20Skyline%20Skeleton</loc>
+    <lastmod>2026-03-24</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.faithconstruction237.com/project-detail.html?title=The%20Highland%20Manor</loc>
+    <lastmod>2026-03-24</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.faithconstruction237.com/project-detail.html?title=The%20Lions%20Gate%20Atrium</loc>
+    <lastmod>2026-03-24</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.faithconstruction237.com/project-detail.html?title=The%20Rosewood%20Columns</loc>
+    <lastmod>2026-03-24</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.faithconstruction237.com/project-detail.html?title=The%20Crimson%20Corner</loc>
+    <lastmod>2026-03-24</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.faithconstruction237.com/project-detail.html?title=Modern%20Horizon%20Villa</loc>
+    <lastmod>2026-03-24</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.faithconstruction237.com/project-detail.html?title=Riverside%20Estate%20Development</loc>
+    <lastmod>2026-03-24</lastmod>
+    <priority>0.64</priority>
+  </url>
 </urlset>

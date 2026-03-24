@@ -296,30 +296,28 @@
 
             const projectSchema = {
                 "@context": "https://schema.org",
-                "@type": "Product", // Using Product for rich details like brand and offers
+                "@type": "CreativeWork",
                 "name": project.title,
+                "url": projectUrl,
                 "image": imageUrl,
                 "description": project.description,
-                "brand": {
-                    "@type": "Brand",
-                    "name": "FAITH Construction"
+                "creator": {
+                    "@type": "Organization",
+                    "name": "FAITH Construction",
+                    "url": "https://www.faithconstruction237.com"
                 },
-                "offers": {
-                    "@type": "Offer",
-                    "url": projectUrl,
-                    "priceCurrency": "XAF", // CFA Franc
-                    "availability": project.status === 'Completed' ? "https://schema.org/Discontinued" : "https://schema.org/InStock",
-                    "seller": {
-                        "@type": "LocalBusiness",
-                        "name": "FAITH Construction",
-                        "url": "https://www.faithconstruction237.com"
-                    }
-                },
-                "additionalProperty": [
-                    { "@type": "PropertyValue", "name": "Category", "value": project.category },
-                    { "@type": "PropertyValue", "name": "Location", "value": project.town },
-                    { "@type": "PropertyValue", "name": "Timeline", "value": project.timeline }
-                ]
+                "about": [
+                    project.category,
+                    project.town,
+                    project.status
+                ].filter(Boolean),
+                "keywords": [
+                    project.category,
+                    project.town,
+                    project.status,
+                    "FAITH Construction project"
+                ].filter(Boolean).join(", "),
+                "mainEntityOfPage": projectUrl
             };
             schemaScript.textContent = JSON.stringify(projectSchema, null, 2);
         }

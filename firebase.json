@@ -1,4 +1,20 @@
 {
+  "functions": {
+    "source": ".",
+    "codebase": "default",
+    "ignore": [
+      ".firebase/**",
+      ".git/**",
+      ".gitignore",
+      ".vscode/**",
+      "docs/**",
+      "firebase-debug.log",
+      "firebase-debug.*.log*",
+      "node_modules/**",
+      "public/**",
+      "README.md"
+    ]
+  },
   "hosting": {
     "public": "public",
     "ignore": [
@@ -8,6 +24,10 @@
       "assets/images/sticker faith.pdf"
     ],
     "rewrites": [
+      {
+        "source": "/api/contact",
+        "function": "submitContactForm"
+      },
       {
         "source": "**",
         "destination": "/index.html"

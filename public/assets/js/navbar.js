@@ -77,7 +77,7 @@ class AppNavbar extends HTMLElement {
                             </button>
                             <div class="text-right hidden xl:block">
                                 <div class="text-[#D4B357] text-sm font-light">24/7 SUPPORT</div>
-                                <div class="text-white text-lg font-semibold dark:text-white">+237 674 942 469</div>
+                                <div class="text-white text-lg font-semibold">+237 674 942 469</div>
                             </div>
                             <a href="contact.html" class="btn-ripple-nav bg-[#D4B357] hover:bg-[#B8963F] text-[#1A1A1A] px-6 py-3 rounded-md text-sm font-semibold transition-all duration-300 transform hover:scale-110 hover:-translate-y-3 hover:shadow-2xl">
                                 GET QUOTE
@@ -104,14 +104,14 @@ class AppNavbar extends HTMLElement {
                     ${mobileLinks}
                 </div>
                 <div class="absolute bottom-10 left-10 right-10">
-                    <div class="border-t border-gray-700 dark:border-gray-800 pt-8">
+                    <div class="border-t border-gray-700 pt-8">
                         <div class="text-[#D4B357] mb-2 text-sm">CALL US</div>
                         <div class="text-white text-xl font-semibold mb-6">+237 674 942 469</div>
                         <div class="flex items-center justify-center gap-4">
                             <a href="contact.html" class="btn-ripple-nav block text-center bg-[#D4B357] hover:bg-[#B8963F] text-[#1A1A1A] px-6 py-4 rounded-md text-sm font-semibold transition-all transform hover:scale-110 hover:-translate-y-3 hover:shadow-2xl flex-grow">
                                 GET A QUOTE
                             </a>
-                            <button type="button" aria-label="Toggle theme" class="theme-toggle-btn text-gray-400 hover:text-white p-4 rounded-lg text-sm bg-gray-800/50 dark:bg-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4B357] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1A1A1A]">
+                            <button type="button" aria-label="Toggle theme" class="theme-toggle-btn text-gray-400 hover:text-white p-4 rounded-lg text-sm bg-gray-800/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4B357] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1A1A1A]">
                                 <i class="fas fa-moon text-xl"></i>
                                 <i class="fas fa-sun text-xl hidden"></i>
                             </button>

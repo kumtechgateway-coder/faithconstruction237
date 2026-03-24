@@ -131,26 +131,56 @@
     <section id="contactForm" class="py-16 md:py-24 bg-white overflow-hidden">
         <div class="container mx-auto px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
-                <!-- Selection Logic -->
-                <div class="bg-[#F8F8F8] rounded-3xl p-8 md:p-12" data-aos="fade-right">
-                    <h2 class="text-3xl font-bold text-[#1A1A1A] mb-6">How do you prefer to connect?</h2>
-                    
-                    <p class="text-gray-600 mb-10 text-lg">
-                        Select your preferred communication channel below and we'll connect you directly with our team.
+                <!-- Inquiry Form -->
+                <form id="contactInquiryForm" class="bg-[#F8F8F8] rounded-3xl p-8 md:p-12" data-aos="fade-right" novalidate>
+                    <h2 class="text-3xl font-bold text-[#1A1A1A] mb-6">Tell Us About Your Project</h2>
+
+                    <p class="text-gray-600 mb-8 text-lg">
+                        Send us your project details and choose how you want us to follow up. We will review your request and get back to you quickly.
                     </p>
                     <p id="selectedService" class="hidden mb-6 rounded-lg border border-[#D4B357]/40 bg-[#D4B357]/10 px-4 py-3 text-sm font-semibold text-[#1A1A1A]"></p>
+                    <div id="contactFeedback" class="hidden mb-6 rounded-lg border px-4 py-3 text-sm font-medium"></div>
 
-                    <div class="space-y-4 mb-10">
-                        <!-- Email Option -->
+                    <input type="hidden" id="serviceField" name="service">
+                    <input type="hidden" id="formStartedAt" name="formStartedAt">
+                    <input type="text" id="websiteField" name="website" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+                    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+                        <label class="block">
+                            <span class="block text-sm font-semibold text-[#1A1A1A] mb-2">Full Name</span>
+                            <input id="contactName" name="name" type="text" required autocomplete="name" class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-[#1A1A1A] outline-none transition focus:border-[#D4B357] focus:ring-2 focus:ring-[#D4B357]/20">
+                        </label>
+                        <label class="block">
+                            <span class="block text-sm font-semibold text-[#1A1A1A] mb-2">Email Address</span>
+                            <input id="contactEmail" name="email" type="email" required autocomplete="email" class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-[#1A1A1A] outline-none transition focus:border-[#D4B357] focus:ring-2 focus:ring-[#D4B357]/20">
+                        </label>
+                        <label class="block">
+                            <span class="block text-sm font-semibold text-[#1A1A1A] mb-2">Phone Number</span>
+                            <input id="contactPhone" name="phone" type="tel" autocomplete="tel" class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-[#1A1A1A] outline-none transition focus:border-[#D4B357] focus:ring-2 focus:ring-[#D4B357]/20">
+                        </label>
+                        <label class="block">
+                            <span class="block text-sm font-semibold text-[#1A1A1A] mb-2">Estimated Budget</span>
+                            <input id="contactBudget" name="budget" type="text" placeholder="Optional" class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-[#1A1A1A] outline-none transition focus:border-[#D4B357] focus:ring-2 focus:ring-[#D4B357]/20">
+                        </label>
+                    </div>
+
+                    <label class="block mb-6">
+                        <span class="block text-sm font-semibold text-[#1A1A1A] mb-2">Subject</span>
+                        <input id="contactSubject" name="subject" type="text" required class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-[#1A1A1A] outline-none transition focus:border-[#D4B357] focus:ring-2 focus:ring-[#D4B357]/20">
+                    </label>
+
+                    <div class="space-y-4 mb-8">
+                        <p class="text-sm font-semibold text-[#1A1A1A]">Preferred Contact Method</p>
+
                         <label class="block relative cursor-pointer group">
                             <input type="radio" name="contact-method" value="email" checked class="peer sr-only">
-                            <div class="p-6 bg-white border-2 border-transparent rounded-xl shadow-sm transition-all duration-300 peer-checked:border-[#D4B357] peer-checked:shadow-lg peer-checked:scale-[1.02] hover:border-gray-200 flex items-center">
+                            <div class="p-5 bg-white border-2 border-transparent rounded-xl shadow-sm transition-all duration-300 peer-checked:border-[#D4B357] peer-checked:shadow-lg hover:border-gray-200 flex items-center">
                                 <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 peer-checked:bg-[#D4B357] peer-checked:text-[#1A1A1A] transition-colors">
                                     <i class="fas fa-envelope text-xl"></i>
                                 </div>
                                 <div class="ml-5">
-                                    <h4 class="font-bold text-[#1A1A1A] text-lg">Send an Email</h4>
-                                    <p class="text-sm text-gray-500">Best for detailed inquiries & quotes</p>
+                                    <h4 class="font-bold text-[#1A1A1A] text-lg">Email</h4>
+                                    <p class="text-sm text-gray-500">Best for detailed quotes and timelines</p>
                                 </div>
                                 <div class="ml-auto opacity-0 peer-checked:opacity-100 transition-opacity">
                                     <i class="fas fa-check-circle text-[#D4B357] text-2xl"></i>
@@ -158,16 +188,15 @@
                             </div>
                         </label>
 
-                        <!-- Phone Option -->
                         <label class="block relative cursor-pointer group">
                             <input type="radio" name="contact-method" value="phone" class="peer sr-only">
-                            <div class="p-6 bg-white border-2 border-transparent rounded-xl shadow-sm transition-all duration-300 peer-checked:border-[#D4B357] peer-checked:shadow-lg peer-checked:scale-[1.02] hover:border-gray-200 flex items-center">
+                            <div class="p-5 bg-white border-2 border-transparent rounded-xl shadow-sm transition-all duration-300 peer-checked:border-[#D4B357] peer-checked:shadow-lg hover:border-gray-200 flex items-center">
                                 <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 peer-checked:bg-[#D4B357] peer-checked:text-[#1A1A1A] transition-colors">
                                     <i class="fas fa-phone-alt text-xl"></i>
                                 </div>
                                 <div class="ml-5">
                                     <h4 class="font-bold text-[#1A1A1A] text-lg">Phone Call</h4>
-                                    <p class="text-sm text-gray-500">Immediate assistance</p>
+                                    <p class="text-sm text-gray-500">Ideal if you want to talk through the scope</p>
                                 </div>
                                 <div class="ml-auto opacity-0 peer-checked:opacity-100 transition-opacity">
                                     <i class="fas fa-check-circle text-[#D4B357] text-2xl"></i>
@@ -175,16 +204,15 @@
                             </div>
                         </label>
 
-                        <!-- WhatsApp Option -->
                         <label class="block relative cursor-pointer group">
                             <input type="radio" name="contact-method" value="whatsapp" class="peer sr-only">
-                            <div class="p-6 bg-white border-2 border-transparent rounded-xl shadow-sm transition-all duration-300 peer-checked:border-[#D4B357] peer-checked:shadow-lg peer-checked:scale-[1.02] hover:border-gray-200 flex items-center">
+                            <div class="p-5 bg-white border-2 border-transparent rounded-xl shadow-sm transition-all duration-300 peer-checked:border-[#D4B357] peer-checked:shadow-lg hover:border-gray-200 flex items-center">
                                 <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 peer-checked:bg-[#D4B357] peer-checked:text-[#1A1A1A] transition-colors">
                                     <i class="fab fa-whatsapp text-2xl"></i>
                                 </div>
                                 <div class="ml-5">
-                                    <h4 class="font-bold text-[#1A1A1A] text-lg">WhatsApp Chat</h4>
-                                    <p class="text-sm text-gray-500">Quick chat & updates</p>
+                                    <h4 class="font-bold text-[#1A1A1A] text-lg">WhatsApp</h4>
+                                    <p class="text-sm text-gray-500">Great for quick updates and back-and-forth questions</p>
                                 </div>
                                 <div class="ml-auto opacity-0 peer-checked:opacity-100 transition-opacity">
                                     <i class="fas fa-check-circle text-[#D4B357] text-2xl"></i>
@@ -193,11 +221,27 @@
                         </label>
                     </div>
 
-                    <button id="performContactBtn" class="w-full bg-[#1A1A1A] hover:bg-[#D4B357] hover:text-[#1A1A1A] text-white font-bold py-5 rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-xl flex items-center justify-center gap-3">
-                        <span>Connect Now</span>
-                        <i class="fas fa-arrow-right"></i>
+                    <label class="block mb-8">
+                        <span class="block text-sm font-semibold text-[#1A1A1A] mb-2">Project Details</span>
+                        <textarea id="contactMessage" name="message" rows="6" required placeholder="Tell us about the project, location, timeline, and any specific goals." class="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-[#1A1A1A] outline-none transition focus:border-[#D4B357] focus:ring-2 focus:ring-[#D4B357]/20"></textarea>
+                    </label>
+
+                    <button id="performContactBtn" type="submit" class="w-full bg-[#1A1A1A] hover:bg-[#D4B357] hover:text-[#1A1A1A] text-white font-bold py-5 rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-xl flex items-center justify-center gap-3 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100">
+                        <i id="contactButtonSpinner" class="fas fa-spinner fa-spin hidden" aria-hidden="true"></i>
+                        <span id="contactButtonLabel">Send Inquiry</span>
                     </button>
-                </div>
+
+                    <div class="mt-6 flex flex-wrap gap-3 text-sm">
+                        <a href="tel:+237674942469" class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 font-semibold text-[#1A1A1A] shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+                            <i class="fas fa-phone-alt text-[#D4B357]"></i>
+                            Call Directly
+                        </a>
+                        <a href="https://wa.me/237674942469" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 font-semibold text-[#1A1A1A] shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+                            <i class="fab fa-whatsapp text-[#25D366]"></i>
+                            WhatsApp Us
+                        </a>
+                    </div>
+                </form>
 
                 <!-- Map & Additional Info -->
                 <div class="space-y-8" data-aos="fade-left">
@@ -258,7 +302,7 @@
                         <i class="fas fa-chevron-down text-[#D4B357] transition-transform"></i>
                     </button>
                     <div class="faq-answer px-5 pb-5">
-                        <p>Simply fill out our contact form or give us a call. We'll schedule a consultation to discuss your project details, take measurements, and provide you with a detailed quote within 48 hours.</p>
+                        <p>Send us your inquiry form or give us a call. We will review your project details, schedule a consultation if needed, and follow up with the right next steps.</p>
                     </div>
                 </div>
 
@@ -455,23 +499,130 @@
                 });
             });
 
+            const overlay = document.getElementById('overlay');
+            const successMessage = document.getElementById('successMessage');
+            const successHeading = document.getElementById('success-heading');
+            const successBody = successMessage ? successMessage.querySelector('p') : null;
             const selectedServiceTag = document.getElementById('selectedService');
+            const serviceField = document.getElementById('serviceField');
+            const formStartedAtField = document.getElementById('formStartedAt');
+            const contactForm = document.getElementById('contactInquiryForm');
+            const contactFeedback = document.getElementById('contactFeedback');
+            const contactButton = document.getElementById('performContactBtn');
+            const contactButtonLabel = document.getElementById('contactButtonLabel');
+            const contactButtonSpinner = document.getElementById('contactButtonSpinner');
+            const subjectField = document.getElementById('contactSubject');
             const serviceName = new URLSearchParams(window.location.search).get('service');
+
+            const setFormStartTime = () => {
+                if (formStartedAtField) {
+                    formStartedAtField.value = String(Date.now());
+                }
+            };
+
+            const setFeedback = (message, type) => {
+                if (!contactFeedback) return;
+                const isError = type === 'error';
+                contactFeedback.className = `mb-6 rounded-lg border px-4 py-3 text-sm font-medium ${
+                    isError
+                        ? 'border-red-200 bg-red-50 text-red-700'
+                        : 'border-green-200 bg-green-50 text-green-700'
+                }`;
+                contactFeedback.textContent = message;
+                contactFeedback.classList.remove('hidden');
+            };
+
+            const hideFeedback = () => {
+                if (!contactFeedback) return;
+                contactFeedback.classList.add('hidden');
+                contactFeedback.textContent = '';
+            };
+
+            const showSuccessMessage = (preferredMethod) => {
+                if (successHeading) {
+                    successHeading.textContent = 'Inquiry Sent';
+                }
+                if (successBody) {
+                    const followUpCopy = {
+                        email: 'We have received your request and will reply by email as soon as possible.',
+                        phone: 'We have received your request and will reach out by phone as soon as possible.',
+                        whatsapp: 'We have received your request and will follow up on WhatsApp as soon as possible.'
+                    };
+                    successBody.textContent = followUpCopy[preferredMethod] || followUpCopy.email;
+                }
+                if (overlay) overlay.classList.add('show');
+                if (successMessage) successMessage.classList.add('show');
+            };
+
             if (serviceName && selectedServiceTag) {
                 selectedServiceTag.textContent = `Selected service: ${serviceName}`;
                 selectedServiceTag.classList.remove('hidden');
             }
+            if (serviceField) {
+                serviceField.value = serviceName || 'General Inquiry';
+            }
+            if (serviceName && subjectField && !subjectField.value) {
+                subjectField.value = `Inquiry about ${serviceName}`;
+            }
+            setFormStartTime();
 
-            const contactBtn = document.getElementById('performContactBtn');
-            if (contactBtn) {
-                contactBtn.addEventListener('click', () => {
-                    const selectedMethod = document.querySelector('input[name="contact-method"]:checked').value;
-                    if (selectedMethod === 'email') {
-                        window.location.href = 'mailto:faithconstruction8@gmail.com';
-                    } else if (selectedMethod === 'phone') {
-                        window.location.href = 'tel:+237674942469';
-                    } else if (selectedMethod === 'whatsapp') {
-                        window.open('https://wa.me/237674942469', '_blank', 'noopener,noreferrer');
+            if (contactForm && contactButton && contactButtonLabel && contactButtonSpinner) {
+                contactForm.addEventListener('submit', async (event) => {
+                    event.preventDefault();
+                    hideFeedback();
+
+                    const formData = new FormData(contactForm);
+                    const preferredMethod = formData.get('contact-method');
+                    const payload = {
+                        name: formData.get('name'),
+                        email: formData.get('email'),
+                        phone: formData.get('phone'),
+                        budget: formData.get('budget'),
+                        subject: formData.get('subject'),
+                        service: formData.get('service'),
+                        message: formData.get('message'),
+                        contactMethod: preferredMethod,
+                        website: formData.get('website'),
+                        formStartedAt: formData.get('formStartedAt')
+                    };
+
+                    contactButton.disabled = true;
+                    contactButtonSpinner.classList.remove('hidden');
+                    contactButtonLabel.textContent = 'Sending Inquiry...';
+
+                    try {
+                        const response = await fetch('/api/contact', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(payload)
+                        });
+
+                        const result = await response.json().catch(() => ({}));
+                        if (!response.ok) {
+                            throw new Error(result.error || 'We could not send your inquiry right now.');
+                        }
+
+                        contactForm.reset();
+                        const emailOption = contactForm.querySelector('input[name="contact-method"][value="email"]');
+                        if (emailOption) {
+                            emailOption.checked = true;
+                        }
+                        if (serviceField) {
+                            serviceField.value = serviceName || 'General Inquiry';
+                        }
+                        if (serviceName && subjectField) {
+                            subjectField.value = `Inquiry about ${serviceName}`;
+                        }
+                        setFormStartTime();
+                        showSuccessMessage(preferredMethod);
+                    } catch (error) {
+                        setFeedback(error.message, 'error');
+                    } finally {
+                        contactButton.disabled = false;
+                        contactButtonSpinner.classList.add('hidden');
+                        contactButtonLabel.textContent = 'Send Inquiry';
                     }
                 });
             }
