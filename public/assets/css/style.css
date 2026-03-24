@@ -1919,6 +1919,29 @@ html.dark {
 .dark .bg-gray-100 { background-color: #2D3748 !important; }
 .dark .bg-gray-800 { background-color: #1A202C !important; }
 
+/* About Page Theme Support */
+.dark .about-page .bg-\[\#F6F2EA\] {
+    background-color: #121212 !important;
+}
+
+.dark .about-page .bg-\[\#f8f4eb\],
+.dark .about-page .bg-\[\#faf7f0\] {
+    background-color: #181818 !important;
+    border: 1px solid #2D3748;
+}
+
+.dark .about-page .bg-\[\#f5e7ba\] {
+    background:
+        linear-gradient(180deg, rgba(212, 179, 87, 0.14), rgba(212, 179, 87, 0.04)),
+        #1d1a12 !important;
+    border: 1px solid rgba(212, 179, 87, 0.22);
+}
+
+.dark .about-page .text-\[\#6c5720\],
+.dark .about-page .text-\[\#4c4433\] {
+    color: #f1df9a !important;
+}
+
 /* --- Reduced Motion --- */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
