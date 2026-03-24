@@ -24,21 +24,22 @@ document.addEventListener('DOMContentLoaded', () => {
         return request;
     }
 
-    function pickRandomItems(items, count) {
-        const shuffled = [...items];
-        for (let i = shuffled.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-        }
-        return shuffled.slice(0, count);
-    }
-
     function slugify(value) {
         return String(value || '')
             .toLowerCase()
             .trim()
             .replace(/[^a-z0-9]+/g, '-')
             .replace(/^-+|-+$/g, '');
+    }
+
+    function getSharedReviewSet(reviews, limit = 6) {
+        return [...reviews]
+            .sort((a, b) => {
+                if (b.year !== a.year) return b.year - a.year;
+                if (b.rating !== a.rating) return b.rating - a.rating;
+                return a.author.localeCompare(b.author);
+            })
+            .slice(0, Math.min(limit, reviews.length));
     }
 
     function clampRating(value) {
@@ -121,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
             gridId: 'testimonials-grid',
             summaryId: 'testimonials-summary',
             filterId: 'testimonials-filter',
-            reviewSelector: reviews => reviews.slice(-6)
+            reviewSelector: reviews => getSharedReviewSet(reviews, 6)
         });
     }
 
@@ -131,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
             gridId: 'project-testimonials-grid',
             summaryId: 'project-testimonials-summary',
             filterId: 'project-testimonials-filter',
-            reviewSelector: reviews => pickRandomItems(reviews, Math.min(6, reviews.length))
+            reviewSelector: reviews => getSharedReviewSet(reviews, 6)
         });
     }
 
@@ -472,7 +473,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             const reviews = await getReviews();
-            const featuredReviews = reviews.slice(0, Math.min(4, reviews.length));
+            const featuredReviews = getSharedReviewSet(reviews, 6);
             renderReviewSummary('testimonial-summary', reviews);
 
             track.innerHTML = '';
