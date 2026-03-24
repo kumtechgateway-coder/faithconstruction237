@@ -17,17 +17,17 @@
     <meta property="og:url" content="https://www.faithconstruction237.com/projects.html">
     <meta property="og:title" content="Construction Projects Portfolio | FAITH Construction Cameroon">
     <meta property="og:description" content="Browse the portfolio of FAITH Construction. See our completed and in-progress luxury villas, modern homes, and renovation projects across Cameroon.">
-    <meta property="og:image" content="https://www.faithconstruction237.com/images/project4.webp">
+    <meta property="og:image" content="https://www.faithconstruction237.com/assets/images/project4.webp">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://www.faithconstruction237.com/projects.html">
     <meta property="twitter:title" content="Construction Projects Portfolio | FAITH Construction Cameroon">
     <meta property="twitter:description" content="Browse the portfolio of FAITH Construction. See our completed and in-progress luxury villas, modern homes, and renovation projects across Cameroon.">
-    <meta property="twitter:image" content="https://www.faithconstruction237.com/images/project4.webp">
+    <meta property="twitter:image" content="https://www.faithconstruction237.com/assets/images/project4.webp">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="icon" type="image/png" href="/assets/images/logo.png">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -45,7 +45,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
     
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 
     <!-- Theme switcher script to prevent FOUC -->
     <script>
@@ -191,7 +191,7 @@
     <!-- CTA Section -->
     <section class="relative py-16 md:py-24 overflow-hidden">
         <div class="absolute inset-0">
-            <img src="images/project5.webp" 
+            <img src="/assets/images/project5.webp" 
                  alt="Construction Background" 
                  class="w-full h-full object-cover"
                  loading="lazy">
@@ -227,9 +227,9 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
-    <script src="navbar.js"></script>
-    <script src="app-footer.js"></script>
-    <script src="script.js"></script>
+    <script src="/assets/js/navbar.js"></script>
+    <script src="/assets/js/app-footer.js"></script>
+    <script src="/assets/js/script.js"></script>
     <script>
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -250,7 +250,7 @@
                 if (window.location.protocol === 'file:') {
                     throw new Error('Browsers block local file access. Please use a local server (like Live Server extension in VS Code).');
                 }
-                const response = await fetch('data.json');
+                const response = await fetch('/assets/data/data.json');
                 if (!response.ok) throw new Error(`Failed to load projects: ${response.status}`);
                 const projects = await response.json();
                 renderGallery(projects);

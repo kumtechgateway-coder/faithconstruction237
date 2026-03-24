@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function loadProjects() {
         try {
-            const projects = await fetchJson('data.json');
+            const projects = await fetchJson('/assets/data/data.json');
             
             // Initial render
             renderProjects(projects);
@@ -260,7 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!track || !dotsContainer) return;
 
         try {
-            const reviews = await fetchJson('reviews.json');
+            const reviews = await fetchJson('/assets/data/reviews.json');
 
             track.innerHTML = '';
             dotsContainer.innerHTML = '';
@@ -297,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
         grid.innerHTML = '<p class="col-span-full text-center text-gray-500">Loading testimonials...</p>';
 
         try {
-            const reviews = await fetchJson('reviews.json');
+            const reviews = await fetchJson('/assets/data/reviews.json');
 
             grid.innerHTML = ''; // Clear loading message
 
