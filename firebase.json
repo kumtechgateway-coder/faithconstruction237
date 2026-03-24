@@ -25,10 +25,6 @@
     ],
     "rewrites": [
       {
-        "source": "/api/contact",
-        "function": "submitContactForm"
-      },
-      {
         "source": "**",
         "destination": "/index.html"
       }

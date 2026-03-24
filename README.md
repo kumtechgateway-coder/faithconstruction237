@@ -41,13 +41,19 @@ faithconstruction237/
   - `/assets/js/script.js`
   - `/assets/data/data.json`
   - `/assets/images/logo.png`
-- Keep the Firebase contact function entrypoint in the repository root (`index.js`) with its deployment metadata in `package.json`.
+- The repository still includes an optional Firebase function entrypoint in the repository root (`index.js`) with its deployment metadata in `package.json`.
 
-## Contact Form Setup
+## Contact Methods
 
-The contact form posts to `/api/contact`, which rewrites to the Firebase function `submitContactForm`.
+The live site currently uses direct contact methods on the contact page:
 
-Before deploying functions, configure the mail credentials:
+- Phone
+- Email
+- WhatsApp
+
+If you later decide to re-enable a website contact form, the optional Firebase function `submitContactForm` is already in the repository.
+
+Before deploying that optional function, configure the mail credentials:
 
 ```bash
 firebase functions:config:set email.user="youraddress@gmail.com" email.pass="your-app-password"
