@@ -30,7 +30,7 @@
     <link rel="icon" type="image/png" href="/assets/images/logo.png">
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/css/tailwind.css">
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -232,9 +232,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
     <script src="/assets/js/navbar.js"></script>
     <script src="/assets/js/app-footer.js"></script>
-    <script src="/assets/js/script.js"></script>
     <script>
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (typeof AOS !== 'undefined' && !prefersReducedMotion) {
+            AOS.init({
+                duration: 1000,
+                once: true,
+                offset: 100
+            });
+        }
+
+        if (typeof lightbox !== 'undefined') {
+            lightbox.option({
+                resizeDuration: 200,
+                wrapAround: true,
+                albumLabel: 'Project %1 of %2'
+            });
+        }
 
         // Project Filtering
         const filterButtons = document.querySelectorAll('.filter-btn');

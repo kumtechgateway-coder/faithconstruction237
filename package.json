@@ -3,7 +3,11 @@
   "private": true,
   "description": "Static marketing website for FAITH Construction",
   "scripts": {
+    "build:css": "tailwindcss -c tailwind.config.cjs -i tailwind.input.css -o public/assets/css/tailwind.css --minify",
     "deploy": "firebase deploy --only hosting",
     "deploy:hosting": "firebase deploy --only hosting"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
   }
 }

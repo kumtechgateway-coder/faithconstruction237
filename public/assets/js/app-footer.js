@@ -15,7 +15,7 @@ class AppFooter extends HTMLElement {
                     <!-- About -->
                     <div class="col-span-2 lg:col-span-1">
                         <a href="index.html" class="flex items-center gap-3 mb-6">
-                            <img src="/assets/images/logo.png" alt="Faith Construction Logo" class="h-12 w-auto rounded-[5px]" loading="lazy" decoding="async">
+                            <img src="/assets/images/logo.png" alt="Faith Construction Logo" class="h-12 w-auto rounded-[5px]" loading="lazy" decoding="async" width="72" height="50">
                             <div class="text-white flex flex-col leading-none">
                                 <span class="font-['Lora'] text-2xl font-black tracking-widest">FAITH</span>
                                 <span class="text-[#D4B357] text-[0.65rem] font-bold tracking-[0.2em]">CONSTRUCTION</span>

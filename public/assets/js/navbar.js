@@ -57,7 +57,7 @@ class AppNavbar extends HTMLElement {
                     <div class="flex justify-between items-center py-6">
                         <!-- Logo -->
                         <a href="index.html" class="flex items-center gap-3">
-                            <img src="/assets/images/logo.png" alt="Faith Construction Logo" class="h-12 w-auto rounded-[5px]" fetchpriority="high">
+                            <img src="/assets/images/logo.png" alt="Faith Construction Logo" class="h-12 w-auto rounded-[5px]" fetchpriority="high" decoding="async" width="72" height="50">
                             <div class="text-white flex flex-col leading-none">
                                 <span class="font-['Lora'] text-2xl font-black tracking-widest">FAITH</span>
                                 <span class="text-[#D4B357] text-[0.65rem] font-bold tracking-[0.2em]">CONSTRUCTION</span>
